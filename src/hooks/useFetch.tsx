@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import type { UseFetchCall } from "../models";
+import type { AxiosError } from "axios";
 
 type UseFetchOptions<P> = {
   autoFetch?: boolean;
   params: P;
 };
 
+type ApiError = { error: string };
 type Data<T> = T | null;
-type CustomError = Error | null;
+type CustomError = AxiosError<ApiError> | null;
 
 interface UseFetchResult<T, P> {
   loading: boolean;

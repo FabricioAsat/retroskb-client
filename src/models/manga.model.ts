@@ -19,7 +19,7 @@ export interface IManga {
 
 export interface IMangaCreate {
   name: string;
-  state: "reading" | "completed" | "abandoned" | "deleted" | "on_hold";
+  state: MangaState | "";
   chapter: number;
   image?: string;
   link: string;
@@ -27,7 +27,7 @@ export interface IMangaCreate {
 
 export interface IMangaUpdate {
   name?: string;
-  state?: "reading" | "completed" | "abandoned" | "deleted" | "on_hold";
+  state?: MangaState;
   chapter?: number;
   image?: string;
   link?: string;

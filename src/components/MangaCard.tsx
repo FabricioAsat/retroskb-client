@@ -17,7 +17,7 @@ export const MangaCard = ({ manga }: { manga: IManga }) => {
       className="flex relative gap-x-2 items-center w-52 h-64 rounded-md border-2 shadow-lg transition-all duration-300 cursor-pointer border-neutral-300 hover:scale-105 hover:shadow-neutral-800/50"
     >
       <img
-        src={manga.image || notImage}
+        src={manga.image ? `data:image/png;base64,${manga.image}` : notImage}
         alt="Manga image"
         className="object-cover absolute top-0 w-full h-full rounded-md"
       />

@@ -11,7 +11,6 @@ export const Default = () => {
         <section className="h-full max-w-[1440px] w-full mx-auto">
           <Outlet />
         </section>
-        <footer className="">Footer</footer>
       </main>
     </>
   );
