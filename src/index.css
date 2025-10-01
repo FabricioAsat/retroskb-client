@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --font-nunito: "Nunito", sans-serif;
+}
+
+body {
+  @apply font-nunito scroll-smooth selection:bg-teal-300 selection:text-neutral-800 text-neutral-800 bg-neutral-100;
+}
