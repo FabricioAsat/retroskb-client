@@ -76,7 +76,7 @@ export const Create = () => {
     e.preventDefault();
 
     // Validaciones
-    // if (!body.name || !body.state) return;
+    if (!body.name || !body.state) return;
 
     fetch(body);
   }
