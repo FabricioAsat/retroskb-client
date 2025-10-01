@@ -19,11 +19,11 @@ export const Home = () => {
 
   return (
     <PageContainer>
-      <MangaSection subtitle="Reading" mangas={reading} />
-      <MangaSection subtitle="Completed" mangas={completed} />
-      <MangaSection subtitle="Abandoned" mangas={abandoned} />
-      <MangaSection subtitle="Deleted" mangas={deleted} />
-      <MangaSection subtitle="On Hold" mangas={onHold} />
+      <MangaSection subtitle="Leyendo" mangas={reading} />
+      <MangaSection subtitle="Esperando para leer" mangas={onHold} />
+      <MangaSection subtitle="Completados" mangas={completed} />
+      <MangaSection subtitle="Abandonados" mangas={abandoned} />
+      <MangaSection subtitle="En papelera" mangas={deleted} />
     </PageContainer>
   );
 };

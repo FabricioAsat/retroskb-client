@@ -11,8 +11,8 @@ export const MangaSection = ({ subtitle, mangas }: Props) => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold">{subtitle}</h2>
-      <aside className="flex flex-col gap-y-3 mt-1 mb-5">
+      <h2 className="text-xl font-bold">Estado: {subtitle}</h2>
+      <aside className="flex flex-wrap gap-3 mt-1 mb-5">
         {mangas.map((manga: IManga) => (
           <MangaCard key={manga._id} manga={manga} />
         ))}
