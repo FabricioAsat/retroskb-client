@@ -12,6 +12,7 @@ import type { IManga, MangaState } from "../models/manga.model";
 import { createManga } from "../service/manga.service";
 import { useFetch } from "../hooks";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export const Create = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -93,6 +94,13 @@ export const Create = () => {
 
   return (
     <PageContainer>
+      <Link
+        to={"/"}
+        className="mx-auto max-w-5xl text-lg font-bold hover:underline underline-offset-2"
+      >
+        ← Volver a inicio
+      </Link>
+
       {error && (
         <div className="mx-auto max-w-5xl text-lg font-bold text-red-400">
           {error.message} - {error?.response?.data.error}

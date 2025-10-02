@@ -26,9 +26,9 @@ export interface IMangaCreate {
 }
 
 export interface IMangaUpdate {
-  name?: string;
-  state?: MangaState;
-  chapter?: number;
-  image?: string;
-  link?: string;
+  name: string;
+  state: MangaState | "";
+  chapter: number;
+  image: string;
+  link: string;
 }

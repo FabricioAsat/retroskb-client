@@ -2,7 +2,7 @@ import { PageContainer } from ".";
 
 interface Props {
   message?: string;
-  fetch: () => Promise<void>;
+  fetch: (param?: any) => Promise<void>;
 }
 
 export const Error = ({ message, fetch }: Props) => {

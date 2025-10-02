@@ -17,7 +17,7 @@ interface UseFetchResult<T, P> {
   error: CustomError;
   fetch: (param: P) => void;
 }
-//* Uso: const { loading, error, data, fetch } = useApi<Character, number>(getCharacter, { autoFetch: true, params: 1 })
+
 export const useFetch = <T, P>(
   fetchCall: (param: P) => UseFetchCall<T>,
   options?: UseFetchOptions<P>
