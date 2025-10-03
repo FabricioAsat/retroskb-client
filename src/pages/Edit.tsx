@@ -9,10 +9,9 @@ import {
   ButtonSelect,
   CustomTextArea,
   Loading,
-  Error,
 } from "../components";
 import uploadImage from "../assets/upload.svg";
-import type { IMangaCreate, IResponse } from "../models";
+import type { IResponse } from "../models";
 import type { IManga, IMangaUpdate, MangaState } from "../models/manga.model";
 import { getManga, updateManga } from "../service/manga.service";
 import { useFetch } from "../hooks";
@@ -131,6 +130,8 @@ export const Edit = () => {
       </PageContainer>
     );
 
+  console.log(uError);
+
   return (
     <PageContainer>
       <Link
@@ -140,9 +141,10 @@ export const Edit = () => {
         ← Volver a inicio
       </Link>
 
-      {error && (
+      {uError && (
         <div className="mx-auto max-w-5xl text-lg font-bold text-red-400">
-          {uError?.message} - {uError?.response?.data.error}
+          {uError?.message} -{" "}
+          {uError?.response?.data.error || "Ocurrió un error"}
         </div>
       )}
 
