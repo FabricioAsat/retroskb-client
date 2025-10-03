@@ -15,6 +15,7 @@ import type { IResponse } from "../models";
 import type { IManga, IMangaUpdate, MangaState } from "../models/manga.model";
 import { getManga, updateManga } from "../service/manga.service";
 import { useFetch } from "../hooks";
+import { getGenres } from "../utils";
 
 export const Edit = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -27,6 +28,8 @@ export const Edit = () => {
     chapter: 0,
     image: "",
     state: "",
+    description: "",
+    genre: [],
   });
   const { data, loading, error, fetch } = useFetch<IResponse<IManga>, string>(
     getManga,
@@ -42,7 +45,9 @@ export const Edit = () => {
     { autoFetch: false, params: { body: body, id: mangaId } }
   );
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     setBody({
       ...body,
       [e.target.name]: e.target.value,
@@ -85,6 +90,15 @@ export const Edit = () => {
     reader.readAsDataURL(file);
   }
 
+  function handleGenreChange(genre: string) {
+    setBody({
+      ...body,
+      genre: body.genre.includes(genre.toLocaleLowerCase())
+        ? body.genre.filter((g) => g !== genre.toLocaleLowerCase())
+        : [...body.genre, genre.toLocaleLowerCase()],
+    });
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -94,20 +108,19 @@ export const Edit = () => {
     uFetch({ body, id: mangaId });
   }
 
+  // Inicializa el body con el dato del manga (Get /:id)
   useEffect(() => {
-    if (loading) return;
-    if (error) return;
-    if (!data) return;
+    if (loading || error || !data) return;
+
     setBody({
       ...data.data,
+      genre: data.data.genre ?? [],
     });
   }, [data, loading, error]);
 
+  // Una vez ya editó en el server, redirecciona al home
   useEffect(() => {
-    if (uLoading) return;
-    if (uError) return;
-    if (!uData) return;
-
+    if (uLoading || uError || !uData) return;
     navigateTo("/");
   }, [uData, uLoading, uError]);
 
@@ -130,7 +143,7 @@ export const Edit = () => {
       </PageContainer>
     );
 
-  console.log(uError);
+  // console.log(body.genre);
 
   return (
     <PageContainer>
@@ -231,23 +244,37 @@ export const Edit = () => {
             />
           </span>
 
-          {/* TODO: Implementar en el body */}
           <span className="grid grid-cols-3 gap-5">
             <CustomTextArea
               name="description"
               id="description"
               placeholder="Por el momento no hay campo descripción para el body, luego se correguirá."
               className="col-span-3 resize-none"
-              value=""
-              onAction={() => {}}
+              value={body.description}
+              onAction={handleChange}
             />
           </span>
 
-          {/* TODO: sistema de géneros */}
-          <span className="grid grid-cols-3 gap-5">
-            <small className="text-xs italic font-bold text-neutral-500">
-              TODO: Hacer el sistema de géneros
+          <span className="flex flex-col gap-y-1 mt-5">
+            <small className="italic text-sm font-bold px-2">
+              Selecciona los géneros
             </small>
+            <span className="flex items-center flex-wrap gap-2">
+              {getGenres().map((genre: string) => (
+                <button
+                  type="button"
+                  key={genre}
+                  onClick={() => handleGenreChange(genre)}
+                  className={`text-xs italic capitalize font-bold cursor-pointer hover:bg-neutral-400/25 py-1 px-2 rounded-md ${
+                    body.genre.includes(genre.toLocaleLowerCase())
+                      ? "text-sky-500"
+                      : "text-neutral-500"
+                  }`}
+                >
+                  {genre.toLocaleLowerCase()}
+                </button>
+              ))}
+            </span>
           </span>
 
           <button

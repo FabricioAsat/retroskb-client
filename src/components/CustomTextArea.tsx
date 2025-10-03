@@ -4,7 +4,7 @@ interface Props {
   placeholder: string;
   value: string;
   className?: string;
-  onAction: () => void;
+  onAction: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 export const CustomTextArea = ({
   name,
@@ -16,7 +16,6 @@ export const CustomTextArea = ({
 }: Props) => {
   return (
     <textarea
-      disabled={true}
       onChange={onAction}
       rows={4}
       name={name}

@@ -13,6 +13,8 @@ export interface IManga {
   chapter: number;
   image: string; // Base64 string
   link: string;
+  description: string;
+  genre: string[];
   created_at: string;
   updated_at: string;
 }
@@ -23,6 +25,8 @@ export interface IMangaCreate {
   chapter: number;
   image?: string;
   link: string;
+  description: string;
+  genre: string[];
 }
 
 export interface IMangaUpdate {
@@ -31,4 +35,6 @@ export interface IMangaUpdate {
   chapter: number;
   image: string;
   link: string;
+  description: string;
+  genre: string[];
 }
