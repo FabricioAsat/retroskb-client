@@ -46,7 +46,7 @@ export const Default = () => {
         className="flex flex-col justify-center items-center border-b-2"
       >
         <HeaderDesktop isDark={isDark} onOpenModal={openModal} />
-        <HeaderMobile isDark={isDark} onOpenModal={openModal} />
+        <HeaderMobile onOpenModal={openModal} />
       </motion.header>
 
       <ScrollToTop />

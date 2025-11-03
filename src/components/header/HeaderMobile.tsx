@@ -2,15 +2,13 @@ import { Logo } from "./Logo";
 import { UserIMG } from "../../assets";
 import { CustomButton } from "..";
 
-import { motion } from "motion/react";
 import { ToggleTheme } from "./ToggleTheme";
 
 interface HeaderMobileProps {
-  isDark: boolean;
   onOpenModal: () => void;
 }
 
-export const HeaderMobile = ({ isDark, onOpenModal }: HeaderMobileProps) => {
+export const HeaderMobile = ({ onOpenModal }: HeaderMobileProps) => {
   return (
     <div
       className={`flex justify-between items-center p-2 mx-auto w-full max-w-[1440px] md:hidden`}
