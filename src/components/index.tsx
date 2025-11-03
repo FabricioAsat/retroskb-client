@@ -1,6 +1,9 @@
+// Global components
 export { PageContainer } from "./PageContainer";
+export { ScrollToTop } from "./ScrollToTop";
+export { CustomButton } from "./CustomButton";
+export { Modal } from "./Modal";
 
-export { Loading } from "./Loading";
-export { Error } from "./Error";
-
-export { Header } from "./header/Header";
+// Header folder
+export { HeaderDesktop } from "./header/HeaderDesktop";
+export { HeaderMobile } from "./header/HeaderMobile";
