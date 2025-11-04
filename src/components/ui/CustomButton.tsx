@@ -6,6 +6,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   color?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export const CustomButton = ({
@@ -13,6 +14,7 @@ export const CustomButton = ({
   onClick,
   color = "none",
   className,
+  type = "button",
 }: ButtonProps) => {
   const colorMap: Record<string, string> = {
     none: "",
@@ -42,6 +44,7 @@ export const CustomButton = ({
 
   return (
     <motion.button
+      type={type}
       whileHover={{ scale: 1.05, opacity: 0.95 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}

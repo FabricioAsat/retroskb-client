@@ -1,7 +1,13 @@
 import { motion } from "motion/react";
 import { Outlet } from "react-router";
 
-import { HeaderDesktop, HeaderMobile, Modal, ScrollToTop } from "../components";
+import {
+  Form,
+  HeaderDesktop,
+  HeaderMobile,
+  Modal,
+  ScrollToTop,
+} from "../components";
 import { useThemeContext } from "../context";
 import { getColorVar } from "../utils";
 import { useState } from "react";
@@ -74,7 +80,7 @@ export const Default = () => {
       </motion.main>
 
       <Modal show={isModalOpen} onClose={closeModal}>
-        <small>TODO: Formularios de Log in y Sign up</small>
+        <Form />
       </Modal>
     </motion.div>
   );
