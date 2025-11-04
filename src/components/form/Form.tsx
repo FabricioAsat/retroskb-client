@@ -4,6 +4,7 @@ import { LogInForm } from "./LogInForm";
 import { SignUpForm } from "./SignUpForm";
 import { useThemeContext } from "../../context";
 import { CustomButton } from "..";
+import { GoogleIMG, TwitterIMG } from "../../assets";
 
 interface FormProps {
   initialForm?: "login" | "signup";
@@ -75,6 +76,50 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Continuar con Google account, y demás */}
+        <aside className="flex flex-col items-center justify-center">
+          <span className="flex w-full items-center truncate gap-x-2">
+            <hr
+              className={`border w-full ${
+                isDark ? "border-dark-border" : "border-light-border"
+              }`}
+            />
+            <h2
+              className={`font-bold ${
+                isDark ? "text-dark-text-muted" : "text-light-text-muted"
+              }`}
+            >
+              Or continue with
+            </h2>
+            <hr
+              className={`border w-full ${
+                isDark ? "border-dark-border" : "border-light-border"
+              }`}
+            />
+          </span>
+
+          {/* Botones decorativos */}
+          <nav className="flex gap-4 items-center justify-center mt-4">
+            <CustomButton
+              onClick={() => console.log("Google")}
+              className={`px-2.5 py-2.5 border-transparent ${
+                isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
+              }`}
+            >
+              <GoogleIMG className="inline-block w-6 h-6" />
+            </CustomButton>
+
+            <CustomButton
+              onClick={() => console.log("Twitter")}
+              className={`px-2.5 py-2.5 border-transparent ${
+                isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
+              }`}
+            >
+              <TwitterIMG className="inline-block w-6 h-6" />
+            </CustomButton>
+          </nav>
+        </aside>
       </div>
     </div>
   );

@@ -1,25 +1,91 @@
+import { useState } from "react";
+import { CustomButton, CustomInput } from "..";
+import { useThemeContext } from "../../context";
+import {
+  isValidDate,
+  isValidEmail,
+  isValidPassword,
+  isValidUsername,
+} from "../../utils";
+import { HideIMG, ViewIMG } from "../../assets";
+
 export const SignUpForm = () => {
+  const { isDark } = useThemeContext();
+
+  const [viewPassword, setViewPassword] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (field: keyof typeof form) => (value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Submited");
+  };
+
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="mb-2 text-lg font-semibold text-center">Sign Up</h2>
-      <input
+    <form className="flex flex-col gap-y-8 px-5 py-5" onSubmit={handleSubmit}>
+      <CustomInput
+        label="Username"
         type="text"
-        placeholder="Username"
-        className="p-2 w-full rounded-lg border"
+        value={form.email}
+        onChange={(e) => handleChange("username")(e.target.value)}
+        validate={(value) => isValidUsername(value)}
       />
-      <input
+
+      <CustomInput
+        label="Email"
         type="email"
-        placeholder="Email"
-        className="p-2 w-full rounded-lg border"
+        value={form.email}
+        onChange={(e) => handleChange("email")(e.target.value)}
+        validate={(value) => isValidEmail(value)}
       />
-      <input
-        type="password"
-        placeholder="Password"
-        className="p-2 w-full rounded-lg border"
+
+      <span className="flex flex-col items-end">
+        <CustomInput
+          label="Password"
+          type={viewPassword ? "text" : "password"}
+          value={form.password}
+          onChange={(e) => handleChange("password")(e.target.value)}
+          validate={(value) => isValidPassword(value)}
+        />
+        <small
+          onClick={() => setViewPassword(!viewPassword)}
+          className={`flex items-center gap-x-1 text-xs italic cursor-pointer mr-1 mt-1 transition-colors duration-200 ${
+            isDark
+              ? "text-dark-text-muted hover:text-dark-text"
+              : "text-light-text-muted hover:text-light-text"
+          }`}
+        >
+          {viewPassword ? (
+            <HideIMG className="inline-block w-4 h-4" />
+          ) : (
+            <ViewIMG className="inline-block w-4 h-4" />
+          )}
+          {viewPassword ? "Hide Password" : "Show Password"}
+        </small>
+      </span>
+
+      <CustomInput
+        label="Date of Birth"
+        type="date"
+        value={form.email}
+        onChange={(e) => handleChange("email")(e.target.value)}
+        validate={(value) => isValidDate(value)}
       />
-      <button className="py-2 w-full font-semibold text-white bg-green-500 rounded-lg transition hover:bg-green-600">
-        Sign Up
-      </button>
-    </div>
+
+      <CustomButton
+        type="submit"
+        color={isDark ? "dark-success" : "light-success"}
+        className="w-full"
+      >
+        Sign in
+      </CustomButton>
+    </form>
   );
 };
