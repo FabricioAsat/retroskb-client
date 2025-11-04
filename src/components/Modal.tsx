@@ -32,7 +32,7 @@ export function Modal({ children, show, onClose }: ModalProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className={`flex flex-col items-start p-6 w-full md:max-w-xl rounded-xl border shadow-lg bg-surface text-text-main ${
+            className={`flex flex-col items-start p-2 md:p-5 w-full md:max-w-xl rounded-xl border shadow-lg bg-surface text-text-main ${
               isDark
                 ? "border-dark-border bg-dark-bg-secondary/90"
                 : "border-light-border bg-light-bg-secondary/90"

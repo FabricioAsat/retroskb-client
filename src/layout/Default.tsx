@@ -14,6 +14,7 @@ import { useState } from "react";
 
 export const Default = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [whatForm, setWhatForm] = useState<"login" | "signup">("login");
   const { isDark, toggleTheme } = useThemeContext();
 
   const openModal = () => {
@@ -23,9 +24,13 @@ export const Default = () => {
     setIsModalOpen(false);
   };
 
+  const selectForm = (form: "login" | "signup") => {
+    setWhatForm(form);
+  };
+
   return (
     <motion.div
-      key={isDark ? "dark" : "light"} // para reiniciar animación si cambia el tema
+      key={isDark ? "dark" : "light"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -51,7 +56,11 @@ export const Default = () => {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="flex flex-col justify-center items-center border-b-2"
       >
-        <HeaderDesktop isDark={isDark} onOpenModal={openModal} />
+        <HeaderDesktop
+          isDark={isDark}
+          onOpenModal={openModal}
+          selectForm={selectForm}
+        />
         <HeaderMobile onOpenModal={openModal} />
       </motion.header>
 
@@ -80,7 +89,7 @@ export const Default = () => {
       </motion.main>
 
       <Modal show={isModalOpen} onClose={closeModal}>
-        <Form />
+        <Form initialForm={whatForm} />
       </Modal>
     </motion.div>
   );

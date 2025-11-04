@@ -29,7 +29,10 @@ export const SignUpForm = () => {
   };
 
   return (
-    <form className="flex flex-col gap-y-8 px-5 py-5" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-y-8 md:px-5 py-5"
+      onSubmit={handleSubmit}
+    >
       <CustomInput
         label="Username"
         type="text"
