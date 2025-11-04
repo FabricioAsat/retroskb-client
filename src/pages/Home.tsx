@@ -1,9 +1,9 @@
-import { PageContainer } from "../components";
+import { Hero, PageContainer } from "../components";
 
 export const Home = () => {
   return (
     <PageContainer>
-      <h2>Home</h2>
+      <Hero />
     </PageContainer>
   );
 };

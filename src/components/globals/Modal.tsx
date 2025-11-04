@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "motion/react";
 
-import { useModal, useThemeContext } from "../context";
-import { Logo } from "./header/Logo";
-import { CloseIMG } from "../assets";
-import { CustomButton } from ".";
+import { useModal, useThemeContext } from "../../context";
+import { Logo } from "../header/Logo";
+import { CloseIMG } from "../../assets";
+import { CustomButton } from "..";
 import { Portal } from "./Portal";
 
 export function Modal() {

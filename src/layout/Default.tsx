@@ -6,7 +6,7 @@ import { useThemeContext } from "../context";
 import { getColorVar } from "../utils";
 
 export const Default = () => {
-  const { isDark, toggleTheme } = useThemeContext();
+  const { isDark } = useThemeContext();
 
   return (
     <motion.div
@@ -58,10 +58,14 @@ export const Default = () => {
         }}
         className="overflow-y-auto h-full"
       >
-        <section className="h-full max-w-[1440px] w-full mx-auto">
-          <Outlet />
-          <button onClick={toggleTheme}>Change Theme</button>
-        </section>
+        <Outlet />
+        <footer
+          className={`${
+            isDark ? "bg-dark-bg-secondary" : "bg-light-bg-secondary"
+          } text-text-main p-4 text-center`}
+        >
+          Footer de testeo
+        </footer>
       </motion.main>
     </motion.div>
   );
