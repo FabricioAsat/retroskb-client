@@ -1,9 +1,9 @@
 import { PageContainer } from "../components";
 
-export const Home = () => {
+export const User = () => {
   return (
     <PageContainer>
-      <h1>Home</h1>
+      <h1>User</h1>
     </PageContainer>
   );
 };

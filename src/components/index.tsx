@@ -2,6 +2,7 @@
 export { PageContainer } from "./PageContainer";
 export { ScrollToTop } from "./ScrollToTop";
 export { Modal } from "./Modal";
+export { ProtectedRoute } from "./ProtectedRoute";
 
 // Header folder
 export { HeaderDesktop } from "./header/HeaderDesktop";
