@@ -3,7 +3,7 @@ import { PageContainer } from "../components";
 export const Home = () => {
   return (
     <PageContainer>
-      <h1>Home</h1>
+      <h2>Home</h2>
     </PageContainer>
   );
 };

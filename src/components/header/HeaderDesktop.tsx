@@ -1,21 +1,16 @@
 import { Logo } from "./Logo";
-import { CustomButton } from "..";
+import { CustomButton, Form } from "..";
 import { ToggleTheme } from "./ToggleTheme";
+import { useModal } from "../../context";
 
 interface HeaderDesktopProps {
   isDark: boolean;
-  onOpenModal: () => void;
-  selectForm: (form: "login" | "signup") => void;
 }
 
-export const HeaderDesktop = ({
-  isDark,
-  onOpenModal,
-  selectForm,
-}: HeaderDesktopProps) => {
+export const HeaderDesktop = ({ isDark }: HeaderDesktopProps) => {
+  const { openModal } = useModal();
   const handleSelectForm = (form: "login" | "signup") => {
-    selectForm(form);
-    onOpenModal();
+    openModal(<Form initialForm={form} />);
   };
 
   return (

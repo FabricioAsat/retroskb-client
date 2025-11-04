@@ -1,14 +1,17 @@
 import { Logo } from "./Logo";
 import { UserIMG } from "../../assets";
-import { CustomButton } from "..";
+import { CustomButton, Form } from "..";
 
 import { ToggleTheme } from "./ToggleTheme";
+import { useModal } from "../../context";
 
-interface HeaderMobileProps {
-  onOpenModal: () => void;
-}
+export const HeaderMobile = () => {
+  const { openModal } = useModal();
 
-export const HeaderMobile = ({ onOpenModal }: HeaderMobileProps) => {
+  function handleOpenModal() {
+    openModal(<Form initialForm="login" />);
+  }
+
   return (
     <div
       className={`flex justify-between items-center p-2 mx-auto w-full max-w-[1440px] md:hidden`}
@@ -18,7 +21,7 @@ export const HeaderMobile = ({ onOpenModal }: HeaderMobileProps) => {
       <div className="flex gap-x-5 items-center">
         <ToggleTheme />
 
-        <CustomButton onClick={onOpenModal} className="border-transparent">
+        <CustomButton onClick={handleOpenModal} className="border-transparent">
           <UserIMG className="w-8 h-8" />
         </CustomButton>
       </div>

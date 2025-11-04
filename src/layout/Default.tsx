@@ -1,32 +1,12 @@
 import { motion } from "motion/react";
 import { Outlet } from "react-router";
 
-import {
-  Form,
-  HeaderDesktop,
-  HeaderMobile,
-  Modal,
-  ScrollToTop,
-} from "../components";
+import { HeaderDesktop, HeaderMobile, ScrollToTop } from "../components";
 import { useThemeContext } from "../context";
 import { getColorVar } from "../utils";
-import { useState } from "react";
 
 export const Default = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [whatForm, setWhatForm] = useState<"login" | "signup">("login");
   const { isDark, toggleTheme } = useThemeContext();
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const selectForm = (form: "login" | "signup") => {
-    setWhatForm(form);
-  };
 
   return (
     <motion.div
@@ -56,12 +36,8 @@ export const Default = () => {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="flex flex-col justify-center items-center border-b-2"
       >
-        <HeaderDesktop
-          isDark={isDark}
-          onOpenModal={openModal}
-          selectForm={selectForm}
-        />
-        <HeaderMobile onOpenModal={openModal} />
+        <HeaderDesktop isDark={isDark} />
+        <HeaderMobile />
       </motion.header>
 
       <ScrollToTop />
@@ -87,10 +63,6 @@ export const Default = () => {
           <button onClick={toggleTheme}>Change Theme</button>
         </section>
       </motion.main>
-
-      <Modal show={isModalOpen} onClose={closeModal}>
-        <Form initialForm={whatForm} />
-      </Modal>
     </motion.div>
   );
 };
