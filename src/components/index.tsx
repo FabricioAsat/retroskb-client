@@ -17,4 +17,4 @@ export { CustomInput } from "./ui/CustomInput";
 
 // Home folder
 export { Hero } from "./home/Hero";
-export { CardsFan } from "./home/CardsFan";
+export { Qualities } from "./home/Qualities";

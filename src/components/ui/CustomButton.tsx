@@ -19,6 +19,7 @@ export const CustomButton = ({
   const colorMap: Record<string, string> = {
     none: "",
 
+    light: "px-4 py-1.5 bg-light-bg text-light-text border-light-bg",
     "light-primary":
       "px-4 py-1.5 bg-light-primary text-white border-light-primary",
     "light-secondary":
@@ -29,6 +30,7 @@ export const CustomButton = ({
       "px-4 py-1.5 bg-light-warning text-white border-light-warning",
     "light-error": "px-4 py-1.5 bg-light-error text-white border-light-error",
 
+    dark: "px-4 py-1.5 bg-dark-bg text-dark-text border-dark-bg",
     "dark-primary":
       "px-4 py-1.5 bg-dark-primary text-white border-dark-primary",
     "dark-secondary":
