@@ -1,6 +1,5 @@
 import { LogoIMG } from "../../assets";
 import { useThemeContext } from "../../context";
-import { Logo } from "../header/Logo";
 
 export const Footer = () => {
   const { isDark } = useThemeContext();
