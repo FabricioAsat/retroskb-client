@@ -18,3 +18,6 @@ export { CustomInput } from "./ui/CustomInput";
 // Home folder
 export { Hero } from "./home/Hero";
 export { Qualities } from "./home/Qualities";
+
+// Footer folder
+export { Footer } from "./footer/Footer";

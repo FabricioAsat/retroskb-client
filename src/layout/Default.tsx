@@ -1,7 +1,12 @@
 import { motion } from "motion/react";
 import { Outlet } from "react-router";
 
-import { HeaderDesktop, HeaderMobile, ScrollToTop } from "../components";
+import {
+  Footer,
+  HeaderDesktop,
+  HeaderMobile,
+  ScrollToTop,
+} from "../components";
 import { useThemeContext } from "../context";
 import { getColorVar } from "../utils";
 
@@ -60,11 +65,11 @@ export const Default = () => {
       >
         <Outlet />
         <footer
-          className={`${
-            isDark ? "bg-dark-bg-secondary" : "bg-light-bg-secondary"
-          } text-text-main p-4 text-center`}
+          className={`flex flex-col justify-center items-center border-t-2 ${
+            isDark ? "border-dark-border" : "border-light-border"
+          } text-text-main pt-4 pb-1 text-center`}
         >
-          Footer de testeo
+          <Footer />
         </footer>
       </motion.main>
     </motion.div>
