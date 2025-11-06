@@ -15,3 +15,6 @@ export { FastIMG } from "./FastIMG"; // trivial
 
 export { SuccessIMG } from "./SuccessIMG";
 export { WarningIMG } from "./WarningIMG";
+
+export { LoginIMG } from "./LoginIMG";
+export { LogoutIMG } from "./LogoutIMG";

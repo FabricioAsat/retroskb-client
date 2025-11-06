@@ -1,17 +1,26 @@
-import { useState } from "react";
-import { CustomButton, CustomInput } from "..";
-import { useTheme, useToast } from "../../context";
+import { useEffect, useState } from "react";
+import { CustomButton, CustomInput, Loader } from "..";
+import { useAuth, useModal, useTheme, useToast } from "../../context";
 import { isValidEmail, isValidPassword } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
+import { useFetch } from "../../hooks";
+import { loginUser } from "../../service/user.service";
+import { ROUTES } from "../../constants/routes";
 
 export const LogInForm = () => {
   const { isDark } = useTheme();
   const { showToast } = useToast();
+  const { closeModal } = useModal();
+  const { setToken } = useAuth();
 
   const [viewPassword, setViewPassword] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
+  });
+  const { loading, data, error, fetch } = useFetch(loginUser, {
+    params: form,
+    autoFetch: false,
   });
 
   const handleChange = (field: keyof typeof form) => (value: string) => {
@@ -20,8 +29,18 @@ export const LogInForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submited");
+    fetch(form);
   };
+
+  useEffect(() => {
+    if (error) {
+      showToast(error.message, "error");
+    } else if (data) {
+      showToast(data.message || "Log In Successfully", "success");
+      setToken(data.data.token);
+      closeModal();
+    }
+  }, [error, data]);
 
   return (
     <form
@@ -63,10 +82,11 @@ export const LogInForm = () => {
 
       <CustomButton
         type="submit"
-        color={isDark ? "dark-primary" : "light-primary"}
+        disabled={loading}
+        color={isDark ? "dark-success" : "light-success"}
         className="w-full"
       >
-        Log In
+        {loading ? <Loader /> : "Log In"}
       </CustomButton>
     </form>
   );

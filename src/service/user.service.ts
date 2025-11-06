@@ -22,12 +22,16 @@ export const registerUser = (
   };
 };
 
+// --------- Login
+interface IDataResponse {
+  token: string;
+}
 export const loginUser = (
   body: IUserLogin
-): UseFetchCall<IResponse<string>> => {
+): UseFetchCall<IResponse<IDataResponse>> => {
   const controller = loadAbort();
   return {
-    call: axios.post<IResponse<string>>(ENDPOINTS.AUTH.LOGIN, body, {
+    call: axios.post<IResponse<IDataResponse>>(ENDPOINTS.AUTH.LOGIN, body, {
       signal: controller.signal,
       headers: {
         "Content-Type": "application/json",

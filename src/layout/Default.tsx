@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Outlet } from "react-router";
 
 import {
+  AuthRedirect,
   Footer,
   HeaderDesktop,
   HeaderMobile,
@@ -25,6 +26,7 @@ export const Default = () => {
           : "bg-light-bg text-light-text border-light-border"
       }`}
     >
+      <AuthRedirect />
       <motion.header
         initial={false}
         animate={{

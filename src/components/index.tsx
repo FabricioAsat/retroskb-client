@@ -3,6 +3,7 @@ export { PageContainer } from "./globals/PageContainer";
 export { ScrollToTop } from "./globals/ScrollToTop";
 export { Modal } from "./globals/Modal";
 export { ProtectedRoute } from "./globals/ProtectedRoute";
+export { AuthRedirect } from "./globals/AuthRedirect";
 
 // Header folder
 export { HeaderDesktop } from "./header/HeaderDesktop";

@@ -60,7 +60,7 @@ export const CustomButton = ({
       whileTap={{ scale: disabled ? 1 : 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       onClick={onClick}
-      className={`flex px-4 py-1.5 gap-2 justify-center items-center font-bold rounded-xl border-2 transition-colors duration-200 cursor-pointer ${
+      className={`flex px-4 py-1.5 gap-1 justify-center items-center font-bold rounded-xl border-2 transition-colors duration-200 cursor-pointer ${
         disabled ? "" : baseStyle
       } ${className} disabled:cursor-not-allowed ${
         isDark
@@ -68,7 +68,7 @@ export const CustomButton = ({
           : "disabled:bg-light-disabled disabled:text-light-text-muted disabled:border-light-disabled"
       }`}
     >
-      <span>{children}</span>
+      {children}
     </motion.button>
   );
 };

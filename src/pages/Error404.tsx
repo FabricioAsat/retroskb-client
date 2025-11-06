@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { useTheme } from "../context";
 import { CustomButton, PageContainer } from "../components";
+import { ROUTES } from "../constants/routes";
 
 export const Error404 = () => {
   const { isDark } = useTheme();
@@ -46,7 +47,7 @@ export const Error404 = () => {
 
         <CustomButton
           color={isDark ? "dark-primary" : "light-primary"}
-          onClick={() => navigate("/")}
+          onClick={() => navigate(ROUTES.HOME)}
           className={`px-5 py-2 rounded-lg ${
             isDark ? "bg-dark-primary" : "bg-light-primary"
           } hover:${

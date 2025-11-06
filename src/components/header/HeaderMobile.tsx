@@ -3,13 +3,20 @@ import { UserIMG } from "../../assets";
 import { CustomButton, Form } from "..";
 
 import { ToggleTheme } from "./ToggleTheme";
-import { useModal } from "../../context";
+import { useAuth, useModal, useTheme } from "../../context";
+import { LogoutIMG } from "../../assets/LogoutIMG";
 
 export const HeaderMobile = () => {
   const { openModal } = useModal();
+  const { isDark } = useTheme();
+  const { token, logout } = useAuth();
 
   function handleOpenModal() {
     openModal(<Form initialForm="login" />);
+  }
+
+  function handleLogout() {
+    logout();
   }
 
   return (
@@ -21,8 +28,23 @@ export const HeaderMobile = () => {
       <div className="flex gap-x-5 items-center">
         <ToggleTheme />
 
-        <CustomButton onClick={handleOpenModal} className="border-transparent">
-          <UserIMG className="w-8 h-8" />
+        <CustomButton
+          onClick={token ? handleLogout : handleOpenModal}
+          className="border-transparent"
+        >
+          {token ? (
+            <LogoutIMG
+              className={`w-8 h-8 ${
+                isDark ? "text-dark-error" : "text-light-error"
+              }`}
+            />
+          ) : (
+            <UserIMG
+              className={`w-8 h-8 ${
+                isDark ? "text-dark-success" : "text-light-success"
+              }`}
+            />
+          )}
         </CustomButton>
       </div>
     </div>

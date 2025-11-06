@@ -6,20 +6,20 @@ import { Modal } from "./components";
 import {
   ThemeProvider,
   ModalProvider,
-  AuthProvider,
   ToastProvider,
+  AuthProvider,
 } from "./context";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <ModalProvider>
-        <AuthProvider>
-          <ToastProvider>
+        <ToastProvider>
+          <AuthProvider>
             <App />
             <Modal />
-          </ToastProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </ToastProvider>
       </ModalProvider>
     </ThemeProvider>
   </StrictMode>
