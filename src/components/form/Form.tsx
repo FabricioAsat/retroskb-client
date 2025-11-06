@@ -23,30 +23,32 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
       >
         <CustomButton
           onClick={() => setActiveForm("login")}
-          className={`px-4 py-2 border-transparent ${
+          className="mb-1"
+          color={
             activeForm === "login"
               ? isDark
-                ? "bg-dark-secondary text-white"
-                : "bg-light-secondary text-white"
+                ? "dark-secondary"
+                : "light-secondary"
               : isDark
-              ? "bg-transparent text-dark-text-muted"
-              : "bg-transparent text-light-text-muted"
-          }`}
+              ? "dark-disabled"
+              : "light-disabled"
+          }
         >
           Log In
         </CustomButton>
 
         <CustomButton
           onClick={() => setActiveForm("signup")}
-          className={`px-4 py-2 border-transparent ${
+          className="mb-1"
+          color={
             activeForm === "signup"
               ? isDark
-                ? "bg-dark-secondary text-white"
-                : "bg-light-secondary text-white"
+                ? "dark-secondary"
+                : "light-secondary"
               : isDark
-              ? "bg-transparent text-dark-text-muted"
-              : "bg-transparent text-light-text-muted"
-          }`}
+              ? "dark-disabled"
+              : "light-disabled"
+          }
         >
           Sign Up
         </CustomButton>
@@ -78,8 +80,8 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
         </AnimatePresence>
 
         {/* Continuar con Google account, y demás */}
-        <aside className="flex flex-col items-center justify-center">
-          <span className="flex w-full items-center truncate gap-x-2">
+        <aside className="flex flex-col justify-center items-center">
+          <span className="flex gap-x-2 items-center w-full truncate">
             <hr
               className={`border w-full ${
                 isDark ? "border-dark-border" : "border-light-border"
@@ -100,7 +102,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
           </span>
 
           {/* Botones decorativos */}
-          <nav className="flex gap-4 items-center justify-center mt-4">
+          <nav className="flex gap-4 justify-center items-center mt-4">
             <CustomButton
               onClick={() => console.log("Google")}
               className={`px-2.5 py-2.5 border-transparent ${

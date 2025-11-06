@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CustomButton, CustomInput } from "..";
+import { CustomButton, CustomInput, Loader } from "..";
 import { useTheme } from "../../context";
 import {
   isValidDate,
@@ -8,16 +8,22 @@ import {
   isValidUsername,
 } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
+import { useFetch } from "../../hooks";
+import { registerUser } from "../../service/user.service";
+import type { IUserRegister } from "../../models";
 
 export const SignUpForm = () => {
   const { isDark } = useTheme();
-
-  const [viewPassword, setViewPassword] = useState(false);
-  const [form, setForm] = useState({
+  const [viewPassword, setViewPassword] = useState<boolean>(false);
+  const [form, setForm] = useState<IUserRegister>({
     email: "",
     username: "",
     password: "",
     date_of_birth: "",
+  });
+  const { loading, data, error, fetch } = useFetch(registerUser, {
+    params: form,
+    autoFetch: false,
   });
 
   const handleChange = (field: keyof typeof form) => (value: string) => {
@@ -85,10 +91,11 @@ export const SignUpForm = () => {
 
       <CustomButton
         type="submit"
+        disabled={loading}
         color={isDark ? "dark-success" : "light-success"}
         className="w-full"
       >
-        Sign in
+        {loading ? <Loader /> : "Sign Up"}
       </CustomButton>
     </form>
   );
