@@ -28,6 +28,17 @@ export const LogInForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validaciones
+    if (!isValidEmail(form.email)) {
+      showToast("Invalid email format", "error");
+      return;
+    }
+    if (!isValidPassword(form.password)) {
+      showToast("Password must be at least 8 characters long", "error");
+      return;
+    }
+
     fetch(form);
   };
 

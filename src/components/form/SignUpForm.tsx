@@ -35,6 +35,24 @@ export const SignUpForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Validaciones
+    if (!isValidEmail(form.email)) {
+      showToast("Invalid email format", "error");
+      return;
+    }
+    if (!isValidUsername(form.username)) {
+      showToast("Invalid username format", "error");
+      return;
+    }
+    if (!isValidPassword(form.password)) {
+      showToast("Password must be at least 8 characters long", "error");
+      return;
+    }
+    if (!isValidDate(form.date_of_birth)) {
+      showToast("Invalid date of birth format", "error");
+      return;
+    }
+
     fetch(form);
   };
 

@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { LogInForm } from "./LogInForm";
 import { SignUpForm } from "./SignUpForm";
-import { useTheme } from "../../context";
-import { CustomButton } from "..";
+import { useTheme, useToast } from "../../context";
+import { CustomButton, Loader } from "..";
 import { GoogleIMG, TwitterIMG } from "../../assets";
 
 interface FormProps {
@@ -13,6 +13,17 @@ interface FormProps {
 export const Form = ({ initialForm = "login" }: FormProps) => {
   const [activeForm, setActiveForm] = useState<"login" | "signup">(initialForm);
   const { isDark } = useTheme();
+  const { showToast } = useToast();
+
+  // Esto para hacer un fake con el inicio en gmail y twitter
+  const [fakeLoading, setFakeLoading] = useState(false);
+  function handleFakeSubmit() {
+    setFakeLoading(true);
+    setTimeout(() => {
+      showToast("Service not available now", "error");
+      setFakeLoading(false);
+    }, 2000);
+  }
 
   return (
     <div className="flex flex-col justify-start items-center mx-auto mt-5 w-full rounded-xl bg-surface">
@@ -103,23 +114,37 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
 
           {/* Botones decorativos */}
           <nav className="flex gap-4 justify-center items-center mt-4">
-            <CustomButton
-              onClick={() => console.log("Google")}
-              className={`px-2.5 py-2.5 border-transparent ${
-                isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
-              }`}
-            >
-              <GoogleIMG className="inline-block w-6 h-6" />
-            </CustomButton>
+            {fakeLoading ? (
+              <CustomButton
+                disabled={fakeLoading}
+                onClick={handleFakeSubmit}
+                color={isDark ? "dark-disabled" : "light-disabled"}
+              >
+                <Loader />
+              </CustomButton>
+            ) : (
+              <>
+                <CustomButton
+                  disabled={fakeLoading}
+                  onClick={handleFakeSubmit}
+                  className={`px-2.5 py-2.5 border-transparent ${
+                    isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
+                  }`}
+                >
+                  <GoogleIMG className="inline-block w-6 h-6" />
+                </CustomButton>
 
-            <CustomButton
-              onClick={() => console.log("Twitter")}
-              className={`px-2.5 py-2.5 border-transparent ${
-                isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
-              }`}
-            >
-              <TwitterIMG className="inline-block w-6 h-6" />
-            </CustomButton>
+                <CustomButton
+                  disabled={fakeLoading}
+                  onClick={handleFakeSubmit}
+                  className={`px-2.5 py-2.5 border-transparent ${
+                    isDark ? "hover:bg-dark-border" : "hover:bg-light-border"
+                  }`}
+                >
+                  <TwitterIMG className="inline-block w-6 h-6" />
+                </CustomButton>
+              </>
+            )}
           </nav>
         </aside>
       </div>
