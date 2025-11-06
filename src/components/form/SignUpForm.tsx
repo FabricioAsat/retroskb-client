@@ -17,6 +17,7 @@ export const SignUpForm = () => {
     email: "",
     username: "",
     password: "",
+    date_of_birth: "",
   });
 
   const handleChange = (field: keyof typeof form) => (value: string) => {
@@ -30,13 +31,13 @@ export const SignUpForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-y-8 md:px-5 py-5"
+      className="flex flex-col gap-y-8 py-5 md:px-5"
       onSubmit={handleSubmit}
     >
       <CustomInput
         label="Username"
         type="text"
-        value={form.email}
+        value={form.username}
         onChange={(e) => handleChange("username")(e.target.value)}
         validate={(value) => isValidUsername(value)}
       />
@@ -77,8 +78,8 @@ export const SignUpForm = () => {
       <CustomInput
         label="Date of Birth"
         type="date"
-        value={form.email}
-        onChange={(e) => handleChange("email")(e.target.value)}
+        value={form.date_of_birth}
+        onChange={(e) => handleChange("date_of_birth")(e.target.value)}
         validate={(value) => isValidDate(value)}
       />
 

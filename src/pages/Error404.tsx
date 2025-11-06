@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { useTheme } from "../context";
 import { CustomButton, PageContainer } from "../components";
-import { WarningIMG } from "../assets";
 
 export const Error404 = () => {
   const { isDark } = useTheme();
@@ -11,7 +10,7 @@ export const Error404 = () => {
   return (
     <PageContainer>
       <div
-        className={`flex flex-col items-center justify-center min-h-screen text-center px-4`}
+        className={`flex flex-col justify-center items-center px-4 min-h-screen text-center`}
       >
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -28,7 +27,7 @@ export const Error404 = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-2xl font-semibold mb-6"
+          className="mb-6 text-2xl font-semibold"
         >
           Página no encontrada
         </motion.h2>
