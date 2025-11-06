@@ -1,0 +1,62 @@
+import { motion } from "motion/react";
+import { useNavigate } from "react-router";
+import { useTheme } from "../context";
+import { CustomButton, PageContainer } from "../components";
+import { WarningIMG } from "../assets";
+
+export const Error404 = () => {
+  const { isDark } = useTheme();
+  const navigate = useNavigate();
+
+  return (
+    <PageContainer>
+      <div
+        className={`flex flex-col items-center justify-center min-h-screen text-center px-4`}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className={`text-8xl font-bold mb-4 ${
+            isDark ? "text-dark-error" : "text-light-error"
+          }`}
+        >
+          404
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl font-semibold mb-6"
+        >
+          Página no encontrada
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className={`max-w-md mb-8 ${
+            isDark ? "text-dark-text-muted" : "text-light-text-muted"
+          }`}
+        >
+          Parece que te perdiste en algún manga inexistente 😅 La página que
+          buscas no está disponible.
+        </motion.p>
+
+        <CustomButton
+          color={isDark ? "dark-primary" : "light-primary"}
+          onClick={() => navigate("/")}
+          className={`px-5 py-2 rounded-lg ${
+            isDark ? "bg-dark-primary" : "bg-light-primary"
+          } hover:${
+            isDark ? "bg-dark-primary-hover" : "bg-light-primary-hover"
+          } transition-colors shadow-md font-medium`}
+        >
+          Volver al inicio
+        </CustomButton>
+      </div>
+    </PageContainer>
+  );
+};

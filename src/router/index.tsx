@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Default } from "../layout/Default";
-import { Home, User } from "../pages";
+import { Error404, Home, User } from "../pages";
 import { ProtectedRoute } from "../components";
 
 export const router = createBrowserRouter([
@@ -13,6 +13,7 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [{ path: "/user", element: <User /> }],
       },
+      { path: "/*", element: <Error404 /> },
     ],
   },
 ]);
