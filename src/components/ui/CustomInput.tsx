@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useTheme } from "../../context";
-
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   validate?: (value: string) => boolean;
@@ -10,16 +9,16 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const CustomInput = ({
   label,
   validate,
+  value = "",
+  onChange,
   ...props
 }: CustomInputProps) => {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState("");
   const { isDark } = useTheme();
 
-  const isFloating = focused || value.length > 0;
-
-  const isValid = validate ? validate(value) : true;
-  const hasTyped = value.length > 0;
+  const isFloating = focused || (value && value.toString().length > 0);
+  const isValid = validate ? validate(value as string) : true;
+  const hasTyped = value && value.toString().length > 0;
 
   let borderClass = "";
   if (!hasTyped) {
@@ -37,7 +36,7 @@ export const CustomInput = ({
           y: isFloating ? -20 : 0,
           scale: isFloating ? 0.85 : 1,
           x: isFloating ? -2 : 0,
-          opacity: isFloating ? 0.8 : 1,
+          opacity: 1,
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
         className={`absolute top-2.5 left-3 px-2 pointer-events-none select-none ${
@@ -50,10 +49,10 @@ export const CustomInput = ({
       <input
         {...props}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange} // ← usa el del padre
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`px-3 py-2 w-full rounded-lg border-2 transition-colors outline-none ${borderClass}`}
+        className={`px-3 py-2 w-full rounded-lg border-2 transition-colors outline-none ${borderClass} disabled:line-through disabled:italic`}
         autoComplete="off"
       />
     </div>

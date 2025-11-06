@@ -83,34 +83,6 @@ export const Hero = () => {
           </CustomButton>
         </motion.div>
       </span>
-
-      {/* Test toast */}
-      <div className="flex items-center gap-x-10 mt-10">
-        <CustomButton
-          onClick={() => showToast("Testing error button", "error")}
-          className="border-transparent"
-        >
-          Error Button
-        </CustomButton>
-        <CustomButton
-          onClick={() => showToast("Testing success button", "success")}
-          className="border-transparent"
-        >
-          Success Button
-        </CustomButton>
-        <CustomButton
-          onClick={() => showToast("Testing warning button", "warning")}
-          className="border-transparent"
-        >
-          Warning Button
-        </CustomButton>
-        <CustomButton
-          onClick={() => showToast("Testing neutral button", "neutral")}
-          className="border-transparent"
-        >
-          Neutral Button
-        </CustomButton>
-      </div>
     </motion.article>
   );
 };

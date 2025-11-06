@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomButton, CustomInput, Loader } from "..";
-import { useTheme } from "../../context";
+import { useModal, useTheme, useToast } from "../../context";
 import {
   isValidDate,
   isValidEmail,
@@ -14,6 +14,8 @@ import type { IUserRegister } from "../../models";
 
 export const SignUpForm = () => {
   const { isDark } = useTheme();
+  const { showToast } = useToast();
+  const { closeModal } = useModal();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const [form, setForm] = useState<IUserRegister>({
     email: "",
@@ -27,13 +29,25 @@ export const SignUpForm = () => {
   });
 
   const handleChange = (field: keyof typeof form) => (value: string) => {
+    console.log("first");
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submited");
+    fetch(form);
   };
+
+  // Controla los cambios de la response
+  useEffect(() => {
+    console.log("Testeo por posible bucle infinito");
+    if (error) {
+      showToast(error.message, "error");
+    } else if (data) {
+      showToast(data.message || "User registered successfully", "success");
+      closeModal();
+    }
+  }, [error, data, showToast]);
 
   return (
     <form
@@ -41,6 +55,7 @@ export const SignUpForm = () => {
       onSubmit={handleSubmit}
     >
       <CustomInput
+        disabled={loading}
         label="Username"
         type="text"
         value={form.username}
@@ -49,6 +64,7 @@ export const SignUpForm = () => {
       />
 
       <CustomInput
+        disabled={loading}
         label="Email"
         type="email"
         value={form.email}
@@ -58,6 +74,7 @@ export const SignUpForm = () => {
 
       <span className="flex flex-col items-end">
         <CustomInput
+          disabled={loading}
           label="Password"
           type={viewPassword ? "text" : "password"}
           value={form.password}
@@ -82,6 +99,7 @@ export const SignUpForm = () => {
       </span>
 
       <CustomInput
+        disabled={loading}
         label="Date of Birth"
         type="date"
         value={form.date_of_birth}

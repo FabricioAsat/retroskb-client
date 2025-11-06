@@ -13,12 +13,10 @@ export const registerUser = (
   body: IUserRegister
 ): UseFetchCall<IResponse<IUser>> => {
   const controller = loadAbort();
+  console.log(body);
   return {
     call: axios.post<IResponse<IUser>>(ENDPOINTS.AUTH.REGISTER, body, {
       signal: controller.signal,
-      headers: {
-        "Content-Type": "application/json",
-      },
     }),
     controller,
   };

@@ -1,0 +1,216 @@
+### 1️⃣ Registrar usuario
+POST http://localhost:4096/auth/register
+Content-Type: application/json
+
+{
+  "username": "Fabricio",
+  "email": "fabricio@gmail.com",
+  "password": "123456789",
+  "date_of_birth": "2000-04-10T00:00:00Z"
+}
+
+###
+
+### 2️⃣ Login para obtener eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+POST http://localhost:4096/auth/login
+Content-Type: application/json
+
+{
+  "email": "fabricio@gmail.com",
+  "password": "123456789"
+}
+
+###
+
+### 3️⃣ Obtener datos del usuario autenticado
+GET http://localhost:4096/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+###
+
+### 4️⃣ Crear manga (requiere login)
+POST http://localhost:4096/mangas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+Content-Type: application/json
+
+{
+  "name": "Berserk",
+  "state": "reading",
+  "chapter": 364,
+  "image": "",
+  "link": "https://lectormanga.com/berserk",
+  "description": "Manga oscuro de fantasía épica",
+  "genre": ["dark fantasy", "seinen"]
+}
+
+###
+
+### 5️⃣ Listar mangas del usuario autenticado
+GET http://localhost:4096/mangas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+###
+
+### 6️⃣ Obtener un manga por ID
+GET http://localhost:4096/mangas/690bea4ca7eed8ff3c09c69b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+###
+
+### 7️⃣ Actualizar un manga
+PUT http://localhost:4096/mangas/690bea4ca7eed8ff3c09c69b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+Content-Type: application/json
+
+{
+  "state": "completed",
+  "chapter": 364,
+  "description": "Finalizado, obra maestra"
+}
+
+###
+
+### 8️⃣ Eliminar un manga
+DELETE http://localhost:4096/mangas/690bea4ca7eed8ff3c09c69b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+
+### 1 - One Piece
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "One Piece",
+  "state": "reading",
+  "chapter": 1110,
+  "link": "https://onepiecechapters.com",
+  "description": "Piratas, aventuras y el sueño del One Piece.",
+  "genre": ["action", "adventure", "fantasy"]
+}
+
+### 2 - Berserk
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Berserk",
+  "state": "on hold",
+  "chapter": 371,
+  "link": "https://mangaplus.shueisha.co.jp",
+  "description": "La historia oscura de Guts y el sacrificio de Griffith.",
+  "genre": ["dark fantasy", "action", "drama"]
+}
+
+### 3 - Chainsaw Man
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Chainsaw Man",
+  "state": "reading",
+  "chapter": 160,
+  "link": "https://mangaplus.shueisha.co.jp",
+  "description": "Denji, demonios, sangre y motosierras.",
+  "genre": ["action", "supernatural", "horror"]
+}
+
+### 4 - Attack on Titan
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Attack on Titan",
+  "state": "completed",
+  "chapter": 139,
+  "link": "https://mangareader.to",
+  "description": "Eren y los muros que ocultan el destino de la humanidad.",
+  "genre": ["action", "drama", "mystery"]
+}
+
+### 5 - Naruto
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Naruto",
+  "state": "completed",
+  "chapter": 700,
+  "link": "https://mangaplus.shueisha.co.jp",
+  "description": "El camino ninja de Naruto Uzumaki.",
+  "genre": ["action", "adventure", "shonen"]
+}
+
+### 6 - Vagabond
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Vagabond",
+  "state": "on hold",
+  "chapter": 327,
+  "link": "https://mangaowl.io",
+  "description": "La historia de Musashi Miyamoto, basada en la novela Musashi.",
+  "genre": ["samurai", "drama", "historical"]
+}
+
+### 7 - Jujutsu Kaisen
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Jujutsu Kaisen",
+  "state": "reading",
+  "chapter": 250,
+  "link": "https://mangaplus.shueisha.co.jp",
+  "description": "Hechicería, maldiciones y batallas sobrenaturales.",
+  "genre": ["action", "supernatural", "fantasy"]
+}
+
+### 8 - Death Note
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Death Note",
+  "state": "completed",
+  "chapter": 108,
+  "link": "https://mangareader.to",
+  "description": "Un cuaderno que puede matar, y dos genios enfrentados.",
+  "genre": ["psychological", "thriller", "supernatural"]
+}
+
+### 9 - Tokyo Ghoul
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Tokyo Ghoul",
+  "state": "completed",
+  "chapter": 143,
+  "link": "https://mangaowl.io",
+  "description": "La doble vida de Kaneki en un Tokio lleno de ghouls.",
+  "genre": ["action", "horror", "drama"]
+}
+
+### 10 - Solo Leveling
+POST http://localhost:4096/mangas
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjI2OTcxNzEsInVzZXJfaWQiOiI2OTBjYWI0MzVkNTExYWNkMDVkYTMyNzEifQ.qzf46TvLdys3b__dTp5iKUDkTM-azRCsY6Sq_iVvPt4
+
+{
+  "name": "Solo Leveling",
+  "state": "completed",
+  "chapter": 200,
+  "link": "https://asuratoon.com",
+  "description": "Sung Jin-Woo, el cazador más débil, comienza a subir de nivel.",
+  "genre": ["action", "fantasy", "isekai"]
+}
