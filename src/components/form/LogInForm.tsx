@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { CustomButton, CustomInput } from "..";
-import { useTheme } from "../../context";
+import { useTheme, useToast } from "../../context";
 import { isValidEmail, isValidPassword } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
 
 export const LogInForm = () => {
   const { isDark } = useTheme();
+  const { showToast } = useToast();
 
   const [viewPassword, setViewPassword] = useState(false);
   const [form, setForm] = useState({

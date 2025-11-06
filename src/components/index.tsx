@@ -14,6 +14,7 @@ export { Form } from "./form/Form";
 // UI folder
 export { CustomButton } from "./ui/CustomButton";
 export { CustomInput } from "./ui/CustomInput";
+export { CustomToast } from "./ui/CustomToast";
 
 // Home folder
 export { Hero } from "./home/Hero";
