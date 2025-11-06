@@ -5,7 +5,6 @@ import { isValidEmail, isValidPassword } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
 import { useFetch } from "../../hooks";
 import { loginUser } from "../../service/user.service";
-import { ROUTES } from "../../constants/routes";
 
 export const LogInForm = () => {
   const { isDark } = useTheme();
@@ -34,7 +33,7 @@ export const LogInForm = () => {
 
   useEffect(() => {
     if (error) {
-      showToast(error.message, "error");
+      showToast(error.response?.data.error || error.message, "error");
     } else if (data) {
       showToast(data.message || "Log In Successfully", "success");
       setToken(data.data.token);

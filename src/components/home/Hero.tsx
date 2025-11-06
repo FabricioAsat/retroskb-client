@@ -1,11 +1,10 @@
 import { motion } from "motion/react";
-import { useModal, useTheme, useToast } from "../../context";
+import { useModal, useTheme } from "../../context";
 import { LogoIMG } from "../../assets";
 import { CustomButton, Form } from "..";
 
 export const Hero = () => {
   const { isDark } = useTheme();
-  const { showToast } = useToast();
   const { openModal } = useModal();
 
   const handleOpenModal = () => {

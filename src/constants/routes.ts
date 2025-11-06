@@ -3,5 +3,5 @@ export const ROUTES = {
   HOME: "/",
 
   // Privadas
-  MANGAS: "/mangas",
+  USER: "/user",
 };

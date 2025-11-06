@@ -42,7 +42,7 @@ export const SignUpForm = () => {
   useEffect(() => {
     console.log("Testeo por posible bucle infinito");
     if (error) {
-      showToast(error.message, "error");
+      showToast(error.response?.data.error || error.message, "error");
     } else if (data) {
       showToast(data.message || "User registered successfully", "success");
       closeModal();

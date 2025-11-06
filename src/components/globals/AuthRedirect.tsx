@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context";
 import { useLocation } from "react-router";
+import { ROUTES } from "../../constants/routes";
 
 export const AuthRedirect = () => {
   const { token } = useAuth();
@@ -9,16 +10,16 @@ export const AuthRedirect = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // si hay token y estoy en "/", me manda a /mangas
-    if (token && location.pathname === "/") {
-      navigate("/mangas");
+    if (token) {
+      if (location.pathname === ROUTES.HOME) {
+        navigate(ROUTES.USER, { replace: true });
+      }
+    } else {
+      if (location.pathname.startsWith(ROUTES.USER)) {
+        navigate(ROUTES.HOME, { replace: true });
+      }
     }
-
-    // si NO hay token y estoy en una ruta protegida, me manda al home
-    if (!token && location.pathname.startsWith("/mangas")) {
-      navigate("/");
-    }
-  }, [token, navigate, location]);
+  }, [token]);
 
   return null;
 };

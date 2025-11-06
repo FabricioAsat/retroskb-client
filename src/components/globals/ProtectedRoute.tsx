@@ -1,10 +1,12 @@
 import { Navigate, Outlet } from "react-router";
+import { useAuth } from "../../context";
+import { ROUTES } from "../../constants/routes";
 
 export const ProtectedRoute = () => {
-  const isLoggedIn = localStorage.getItem("auth_token"); // esto vendra en jwt (creo)
+  const { token } = useAuth();
 
-  if (!isLoggedIn) {
-    return <Navigate to="/" replace />;
+  if (!token) {
+    return <Navigate to={ROUTES.HOME} replace />;
   }
 
   return <Outlet />;
