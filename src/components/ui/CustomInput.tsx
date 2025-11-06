@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -14,7 +14,7 @@ export const CustomInput = ({
 }: CustomInputProps) => {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
 
   const isFloating = focused || value.length > 0;
 

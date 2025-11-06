@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { LogInForm } from "./LogInForm";
 import { SignUpForm } from "./SignUpForm";
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 import { CustomButton } from "..";
 import { GoogleIMG, TwitterIMG } from "../../assets";
 
@@ -12,7 +12,7 @@ interface FormProps {
 
 export const Form = ({ initialForm = "login" }: FormProps) => {
   const [activeForm, setActiveForm] = useState<"login" | "signup">(initialForm);
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
 
   return (
     <div className="flex flex-col justify-start items-center mx-auto mt-5 w-full rounded-xl bg-surface">

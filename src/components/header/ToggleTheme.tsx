@@ -1,9 +1,9 @@
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 import { SunIMG, MoonIMG } from "../../assets";
 import { CustomButton } from "..";
 
 export const ToggleTheme = () => {
-  const { isDark, toggleTheme } = useThemeContext();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <CustomButton onClick={toggleTheme} className="border-transparent">

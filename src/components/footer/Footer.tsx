@@ -1,8 +1,8 @@
 import { LogoIMG } from "../../assets";
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 
 export const Footer = () => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
   return (
     <div className="justify-between items-center p-2 mx-auto w-full flex max-w-[1440px]">
       <span className="flex flex-col gap-y-2">

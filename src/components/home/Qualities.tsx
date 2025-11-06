@@ -1,6 +1,6 @@
 import { CleanIMG, EasyIMG, FastIMG, SecureIMG } from "../../assets";
 import { motion } from "motion/react";
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 
 const qualities = [
   {
@@ -22,7 +22,7 @@ const qualities = [
 ];
 
 export const Qualities = () => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
 
   return (
     <motion.aside

@@ -2,16 +2,17 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { Modal } from "./components";
-import { ModalProvider } from "./context/ModalContext.tsx";
+import { ThemeProvider, ModalProvider, AuthProvider } from "./context";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <ModalProvider>
-        <App />
-        <Modal />
+        <AuthProvider>
+          <App />
+          <Modal />
+        </AuthProvider>
       </ModalProvider>
     </ThemeProvider>
   </StrictMode>

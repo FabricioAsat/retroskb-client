@@ -7,11 +7,11 @@ import {
   HeaderMobile,
   ScrollToTop,
 } from "../components";
-import { useThemeContext } from "../context";
+import { useTheme } from "../context";
 import { getColorVar } from "../utils";
 
 export const Default = () => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
 
   return (
     <motion.div

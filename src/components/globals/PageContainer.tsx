@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
 import bg from "../../assets/img/background.png";
-import { useThemeContext } from "../../context";
+import { useTheme } from "../../context";
 
 export const PageContainer = ({ children }: { children: ReactNode }) => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
   return (
     <section className="relative h-full min-h-[calc(100vh-72px)] w-full max-w-[1440px] mx-auto overflow-hidden flex items-center justify-center">
       {/* Imagen de fondo (lgoo) */}

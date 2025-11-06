@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
-import { useModal, useThemeContext } from "../../context";
+import { useModal, useTheme } from "../../context";
 import { LogoIMG } from "../../assets";
 import { CustomButton, Form } from "..";
 
 export const Hero = () => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
   const { openModal } = useModal();
 
   const handleOpenModal = () => {

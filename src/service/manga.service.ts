@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ENDPOINTS } from "../constants/endpoints";
 
 import type {
   IManga,
@@ -7,17 +8,15 @@ import type {
   IResponse,
   UseFetchCall,
 } from "../models";
+
 import { loadAbort } from "../utils";
 
 export const getMangas = (): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
   return {
-    call: axios.get<IResponse<IManga[]>>(
-      `${import.meta.env.VITE_BASE_URL}/${import.meta.env.VITE_GROUP_MANGAS}/`,
-      {
-        signal: controller.signal,
-      }
-    ),
+    call: axios.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
+      signal: controller.signal,
+    }),
     controller,
   };
 };
@@ -25,14 +24,9 @@ export const getMangas = (): UseFetchCall<IResponse<IManga[]>> => {
 export const getManga = (id: string): UseFetchCall<IResponse<IManga>> => {
   const controller = loadAbort();
   return {
-    call: axios.get<IResponse<IManga>>(
-      `${import.meta.env.VITE_BASE_URL}/${
-        import.meta.env.VITE_GROUP_MANGAS
-      }/${id}`,
-      {
-        signal: controller.signal,
-      }
-    ),
+    call: axios.get<IResponse<IManga>>(ENDPOINTS.MANGAS.BY_ID(id), {
+      signal: controller.signal,
+    }),
     controller,
   };
 };
@@ -42,13 +36,9 @@ export const createManga = (
 ): UseFetchCall<IResponse<IManga>> => {
   const controller = loadAbort();
   return {
-    call: axios.post<IResponse<IManga>>(
-      `${import.meta.env.VITE_BASE_URL}/${import.meta.env.VITE_GROUP_MANGAS}/`,
-      body,
-      {
-        signal: controller.signal,
-      }
-    ),
+    call: axios.post<IResponse<IManga>>(ENDPOINTS.MANGAS.BASE, body, {
+      signal: controller.signal,
+    }),
     controller,
   };
 };
@@ -61,15 +51,10 @@ export const updateManga = ({
   id: string;
 }): UseFetchCall<IResponse<IManga>> => {
   const controller = loadAbort();
-
   return {
-    call: axios.put<IResponse<IManga>>(
-      `${import.meta.env.VITE_BASE_URL}/${
-        import.meta.env.VITE_GROUP_MANGAS
-      }/${id}`,
-      body,
-      { signal: controller.signal }
-    ),
+    call: axios.put<IResponse<IManga>>(ENDPOINTS.MANGAS.BY_ID(id), body, {
+      signal: controller.signal,
+    }),
     controller,
   };
 };

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 
-import { useModal, useThemeContext } from "../../context";
+import { useModal, useTheme } from "../../context";
 import { Logo } from "../header/Logo";
 import { CloseIMG } from "../../assets";
 import { CustomButton } from "..";
@@ -8,7 +8,7 @@ import { Portal } from "./Portal";
 
 export function Modal() {
   const { closeModal, isOpen, content } = useModal();
-  const { isDark } = useThemeContext();
+  const { isDark } = useTheme();
 
   return (
     <Portal>
