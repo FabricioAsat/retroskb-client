@@ -67,13 +67,13 @@ export const MangasContainer = () => {
   console.log(data);
 
   return (
-    <section className="flex flex-col items-center justify-center">
+    <section className="flex flex-col justify-center items-center">
       <section
         className={`grid md:grid-cols-3 justify-items-center mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
           isDark ? "border-dark-border" : "border-light-border"
         }`}
       >
-        <span className="flex items-center  gap-x-2 h-full col-span-2 w-full">
+        <span className="flex col-span-2 gap-x-2 items-center w-full h-full">
           {states.map(({ state, icon, label, color }) => (
             <CustomButton
               key={state}
@@ -103,7 +103,7 @@ export const MangasContainer = () => {
           ))}
         </span>
 
-        <span className="fixed md:relative md:bottom-0 md:right-0 md:w-full bottom-2 right-4 flex items-center justify-end gap-x-2">
+        <span className="flex fixed bottom-2 right-4 gap-x-2 justify-end items-center md:relative md:bottom-0 md:right-0 md:w-full">
           <CustomButton
             onClick={() => setMangaOrder("list")}
             color={
@@ -115,7 +115,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="mb-2 px-4 py-4 md:px-4 md:py-2 capitalize gap-x-2 h-full"
+            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
           >
             <ListIMG className="w-4 h-4" />
           </CustomButton>
@@ -130,7 +130,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="mb-2 px-4 py-4 md:px-4 md:py-2 capitalize gap-x-2 h-full"
+            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
           >
             <GridIMG className="w-4 h-4" />
           </CustomButton>
@@ -151,7 +151,7 @@ export const MangasContainer = () => {
       ) : mangasOrder === "list" ? (
         <ListContainer mangas={data?.data || []} state={mangaState} />
       ) : (
-        <GridContainer />
+        <GridContainer mangas={data?.data || []} state={mangaState} />
       )}
     </section>
   );
