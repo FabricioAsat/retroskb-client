@@ -30,16 +30,16 @@ export const LogInForm = () => {
     e.preventDefault();
 
     // Validaciones
-    if (!isValidEmail(form.email)) {
+    if (!isValidEmail(form.email.trim())) {
       showToast("Invalid email format", "error");
       return;
     }
-    if (!isValidPassword(form.password)) {
+    if (!isValidPassword(form.password.trim())) {
       showToast("Password must be at least 8 characters long", "error");
       return;
     }
 
-    fetch(form);
+    fetch({ email: form.email.trim(), password: form.password.trim() });
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const LogInForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-y-8 md:px-5 py-5"
+      className="flex flex-col gap-y-8 py-5 md:px-5"
       onSubmit={handleSubmit}
     >
       <CustomInput

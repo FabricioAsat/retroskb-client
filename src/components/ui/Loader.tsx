@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-export const Loader = ({ label = "Loading..." }: { label: string }) => {
+export const Loader = ({ label = "Loading..." }: { label?: string }) => {
   return (
     <div className="flex gap-x-2 justify-center items-center bg-transparent">
       <motion.div

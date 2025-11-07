@@ -16,6 +16,8 @@ import { useFetch } from "../../hooks";
 import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
 import { GridContainer } from "./GridContainer";
+import { ROUTES } from "../../constants/routes";
+import { useNavigate } from "react-router";
 
 const states = [
   {
@@ -55,6 +57,7 @@ export const MangasContainer = () => {
   const [mangasOrder, setMangaOrder] = useState<"list" | "grid">("list");
 
   const { isDark } = useTheme();
+  const navigate = useNavigate();
 
   const { loading, data, error, fetch } = useFetch(getMangas, {
     params: undefined,
@@ -65,7 +68,9 @@ export const MangasContainer = () => {
     fetch(undefined);
   }
 
-  console.log(data);
+  function gotoCreate() {
+    navigate(ROUTES.CREATE);
+  }
 
   return (
     <section className="flex flex-col justify-center items-center">
@@ -136,7 +141,7 @@ export const MangasContainer = () => {
             <GridIMG className="w-4 h-4" />
           </CustomButton>
           <CustomButton
-            onClick={() => {}}
+            onClick={gotoCreate}
             color={isDark ? "dark-success" : "light-success"}
             className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
           >

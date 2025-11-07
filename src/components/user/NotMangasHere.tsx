@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router";
 import { CustomButton } from "..";
 import { CloseIMG, WarningIMG } from "../../assets";
 import { useTheme } from "../../context";
 import { motion } from "motion/react";
+import { ROUTES } from "../../constants/routes";
 
 interface Props {
   label: string;
@@ -10,6 +12,12 @@ interface Props {
 
 export const NotMangasHere = ({ label, buttom }: Props) => {
   const { isDark } = useTheme();
+  const navigate = useNavigate();
+
+  function gotoCreate() {
+    navigate(ROUTES.CREATE);
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,7 +35,10 @@ export const NotMangasHere = ({ label, buttom }: Props) => {
       </span>
 
       {buttom && (
-        <CustomButton color={isDark ? "dark-success" : "light-success"}>
+        <CustomButton
+          onClick={gotoCreate}
+          color={isDark ? "dark-success" : "light-success"}
+        >
           <CloseIMG className="w-4 h-4 rotate-45" />
           <p>Create your first manga!!</p>
         </CustomButton>

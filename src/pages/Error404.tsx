@@ -11,7 +11,7 @@ export const Error404 = () => {
   return (
     <PageContainer>
       <div
-        className={`flex flex-col justify-center items-center px-4 min-h-screen text-center`}
+        className={`flex flex-col justify-center items-center px-4 text-center`}
       >
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -30,7 +30,7 @@ export const Error404 = () => {
           transition={{ delay: 0.2 }}
           className="mb-6 text-2xl font-semibold"
         >
-          Página no encontrada
+          Page not found
         </motion.h2>
 
         <motion.p
@@ -41,8 +41,8 @@ export const Error404 = () => {
             isDark ? "text-dark-text-muted" : "text-light-text-muted"
           }`}
         >
-          Parece que te perdiste en algún manga inexistente 😅 La página que
-          buscas no está disponible.
+          It seems you got lost in some non-existent manga 😅 The page is not
+          available.
         </motion.p>
 
         <CustomButton
@@ -54,7 +54,7 @@ export const Error404 = () => {
             isDark ? "bg-dark-primary-hover" : "bg-light-primary-hover"
           } transition-colors shadow-md font-medium`}
         >
-          Volver al inicio
+          Go home
         </CustomButton>
       </div>
     </PageContainer>
