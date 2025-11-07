@@ -57,7 +57,7 @@ export const CustomToast = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ type: "spring", damping: 15, stiffness: 200 }}
-          className={`flex fixed right-6 bottom-6 justify-between items-center px-4 py-5 w-full max-w-xs rounded-lg shadow-lg md:max-w-sm ${colors[type]} z-[9999]`}
+          className={`flex fixed right-6 bottom-6 z-50 justify-between items-center px-4 py-5 w-full max-w-xs rounded-lg shadow-lg md:max-w-sm ${colors[type]} z-[9999]`}
         >
           {icon[type]}
           <p className="pr-3 ml-2 w-full font-bold truncate" title={message}>

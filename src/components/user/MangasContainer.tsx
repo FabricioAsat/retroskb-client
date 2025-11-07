@@ -103,7 +103,7 @@ export const MangasContainer = () => {
           ))}
         </span>
 
-        <span className="flex fixed bottom-2 right-4 gap-x-2 justify-end items-center md:relative md:bottom-0 md:right-0 md:w-full">
+        <span className="flex fixed bottom-2 right-4 z-40 gap-x-2 justify-end items-center md:relative md:bottom-0 md:right-0 md:w-full">
           <CustomButton
             onClick={() => setMangaOrder("list")}
             color={
