@@ -1,10 +1,8 @@
+import { motion } from "motion/react";
 import { useState } from "react";
 import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
-import { motion } from "motion/react";
-
-import img from "../../assets/img/poster4.webp";
 import { NotImage } from "./NotImage";
 
 export const GridCard = ({
