@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTheme } from "../../context";
 import { MangaState } from "../../models";
 import {
+  CloseIMG,
   DeletedIMG,
   GridIMG,
   ListIMG,
@@ -134,6 +135,13 @@ export const MangasContainer = () => {
           >
             <GridIMG className="w-4 h-4" />
           </CustomButton>
+          <CustomButton
+            onClick={() => {}}
+            color={isDark ? "dark-success" : "light-success"}
+            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
+          >
+            <CloseIMG className="w-4 h-4 rotate-45" />
+          </CustomButton>
         </span>
       </section>
 
@@ -156,5 +164,3 @@ export const MangasContainer = () => {
     </section>
   );
 };
-
-// Forma sencilla, pero quiero manipular colores
