@@ -1,6 +1,7 @@
 import { MangaState, type IManga } from "../../models";
 import { groupMangasByStates } from "../../utils";
 import { GridCard } from "./GridCard";
+import { NotMangasHere } from "./NotMangasHere";
 
 interface Props {
   mangas: IManga[];
@@ -20,13 +21,21 @@ export const GridContainer = ({ mangas, state }: Props) => {
 
   return (
     <section className="flex flex-wrap gap-x-3 gap-y-3 justify-start items-center w-full">
-      {mangasByState[state].map((manga: IManga) => (
-        <GridCard
-          key={manga._id}
-          manga={manga}
-          colorSelected={typeColors[state]}
+      {mangasByState[state].length === 0 ? (
+        <NotMangasHere
+          label={`There's no ${state} mangas.`}
+          buttom={state === MangaState.Reading}
         />
-      ))}
+      ) : (
+        mangasByState[state].map((manga: IManga, index: number) => (
+          <GridCard
+            key={manga._id}
+            manga={manga}
+            index={index}
+            colorSelected={typeColors[state]}
+          />
+        ))
+      )}
     </section>
   );
 };

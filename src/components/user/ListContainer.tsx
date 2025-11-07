@@ -1,6 +1,7 @@
 import { MangaState, type IManga } from "../../models";
 import { groupMangasByStates } from "../../utils";
 import { ListCard } from "./ListCard";
+import { NotMangasHere } from "./NotMangasHere";
 
 interface Props {
   mangas: IManga[];
@@ -20,13 +21,21 @@ export const ListContainer = ({ mangas, state }: Props) => {
 
   return (
     <section className="flex flex-col gap-x-3 gap-y-3 justify-start items-center px-2 w-full xl:gap-x-5 xl:flex-wrap xl:flex-row">
-      {mangasByState[state].map((manga: IManga) => (
-        <ListCard
-          key={manga._id}
-          manga={manga}
-          colorSelected={typeColors[state]}
+      {mangasByState[state].length === 0 ? (
+        <NotMangasHere
+          label={`There's no ${state} mangas.`}
+          buttom={state === MangaState.Reading}
         />
-      ))}
+      ) : (
+        mangasByState[state].map((manga: IManga, index: number) => (
+          <ListCard
+            key={manga._id}
+            index={index}
+            manga={manga}
+            colorSelected={typeColors[state]}
+          />
+        ))
+      )}
     </section>
   );
 };

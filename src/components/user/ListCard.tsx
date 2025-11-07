@@ -2,12 +2,15 @@ import { useState } from "react";
 import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
+import { motion } from "motion/react";
 
 export const ListCard = ({
   manga,
+  index,
   colorSelected,
 }: {
   manga: IManga;
+  index: number;
   colorSelected: string;
 }) => {
   const { isDark } = useTheme();
@@ -22,17 +25,27 @@ export const ListCard = ({
     : "light-disabled";
 
   return (
-    <CustomButton
-      color={color}
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.3,
+        ease: "easeOut",
+        delay: index * 0.05,
+      }}
+      className="w-full xl:max-w-sm 2xl:max-w-md"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex justify-between w-full truncate xl:max-w-sm 2xl:max-w-md`}
-      onClick={() => {}}
     >
-      <p className="w-full truncate text-start" title={manga.name}>
-        {manga.name}
-      </p>
-      <small className="italic font-semibold">{manga.chapter}</small>
-    </CustomButton>
+      <CustomButton
+        color={color}
+        className="flex justify-between w-full truncate"
+      >
+        <p className="w-full truncate text-start" title={manga.name}>
+          {manga.name}
+        </p>
+        <small className="italic font-semibold">{manga.chapter}</small>
+      </CustomButton>
+    </motion.div>
   );
 };
