@@ -9,7 +9,7 @@ export const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (token) navigate(ROUTES.USER);
-    logout();
+    else logout();
   }, []);
 
   return (

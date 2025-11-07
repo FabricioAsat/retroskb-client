@@ -45,17 +45,23 @@ export const Error404 = () => {
           available.
         </motion.p>
 
-        <CustomButton
-          color={isDark ? "dark-primary" : "light-primary"}
-          onClick={() => navigate(ROUTES.HOME)}
-          className={`px-5 py-2 rounded-lg ${
-            isDark ? "bg-dark-primary" : "bg-light-primary"
-          } hover:${
-            isDark ? "bg-dark-primary-hover" : "bg-light-primary-hover"
-          } transition-colors shadow-md font-medium`}
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
         >
-          Go home
-        </CustomButton>
+          <CustomButton
+            color={isDark ? "dark-primary" : "light-primary"}
+            onClick={() => navigate(ROUTES.HOME)}
+            className={`px-5 py-2 rounded-lg ${
+              isDark ? "bg-dark-primary" : "bg-light-primary"
+            } hover:${
+              isDark ? "bg-dark-primary-hover" : "bg-light-primary-hover"
+            } transition-colors shadow-md font-medium`}
+          >
+            Go home
+          </CustomButton>
+        </motion.span>
       </div>
     </PageContainer>
   );

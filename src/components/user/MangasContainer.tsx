@@ -101,7 +101,7 @@ export const MangasContainer = () => {
               <p
                 className={`hidden ${
                   mangaState === state ? "md:block" : "hidden"
-                } xl:block`}
+                }`}
               >
                 {label}
               </p>
