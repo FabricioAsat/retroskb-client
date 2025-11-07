@@ -5,6 +5,7 @@ import type { IManga } from "../../models";
 import { motion } from "motion/react";
 
 import img from "../../assets/img/poster4.webp";
+import { NotImage } from "./NotImage";
 
 export const GridCard = ({
   manga,
@@ -40,13 +41,15 @@ export const GridCard = ({
       }}
       className="w-full h-60 rounded-xl max-w-40"
     >
-      <img
-        src={img}
-        alt={manga.name}
-        className="hidden"
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(true)}
-      />
+      {manga.image && (
+        <img
+          src={manga.image}
+          alt={manga.name}
+          className="hidden"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+        />
+      )}
 
       <CustomButton
         color={color}
@@ -69,10 +72,12 @@ export const GridCard = ({
               }`}
             />
           </div>
+        ) : !manga.image ? (
+          <NotImage />
         ) : (
           <motion.div
             className="absolute inset-0 bg-center bg-cover rounded-xl"
-            style={{ backgroundImage: `url(${img})` }}
+            style={{ backgroundImage: `url(${manga.image})` }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
