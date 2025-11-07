@@ -17,6 +17,7 @@ export { CustomButton } from "./ui/CustomButton";
 export { CustomInput } from "./ui/CustomInput";
 export { CustomToast } from "./ui/CustomToast";
 export { Loader } from "./ui/Loader";
+export { Error } from "./ui/Error";
 
 // Home folder
 export { Hero } from "./home/Hero";
@@ -24,3 +25,6 @@ export { Qualities } from "./home/Qualities";
 
 // Footer folder
 export { Footer } from "./footer/Footer";
+
+// User folder
+export { MangasContainer } from "./user/MangasContainer";

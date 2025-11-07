@@ -10,11 +10,12 @@ import type {
 } from "../models";
 
 import { loadAbort } from "../utils";
+import { axiosInstance } from "./axiosInstance";
 
 export const getMangas = (): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
   return {
-    call: axios.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
+    call: axiosInstance.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
       signal: controller.signal,
     }),
     controller,

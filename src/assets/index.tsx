@@ -18,3 +18,9 @@ export { WarningIMG } from "./WarningIMG";
 
 export { LoginIMG } from "./LoginIMG";
 export { LogoutIMG } from "./LogoutIMG";
+
+export { OnHoldIMG } from "./OnHoldIMG";
+export { ReadingIMG } from "./ReadingIMG";
+export { DeletedIMG } from "./DeletedIMG";
+export { ListIMG } from "./ListIMG";
+export { GridIMG } from "./GridIMG";

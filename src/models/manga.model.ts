@@ -1,9 +1,9 @@
 export enum MangaState {
   Reading = "reading",
+  OnHold = "on hold",
   Completed = "completed",
   Abandoned = "abandoned",
   Deleted = "deleted",
-  OnHold = "on hold",
 }
 
 export interface IManga {
