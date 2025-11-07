@@ -1,0 +1,32 @@
+import { MangaState, type IManga } from "../../models";
+import { groupMangasByStates } from "../../utils";
+import { ListCard } from "./ListCard";
+
+interface Props {
+  mangas: IManga[];
+  state: MangaState;
+}
+
+const typeColors = {
+  [MangaState.Reading]: "primary",
+  [MangaState.Completed]: "success",
+  [MangaState.OnHold]: "warning",
+  [MangaState.Abandoned]: "error",
+  [MangaState.Deleted]: "error",
+};
+
+export const ListContainer = ({ mangas, state }: Props) => {
+  const mangasByState = groupMangasByStates(mangas);
+
+  return (
+    <section className="flex flex-col gap-x-3 gap-y-3 justify-start items-center px-2 w-full xl:gap-x-5 xl:flex-wrap xl:flex-row">
+      {mangasByState[state].map((manga: IManga) => (
+        <ListCard
+          key={manga._id}
+          manga={manga}
+          colorSelected={typeColors[state]}
+        />
+      ))}
+    </section>
+  );
+};

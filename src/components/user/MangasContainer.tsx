@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "../../context";
-import { MangaState } from "../../models/manga.model";
+import { MangaState } from "../../models";
 import {
   DeletedIMG,
   GridIMG,
@@ -10,10 +10,10 @@ import {
   SuccessIMG,
   WarningIMG,
 } from "../../assets";
-import { CustomButton, Error } from "..";
+import { CustomButton, Error, Loader } from "..";
 import { useFetch } from "../../hooks";
 import { getMangas } from "../../service";
-import { ListConteiner } from "./ListConteiner";
+import { ListContainer } from "./ListContainer";
 import { GridContainer } from "./GridContainer";
 
 const states = [
@@ -60,6 +60,12 @@ export const MangasContainer = () => {
     autoFetch: true,
   });
 
+  function reloadData() {
+    fetch(undefined);
+  }
+
+  console.log(data);
+
   return (
     <section className="flex flex-col items-center justify-center">
       <section
@@ -97,7 +103,7 @@ export const MangasContainer = () => {
           ))}
         </span>
 
-        <span className="md:flex items-center justify-end w-full gap-x-2 hidden">
+        <span className="fixed md:relative md:bottom-0 md:right-0 md:w-full bottom-2 right-4 flex items-center justify-end gap-x-2">
           <CustomButton
             onClick={() => setMangaOrder("list")}
             color={
@@ -130,9 +136,23 @@ export const MangasContainer = () => {
           </CustomButton>
         </span>
       </section>
-      <section>
-        {mangasOrder === "list" ? <ListConteiner /> : <GridContainer />}
-      </section>
+
+      {loading ? (
+        <Loader label="Loading mangas..." />
+      ) : error ? (
+        <Error
+          label={error.message}
+          desc={
+            error.response?.data.error ||
+            "Failed to fetch mangas, please try again"
+          }
+          fetch={reloadData}
+        />
+      ) : mangasOrder === "list" ? (
+        <ListContainer mangas={data?.data || []} state={mangaState} />
+      ) : (
+        <GridContainer />
+      )}
     </section>
   );
 };

@@ -13,10 +13,10 @@ export function groupMangasByStates(mangas: IManga[]) {
   const onHold = mangas.filter((manga) => manga.state === MangaState.OnHold);
 
   return {
-    reading,
-    completed,
-    abandoned,
-    deleted,
-    onHold,
+    [MangaState.Reading]: reading,
+    [MangaState.OnHold]: onHold,
+    [MangaState.Completed]: completed,
+    [MangaState.Abandoned]: abandoned,
+    [MangaState.Deleted]: deleted,
   };
 }

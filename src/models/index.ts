@@ -1,3 +1,4 @@
+export { MangaState } from "./manga.model";
 export type { UseFetchCall } from "./useFetch.model";
 
 export type { IManga, IMangaCreate, IMangaUpdate } from "./manga.model";
