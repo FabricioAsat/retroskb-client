@@ -32,6 +32,7 @@ export const CustomButton = ({
     "light-error": "bg-light-error/15 text-light-error border-light-error/15",
     "light-disabled":
       "bg-light-disabled/15 text-light-text-muted border-light-disabled/15",
+
     dark: "bg-dark-bg text-dark-text border-dark-bg",
     "dark-primary":
       "bg-dark-primary/15 text-dark-primary border-dark-primary/15",
@@ -56,7 +57,7 @@ export const CustomButton = ({
       whileHover={{ scale: disabled ? 1 : 1.05, opacity: disabled ? 1 : 0.95 }}
       whileTap={{ scale: disabled ? 1 : 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`flex px-4 py-1.5 gap-1 justify-center items-center font-bold rounded-xl border-2 transition-colors duration-200 cursor-pointer ${
+      className={`flex px-4 py-1.5 gap-1 justify-center items-center font-bold rounded-lg border-2 transition-colors duration-200 cursor-pointer ${
         disabled ? "" : baseStyle
       } ${className} disabled:cursor-not-allowed ${
         isDark

@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useTheme } from "../../context";
-interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+
+interface CustomTextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   validate?: (value: string) => boolean;
 }
 
-export const CustomInput = ({
+export const CustomTextArea = ({
   label,
   validate,
   value = "",
   onChange,
   ...props
-}: CustomInputProps) => {
+}: CustomTextAreaProps) => {
   const [focused, setFocused] = useState(false);
   const { isDark } = useTheme();
 
@@ -44,13 +46,14 @@ export const CustomInput = ({
         {label}
       </motion.label>
 
-      <input
+      <textarea
         {...props}
         value={value}
         onChange={onChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`px-3 py-2 w-full rounded-lg border-2 transition-colors outline-none ${borderClass} disabled:line-through disabled:italic`}
+        rows={props.rows || 4}
+        className={`px-3 py-2 w-full rounded-lg border-2 transition-colors outline-none resize-none ${borderClass} disabled:line-through disabled:italic`}
         autoComplete="off"
       />
     </div>

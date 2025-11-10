@@ -23,7 +23,7 @@ export interface IMangaCreate {
   name: string;
   state: MangaState | "";
   chapter: number;
-  image?: string;
+  image: string;
   link: string;
   description: string;
   genre: string[];

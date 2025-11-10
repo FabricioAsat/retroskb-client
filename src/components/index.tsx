@@ -18,6 +18,8 @@ export { CustomInput } from "./ui/CustomInput";
 export { CustomToast } from "./ui/CustomToast";
 export { Loader } from "./ui/Loader";
 export { Error } from "./ui/Error";
+export { CustomDropdown } from "./ui/CustomDropdown";
+export { CustomTextArea } from "./ui/CustomTextArea";
 
 // Home folder
 export { Hero } from "./home/Hero";
@@ -28,3 +30,7 @@ export { Footer } from "./footer/Footer";
 
 // User folder
 export { MangasContainer } from "./user/MangasContainer";
+
+// Create folder
+export { ImageUpdate } from "./create/ImageUpdate";
+export { GenresSelector } from "./create/GenreSelector";

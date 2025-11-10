@@ -27,7 +27,14 @@ export function isValidPassword(password: string): boolean {
   if (!password) return false;
   return password.length >= 8;
 }
+
 export function isValidUsername(username: string): boolean {
   if (!username) return false;
   return username.length >= 4;
+}
+
+export function isValidChapter(chapter: string): boolean {
+  if (!chapter) return false;
+  const re = /^[1-9]\d{0,3}$/;
+  return re.test(chapter);
 }

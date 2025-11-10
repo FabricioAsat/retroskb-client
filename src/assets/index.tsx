@@ -25,3 +25,6 @@ export { DeletedIMG } from "./DeletedIMG";
 export { ListIMG } from "./ListIMG";
 export { GridIMG } from "./GridIMG";
 export { NotImageIMG } from "./NotImageIMG";
+
+export { BackIMG } from "./BackIMG";
+export { LinkIMG } from "./LinkIMG";
