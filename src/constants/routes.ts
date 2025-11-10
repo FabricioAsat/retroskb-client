@@ -5,4 +5,5 @@ export const ROUTES = {
   // Privadas
   USER: "/user",
   CREATE: "/create",
+  MANGA_DETAILS: "/manga/",
 };

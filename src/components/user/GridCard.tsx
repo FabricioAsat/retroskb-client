@@ -4,6 +4,9 @@ import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
 import { NotImage } from "./NotImage";
+import { LinkIMG } from "../../assets";
+import { useNavigate } from "react-router";
+import { ROUTES } from "../../constants/routes";
 
 export const GridCard = ({
   manga,
@@ -15,6 +18,7 @@ export const GridCard = ({
   index: number;
 }) => {
   const { isDark } = useTheme();
+  const navigate = useNavigate();
   const [hover, setHover] = useState(false);
   const [loaded, setLoaded] = useState(true);
 
@@ -26,8 +30,6 @@ export const GridCard = ({
     ? "light-" + colorSelected
     : "light-disabled";
 
-  console.log(loaded);
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -37,7 +39,7 @@ export const GridCard = ({
         ease: "easeOut",
         delay: index * 0.05,
       }}
-      className="w-full h-60 rounded-xl max-w-40"
+      className="w-full rounded-lg h-60 max-w-40"
     >
       {manga.image && (
         <img
@@ -54,11 +56,11 @@ export const GridCard = ({
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         className={`relative w-full h-full`}
-        onClick={() => {}}
+        onClick={() => navigate(ROUTES.MANGA_DETAILS + manga._id)}
       >
         {!loaded ? (
           <div
-            className={`absolute inset-0 flex items-center justify-center rounded-xl ${
+            className={`absolute inset-0 flex items-center justify-center rounded-lg ${
               isDark ? "bg-dark-bg/40" : "bg-light-bg/40"
             }`}
           >
@@ -74,7 +76,7 @@ export const GridCard = ({
           <NotImage />
         ) : (
           <motion.div
-            className="absolute inset-0 bg-center bg-cover rounded-xl"
+            className="absolute inset-0 bg-center bg-cover rounded-lg"
             style={{ backgroundImage: `url(${manga.image})` }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -83,7 +85,7 @@ export const GridCard = ({
         )}
 
         <div
-          className={`absolute px-1 py-2 w-full bottom-0 rounded-b-xl backdrop-blur-xs ${
+          className={`absolute px-1 py-2 w-full bottom-0 rounded-b-lg backdrop-blur-xs ${
             isDark ? "bg-dark-bg/90" : "bg-light-bg/90"
           }`}
         >
@@ -91,8 +93,23 @@ export const GridCard = ({
             {manga.name}
           </p>
         </div>
+        {manga.link && (
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(manga.link, "_blank");
+            }}
+            className={`absolute px-2 py-2 rounded-lg top-0 border border-transparent transition-colors duration-300 right-0 ${
+              isDark
+                ? "bg-dark-bg/90 hover:border-dark-primary text-dark-primary"
+                : "bg-light-bg/90 hover:border-light-primary text-light-primary"
+            }`}
+          >
+            <LinkIMG className="w-6 h-6" />
+          </div>
+        )}
         <div
-          className={`absolute px-3 py-0.5 rounded-tr-xl top-0 right-0 ${
+          className={`absolute px-3 py-0.5 rounded-tl-lg top-0 left-0 ${
             isDark ? "bg-dark-bg/90" : "bg-light-bg/90"
           }`}
         >
