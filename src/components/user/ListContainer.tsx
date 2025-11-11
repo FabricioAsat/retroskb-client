@@ -20,7 +20,7 @@ export const ListContainer = ({ mangas, state }: Props) => {
   const mangasByState = groupMangasByStates(mangas);
 
   return (
-    <section className="flex flex-col gap-x-3 gap-y-3 justify-start items-center px-2 w-full xl:gap-x-5 xl:flex-wrap xl:flex-row">
+    <section className="flex flex-col items-center justify-start w-full px-2 gap-y-3 lg:gap-x-5 lg:flex-wrap lg:flex-row">
       {mangasByState[state].length === 0 ? (
         <NotMangasHere
           label={`There's no ${state} mangas.`}

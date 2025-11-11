@@ -7,6 +7,7 @@ import { NotImage } from "./NotImage";
 import { LinkIMG } from "../../assets";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../constants/routes";
+import { normalizeLink } from "../../utils";
 
 export const GridCard = ({
   manga,
@@ -94,11 +95,10 @@ export const GridCard = ({
           </p>
         </div>
         {manga.link && (
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(manga.link, "_blank");
-            }}
+          <a
+            href={normalizeLink(manga.link)}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`absolute px-2 py-2 rounded-lg top-0 border border-transparent transition-colors duration-300 right-0 ${
               isDark
                 ? "bg-dark-bg/90 hover:border-dark-primary text-dark-primary"
@@ -106,7 +106,7 @@ export const GridCard = ({
             }`}
           >
             <LinkIMG className="w-6 h-6" />
-          </div>
+          </a>
         )}
         <div
           className={`absolute px-3 py-0.5 rounded-tl-lg top-0 left-0 ${

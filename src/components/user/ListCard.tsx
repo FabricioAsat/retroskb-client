@@ -6,6 +6,7 @@ import type { IManga } from "../../models";
 import { LinkIMG } from "../../assets";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../constants/routes";
+import { normalizeLink } from "../../utils";
 
 export const ListCard = ({
   manga,
@@ -37,7 +38,7 @@ export const ListCard = ({
         ease: "easeOut",
         delay: index * 0.05,
       }}
-      className="w-full xl:max-w-sm 2xl:max-w-md"
+      className="w-full lg:max-w-md xl:max-w-sm 2xl:max-w-md"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -53,11 +54,10 @@ export const ListCard = ({
         <span className="flex items-center gap-5">
           <small className="italic font-semibold">{manga.chapter}</small>
           {manga.link && (
-            <span
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(manga.link, "_blank");
-              }}
+            <a
+              href={normalizeLink(manga.link)}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`px-2 py-2 rounded-lg border border-transparent transition-colors duration-300 ${
                 isDark
                   ? "bg-dark-bg/90 hover:border-dark-primary text-dark-primary"
@@ -65,7 +65,7 @@ export const ListCard = ({
               }`}
             >
               <LinkIMG className="w-5 h-5" />
-            </span>
+            </a>
           )}
         </span>
       </CustomButton>
