@@ -5,6 +5,7 @@ import { useTheme } from "../../context";
 
 export const PageContainer = ({ children }: { children: ReactNode }) => {
   const { isDark } = useTheme();
+
   return (
     <section className="relative h-full min-h-[calc(100vh-72px)] w-full max-w-[1440px] mx-auto overflow-hidden flex items-start justify-center mt-10">
       {/* Imagen de fondo (lgoo) */}

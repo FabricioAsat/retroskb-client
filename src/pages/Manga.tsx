@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BackIMG, EditIMG, LinkIMG, NotImageIMG } from "../assets";
 import {
   CustomButton,
@@ -8,22 +8,34 @@ import {
   GenresSelector,
   ImageUpdate,
   Loader,
+  MangaError,
+  MangaSkeleton,
   PageContainer,
 } from "../components";
-import { MangaState, type IMangaCreate } from "../models";
+import { MangaState, type IMangaCreate, type IMangaUpdate } from "../models";
 import { isValidChapter } from "../utils/validators.util";
 import { useFetch } from "../hooks";
 import { useNavigate } from "react-router";
-import { useTheme } from "../context";
-import { getGenres } from "../utils";
-import { getManga } from "../service";
+import { useTheme, useToast, type ToastContextType } from "../context";
+import { getGenres, normalizeLink } from "../utils";
+import { getManga, updateManga } from "../service";
 import { useParams } from "react-router";
 
 export const Manga = () => {
   const { id } = useParams();
   const { isDark } = useTheme();
+  const { showToast } = useToast() as ToastContextType; // para que no joda el linter
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+  const [form, setForm] = useState<IMangaUpdate>({
+    name: "",
+    state: "" as MangaState,
+    chapter: null,
+    image: "",
+    link: "",
+    description: "",
+    genre: [],
+  });
   const { loading, error, data, fetch } = useFetch(getManga, {
     params: id || "",
     autoFetch: true,
@@ -35,22 +47,83 @@ export const Manga = () => {
     error: errorEdit,
     data: dataEdit,
     fetch: fetchEdit,
-  } = useFetch(getManga, {
-    params: id || "",
+  } = useFetch(updateManga, {
+    params: { body: form, id: id || "" },
     autoFetch: false,
   });
 
-  if (false) {
-    return <Loader />;
+  const handleChange = (field: string) => (value: string) => {
+    setForm((prev) => ({ ...prev, [field as keyof IMangaCreate]: value }));
+  };
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    // Validaciones
+    if (form.name.length < 2) {
+      showToast("Manga name must be at least 2 characters long", "error");
+      return;
+    }
+
+    if (form.state === "") {
+      showToast("Please select a manga state", "error");
+      return;
+    }
+
+    if (!isValidChapter(form.chapter?.toString() || "")) {
+      showToast("Please enter a valid chapter number", "error");
+      return;
+    }
+
+    fetchEdit({
+      body: { ...form, chapter: Number(form.chapter) },
+      id: id || "",
+    });
+  }
+
+  // Maneja la respuesta de la actualizacion
+  useEffect(() => {
+    if (loadingEdit) return;
+    if (errorEdit) {
+      showToast("There was an error updating the manga", "error");
+      return;
+    }
+    if (dataEdit) {
+      showToast(dataEdit?.message || "", "success");
+      navigate("/");
+    }
+  }, [loadingEdit]);
+
+  // Carga al form los datos del manga fetcheado
+  useEffect(() => {
+    if (loading) return;
+    if (data) {
+      setForm({
+        name: data.data.name,
+        state: data.data.state,
+        chapter: data.data.chapter,
+        image: data.data.image || "",
+        link: data.data.link || "",
+        description: data.data.description || "",
+        genre: data.data.genre || [],
+      });
+    }
+  }, [loading, error, data]);
+
+  function reFetchManga() {
+    fetch(id || "");
+  }
+
+  if (loading) {
+    return <MangaSkeleton />;
   }
 
   if (error || !data) {
-    return <p>There was an error loading the manga data.</p>;
+    return <MangaError fetch={reFetchManga} status={error?.status || 500} />;
   }
 
   return (
     <PageContainer>
-      <nav className="mb-12 flex gap-x-5 justify-between">
+      <nav className="flex justify-between mb-12 gap-x-5">
         <CustomButton
           onClick={() => navigate("/")}
           className="flex items-center gap-x-2"
@@ -71,7 +144,7 @@ export const Manga = () => {
       </nav>
 
       <form className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3">
-        <span className="col-span-1 mx-auto w-60 h-90 flex items-center justify-center">
+        <span className="flex items-center justify-center col-span-1 mx-auto w-60 h-90">
           {data.data.image && !isEditing ? (
             <img
               src={data.data.image}
@@ -84,7 +157,7 @@ export const Manga = () => {
               <p>No image available</p>
             </div>
           ) : (
-            <ImageUpdate image={data.data.image} handleChange={() => {}} />
+            <ImageUpdate image={data.data.image} handleChange={handleChange} />
           )}
         </span>
 
@@ -114,15 +187,16 @@ export const Manga = () => {
                   disabled={loading || loadingEdit}
                   label="Name of the manga"
                   type="text"
-                  value={data.data?.name}
+                  value={form.name}
+                  onChange={(e) => handleChange("name")(e.target.value)}
                   validate={(value) => value.length > 2}
                 />
-                <span className="md:w-2/5 w-full h-full">
+                <span className="w-full h-full md:w-2/5">
                   <CustomDropdown
                     disabled={loading || loadingEdit}
-                    label={data.data?.state || ""}
-                    dropdownItems={[]}
-                    handleChange={() => {}}
+                    label={form.state}
+                    dropdownItems={Object.entries(MangaState)}
+                    handleChange={handleChange}
                   />
                 </span>
               </>
@@ -133,15 +207,17 @@ export const Manga = () => {
             {!isEditing ? (
               <>
                 <span
-                  className={`border-2 py-2 w-full md:w-1/3 rounded-lg px-3 truncate italic ${
+                  className={`border-2 py-2 w-full font-bold md:w-1/3 rounded-lg px-3 truncate italic ${
                     isDark ? "border-dark-border" : "border-light-border"
                   }`}
                 >
                   Chapter {data.data.chapter}
                 </span>
-                <button
-                  type="button"
-                  className={`border-2 py-2 w-full md:w-2/3 flex items-center truncate gap-x-2 rounded-lg px-2 cursor-pointer ${
+                <a
+                  href={normalizeLink(data.data.link)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`border-2 py-2 w-full font-bold md:w-2/3 flex items-center truncate gap-x-2 rounded-lg px-2 cursor-pointer ${
                     isDark
                       ? "border-dark-border hover:text-dark-primary hover:underline"
                       : "border-light-border hover:text-light-primary hover:underline"
@@ -149,26 +225,28 @@ export const Manga = () => {
                 >
                   <LinkIMG className="w-4 h-4" />
                   {data.data?.link || "No link available"}
-                </button>
+                </a>
               </>
             ) : (
               <>
-                <span className="h-full w-1/3">
+                <span className="w-full h-full md:w-1/3">
                   <CustomInput
                     disabled={loading || loadingEdit}
                     label="Last chapter readed"
                     type="text"
-                    value={data.data?.chapter || ""}
+                    value={form.chapter?.toString() || ""}
+                    onChange={(e) => handleChange("chapter")(e.target.value)}
                     validate={(value) => isValidChapter(value)}
                   />
                 </span>
-                <span className="h-full w-2/3">
+                <span className="w-full h-full md:w-2/3">
                   <CustomInput
                     disabled={loading || loadingEdit}
                     className="w-2/3"
                     label="Link of the webpage"
                     type="text"
-                    value={data.data?.link}
+                    value={form.link || ""}
+                    onChange={(e) => handleChange("link")(e.target.value)}
                     validate={(value) => value.length > 0}
                   />
                 </span>
@@ -178,7 +256,7 @@ export const Manga = () => {
 
           {!isEditing ? (
             <span
-              className={`border-2 py-2 w-full min-h-28 rounded-lg px-3 italic ${
+              className={`border-2 py-2 w-full font-bold min-h-28 rounded-lg px-3 italic ${
                 isDark ? "border-dark-border" : "border-light-border"
               }`}
             >
@@ -189,29 +267,51 @@ export const Manga = () => {
               <CustomTextArea
                 disabled={loading || loadingEdit}
                 label="Manga description"
-                value={data.data?.description}
+                value={form.description || ""}
+                onChange={(e) => handleChange("description")(e.target.value)}
                 validate={(v) => v.length > 0}
               />
             </span>
           )}
 
           <span className="flex flex-col items-start w-full gap-y-2 gap-x-5">
-            <p className={`px-2 select-none`}>
-              {isEditing ? "Select manga genres" : "Manga genres"}
+            <p className={`px-2 select-none font-bold`}>
+              {isEditing
+                ? "Select manga genres"
+                : form.genre.length === 0
+                ? "No genres selected"
+                : "Manga genres"}
             </p>
-            <GenresSelector
-              disabled={loading || loadingEdit}
-              genres={isEditing ? getGenres() : data.data.genre}
-              selected={data.data.genre}
-              onChange={() => {}}
-            />
+            {!isEditing && form.genre.length > 0 ? (
+              <section className="flex flex-wrap justify-start w-full gap-2">
+                {form.genre.map((genre) => (
+                  <CustomButton
+                    color={isDark ? "dark" : "light"}
+                    key={genre}
+                    className={`border-2 py-1 px-2 rounded-lg ${
+                      isDark ? "border-dark-border" : "border-light-border"
+                    }`}
+                  >
+                    {genre}
+                  </CustomButton>
+                ))}
+              </section>
+            ) : (
+              <GenresSelector
+                disabled={loading || loadingEdit}
+                genres={isEditing ? getGenres() : form.genre}
+                selected={form.genre}
+                onChange={(updated) => setForm({ ...form, genre: updated })}
+              />
+            )}
           </span>
 
-          {!isEditing && (
+          {isEditing && (
             <CustomButton
-              disabled={true}
+              disabled={loadingEdit}
               className="w-full md:w-2/3 xl:w-1/3"
               type="submit"
+              onClick={handleSubmit}
               color={
                 isDark
                   ? error

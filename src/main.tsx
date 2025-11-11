@@ -13,14 +13,14 @@ import {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <ModalProvider>
-        <ToastProvider>
+      <ToastProvider>
+        <ModalProvider>
           <AuthProvider>
             <App />
             <Modal />
           </AuthProvider>
-        </ToastProvider>
-      </ModalProvider>
+        </ModalProvider>
+      </ToastProvider>
     </ThemeProvider>
   </StrictMode>
 );

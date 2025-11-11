@@ -9,17 +9,11 @@ import { CustomToast } from "../components";
 
 type ToastType = "success" | "error" | "warning" | "neutral";
 
-interface ToastContextType {
+export interface ToastContextType {
   showToast: (message: string, type?: ToastType) => void;
 }
 
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
-
-export const useToast = () => {
-  const ctx = useContext(ToastContext);
-  if (!ctx) throw new Error("useToast must be used within a ToastProvider");
-  return ctx;
-};
+const toastContext = createContext<ToastContextType | undefined>(undefined);
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toast, setToast] = useState<{
@@ -37,7 +31,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <toastContext.Provider value={{ showToast }}>
       {children}
       <CustomToast
         show={visible}
@@ -45,6 +39,18 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
         type={toast?.type}
         onClose={() => setVisible(false)}
       />
-    </ToastContext.Provider>
+    </toastContext.Provider>
   );
+};
+
+export const useToast = () => {
+  const ctx = useContext(toastContext);
+  if (!ctx) {
+    if (import.meta.env.DEV) {
+      console.warn("useToast used outside ToastProvider (dev hot reload)");
+      return { toast: () => {}, dismiss: () => {} };
+    }
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+  return ctx;
 };

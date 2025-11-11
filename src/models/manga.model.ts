@@ -32,7 +32,7 @@ export interface IMangaCreate {
 export interface IMangaUpdate {
   name: string;
   state: MangaState | "";
-  chapter: number;
+  chapter: number | null;
   image: string;
   link: string;
   description: string;
