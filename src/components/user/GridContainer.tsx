@@ -12,15 +12,14 @@ const typeColors = {
   [MangaState.Reading]: "primary",
   [MangaState.Completed]: "success",
   [MangaState.OnHold]: "warning",
-  [MangaState.Abandoned]: "error",
-  [MangaState.Deleted]: "error",
+  [MangaState.Dropped]: "error",
 };
 
 export const GridContainer = ({ mangas, state }: Props) => {
   const mangasByState = groupMangasByStates(mangas);
 
   return (
-    <section className="flex flex-wrap gap-x-3 gap-y-3 justify-start items-center w-full">
+    <section className="flex flex-wrap items-center justify-start w-full gap-x-3 gap-y-3">
       {mangasByState[state].length === 0 ? (
         <NotMangasHere
           label={`There's no ${state} mangas.`}

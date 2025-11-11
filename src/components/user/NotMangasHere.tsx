@@ -1,8 +1,8 @@
+import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 import { CustomButton } from "..";
 import { CloseIMG, WarningIMG } from "../../assets";
 import { useTheme } from "../../context";
-import { motion } from "motion/react";
 import { ROUTES } from "../../constants/routes";
 
 interface Props {
@@ -23,7 +23,7 @@ export const NotMangasHere = ({ label, buttom }: Props) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex flex-col gap-y-3 justify-center items-center mt-10 w-full"
+      className="flex flex-col items-center justify-center w-full mt-10 gap-y-3"
     >
       <span
         className={`font-bold flex flex-col gap-y-3 justify-center items-center md:text-xl text-lg xl:text-2xl ${

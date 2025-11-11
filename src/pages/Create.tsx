@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+
 import {
   CustomButton,
   CustomDropdown,
@@ -10,12 +12,11 @@ import {
   PageContainer,
 } from "../components";
 import { MangaState, type IMangaCreate } from "../models";
-import { useTheme, useToast } from "../context";
+import { useTheme, useToast, type ToastContextType } from "../context";
 import { isValidChapter } from "../utils/validators.util";
 import { getGenres } from "../utils";
 import { createManga } from "../service";
 import { useFetch } from "../hooks";
-import { useNavigate } from "react-router";
 import { BackIMG } from "../assets";
 
 export const Create = () => {
@@ -29,7 +30,7 @@ export const Create = () => {
     description: "",
     genre: [],
   });
-  const { showToast } = useToast();
+  const { showToast } = useToast() as ToastContextType;
   const navigate = useNavigate();
   const { loading, error, data, fetch } = useFetch(createManga, {
     params: form,
@@ -100,7 +101,7 @@ export const Create = () => {
               onChange={(e) => handleChange("name")(e.target.value)}
               validate={(value) => value.length > 2}
             />
-            <span className="md:w-2/5 w-full h-full">
+            <span className="w-full h-full md:w-2/5">
               <CustomDropdown
                 disabled={loading}
                 label={form.state}
@@ -111,7 +112,7 @@ export const Create = () => {
           </span>
 
           <span className="flex flex-col items-center w-full md:flex-row gap-y-5 gap-x-5">
-            <span className="h-full w-full md:w-1/3">
+            <span className="w-full h-full md:w-1/3">
               <CustomInput
                 disabled={loading}
                 label="Last chapter readed"
@@ -121,7 +122,7 @@ export const Create = () => {
                 validate={(value) => isValidChapter(value)}
               />
             </span>
-            <span className="h-full w-full md:w-2/3">
+            <span className="w-full h-full md:w-2/3">
               <CustomInput
                 disabled={loading}
                 label="Link of the webpage"

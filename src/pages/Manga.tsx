@@ -48,7 +48,6 @@ export const Manga = () => {
     autoFetch: true,
   });
 
-  //   TODO - Update
   const {
     loading: loadingEdit,
     error: errorEdit,

@@ -1,11 +1,12 @@
-import { motion } from "motion/react";
+import { useNavigate } from "react-router";
 import { useState } from "react";
+import { motion } from "motion/react";
+
 import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
 import { NotImage } from "./NotImage";
 import { LinkIMG } from "../../assets";
-import { useNavigate } from "react-router";
 import { ROUTES } from "../../constants/routes";
 import { normalizeLink } from "../../utils";
 

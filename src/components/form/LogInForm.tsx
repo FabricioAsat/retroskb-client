@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { CustomButton, CustomInput, Loader } from "..";
-import { useAuth, useModal, useTheme, useToast } from "../../context";
+import {
+  useAuth,
+  useModal,
+  useTheme,
+  useToast,
+  type ToastContextType,
+} from "../../context";
 import { isValidEmail, isValidPassword } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
 import { useFetch } from "../../hooks";
@@ -8,7 +14,7 @@ import { loginUser } from "../../service/user.service";
 
 export const LogInForm = () => {
   const { isDark } = useTheme();
-  const { showToast } = useToast();
+  const { showToast } = useToast() as ToastContextType;
   const { closeModal } = useModal();
   const { setToken } = useAuth();
 
@@ -54,7 +60,7 @@ export const LogInForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-y-8 py-5 md:px-5"
+      className="flex flex-col py-5 gap-y-8 md:px-5"
       onSubmit={handleSubmit}
     >
       <CustomInput

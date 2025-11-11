@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router";
+import { motion } from "motion/react";
+
 import { useTheme } from "../../context";
 import { PageContainer } from "../globals/PageContainer";
-
-import { motion } from "motion/react";
 import { CustomButton } from "../ui/CustomButton";
-import { useNavigate } from "react-router";
 
 interface ErrorProps {
   fetch: () => void;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Hero, PageContainer, Qualities } from "../components";
 import { useNavigate } from "react-router";
+
+import { Hero, PageContainer, Qualities } from "../components";
 import { useAuth } from "../context";
 import { ROUTES } from "../constants/routes";
 

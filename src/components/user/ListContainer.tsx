@@ -8,12 +8,11 @@ interface Props {
   state: MangaState;
 }
 
-const typeColors = {
+const typeColors: Record<MangaState, string> = {
   [MangaState.Reading]: "primary",
   [MangaState.Completed]: "success",
   [MangaState.OnHold]: "warning",
-  [MangaState.Abandoned]: "error",
-  [MangaState.Deleted]: "error",
+  [MangaState.Dropped]: "error",
 };
 
 export const ListContainer = ({ mangas, state }: Props) => {

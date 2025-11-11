@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { CustomButton, CustomInput, Loader } from "..";
-import { useModal, useTheme, useToast } from "../../context";
+import {
+  useModal,
+  useTheme,
+  useToast,
+  type ToastContextType,
+} from "../../context";
 import {
   isValidDate,
   isValidEmail,
@@ -14,7 +19,7 @@ import type { IUserRegister } from "../../models";
 
 export const SignUpForm = () => {
   const { isDark } = useTheme();
-  const { showToast } = useToast();
+  const { showToast } = useToast() as ToastContextType;
   const { closeModal } = useModal();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const [form, setForm] = useState<IUserRegister>({
@@ -74,7 +79,7 @@ export const SignUpForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-y-8 py-5 md:px-5"
+      className="flex flex-col py-5 gap-y-8 md:px-5"
       onSubmit={handleSubmit}
     >
       <CustomInput

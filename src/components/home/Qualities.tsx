@@ -1,5 +1,6 @@
-import { CleanIMG, EasyIMG, FastIMG, SecureIMG } from "../../assets";
 import { motion } from "motion/react";
+
+import { CleanIMG, EasyIMG, FastIMG, SecureIMG } from "../../assets";
 import { useTheme } from "../../context";
 
 const qualities = [
@@ -26,7 +27,7 @@ export const Qualities = () => {
 
   return (
     <motion.aside
-      className="mx-auto flex flex-wrap justify-center items-start gap-3 md:gap-4 py-6"
+      className="flex flex-wrap items-start justify-center gap-3 py-6 mx-auto md:gap-4"
       initial="hidden"
       animate="visible"
       variants={{
@@ -52,7 +53,7 @@ export const Qualities = () => {
           }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <div className="mb-2 flex items-center justify-center text-3xl">
+          <div className="flex items-center justify-center mb-2 text-3xl">
             {item.Icon}
           </div>
           <p className="text-sm font-semibold">{item.description}</p>

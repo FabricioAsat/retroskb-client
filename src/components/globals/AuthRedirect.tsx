@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context";
 import { useLocation } from "react-router";
+
+import { useAuth } from "../../context";
 import { ROUTES } from "../../constants/routes";
 
 export const AuthRedirect = () => {

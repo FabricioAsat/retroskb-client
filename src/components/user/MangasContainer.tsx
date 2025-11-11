@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useTheme } from "../../context";
 import { MangaState } from "../../models";
 import {
   CloseIMG,
-  DeletedIMG,
   GridIMG,
   ListIMG,
   OnHoldIMG,
@@ -17,37 +17,30 @@ import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
 import { GridContainer } from "./GridContainer";
 import { ROUTES } from "../../constants/routes";
-import { useNavigate } from "react-router";
 
 const states = [
   {
-    label: "Reading",
+    label: MangaState.Reading,
     state: MangaState.Reading,
     icon: <ReadingIMG className="w-4 h-4" />,
     color: "primary",
   },
   {
-    label: "On hold",
+    label: MangaState.OnHold,
     state: MangaState.OnHold,
     icon: <OnHoldIMG className="w-4 h-4" />,
     color: "warning",
   },
   {
-    label: "Completed",
+    label: MangaState.Completed,
     state: MangaState.Completed,
     icon: <SuccessIMG className="w-4 h-4" />,
     color: "success",
   },
   {
-    label: "Abandoned",
-    state: MangaState.Abandoned,
+    label: MangaState.Dropped,
+    state: MangaState.Dropped,
     icon: <WarningIMG className="w-4 h-4" />,
-    color: "error",
-  },
-  {
-    label: "Deleted",
-    state: MangaState.Deleted,
-    icon: <DeletedIMG className="w-4 h-4" />,
     color: "error",
   },
 ];
@@ -73,13 +66,13 @@ export const MangasContainer = () => {
   }
 
   return (
-    <section className="flex flex-col justify-center items-center">
+    <section className="flex flex-col items-center justify-center">
       <section
         className={`grid md:grid-cols-3 justify-items-center mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
           isDark ? "border-dark-border" : "border-light-border"
         }`}
       >
-        <span className="flex col-span-2 gap-x-2 items-center w-full h-full">
+        <span className="flex items-center w-full h-full col-span-2 gap-x-2">
           {states.map(({ state, icon, label, color }) => (
             <CustomButton
               key={state}
@@ -103,13 +96,13 @@ export const MangasContainer = () => {
                   mangaState === state ? "md:block" : "hidden"
                 }`}
               >
-                {label}
+                {state}
               </p>
             </CustomButton>
           ))}
         </span>
 
-        <span className="flex fixed bottom-2 right-4 z-40 gap-x-2 justify-end items-center md:relative md:bottom-0 md:right-0 md:w-full">
+        <span className="fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full">
           <CustomButton
             onClick={() => setMangaOrder("list")}
             color={
@@ -121,7 +114,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
+            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <ListIMG className="w-4 h-4" />
           </CustomButton>
@@ -136,14 +129,14 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
+            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <GridIMG className="w-4 h-4" />
           </CustomButton>
           <CustomButton
             onClick={gotoCreate}
             color={isDark ? "dark-success" : "light-success"}
-            className="gap-x-2 px-4 py-4 mb-2 h-full capitalize md:px-4 md:py-2"
+            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>

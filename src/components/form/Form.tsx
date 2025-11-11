@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { LogInForm } from "./LogInForm";
 import { SignUpForm } from "./SignUpForm";
-import { useTheme, useToast } from "../../context";
+import { useTheme, useToast, type ToastContextType } from "../../context";
 import { CustomButton, Loader } from "..";
 import { GoogleIMG, TwitterIMG } from "../../assets";
 
@@ -13,7 +13,7 @@ interface FormProps {
 export const Form = ({ initialForm = "login" }: FormProps) => {
   const [activeForm, setActiveForm] = useState<"login" | "signup">(initialForm);
   const { isDark } = useTheme();
-  const { showToast } = useToast();
+  const { showToast } = useToast() as ToastContextType;
 
   // Esto para hacer un fake con el inicio en gmail y twitter
   const [fakeLoading, setFakeLoading] = useState(false);
@@ -26,7 +26,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
   }
 
   return (
-    <div className="flex flex-col justify-start items-center mx-auto mt-5 w-full rounded-xl bg-surface">
+    <div className="flex flex-col items-center justify-start w-full mx-auto mt-5 rounded-xl bg-surface">
       <div
         className={`flex gap-4 items-start mb-6 w-full border-b-2 ${
           isDark ? "border-dark-border" : "border-light-border"
@@ -65,7 +65,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
         </CustomButton>
       </div>
 
-      <div className="overflow-hidden relative w-full">
+      <div className="relative w-full overflow-hidden">
         <AnimatePresence mode="wait">
           {activeForm === "login" ? (
             <motion.div
@@ -91,8 +91,8 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
         </AnimatePresence>
 
         {/* Continuar con Google account, y demás */}
-        <aside className="flex flex-col justify-center items-center">
-          <span className="flex gap-x-2 items-center w-full truncate">
+        <aside className="flex flex-col items-center justify-center">
+          <span className="flex items-center w-full truncate gap-x-2">
             <hr
               className={`border w-full ${
                 isDark ? "border-dark-border" : "border-light-border"
@@ -113,7 +113,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
           </span>
 
           {/* Botones decorativos */}
-          <nav className="flex gap-4 justify-center items-center mt-4">
+          <nav className="flex items-center justify-center gap-4 mt-4">
             {fakeLoading ? (
               <CustomButton
                 disabled={fakeLoading}
