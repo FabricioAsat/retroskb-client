@@ -244,19 +244,30 @@ export const Manga = () => {
                 >
                   Chapter {data.data.chapter}
                 </span>
-                <a
-                  href={normalizeLink(data.data.link)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`border-2 py-2 w-full font-bold md:w-2/3 flex items-center truncate gap-x-2 rounded-lg px-2 cursor-pointer ${
-                    isDark
-                      ? "border-dark-border hover:text-dark-primary hover:underline"
-                      : "border-light-border hover:text-light-primary hover:underline"
-                  }`}
-                >
-                  <LinkIMG className="w-4 h-4" />
-                  {data.data?.link || "No link available"}
-                </a>
+                {data.data.link ? (
+                  <a
+                    href={normalizeLink(data.data.link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`border-2 py-2 w-full font-bold md:w-2/3 flex items-center truncate gap-x-2 rounded-lg px-2 cursor-pointer ${
+                      isDark
+                        ? "border-dark-border hover:text-dark-primary hover:underline"
+                        : "border-light-border hover:text-light-primary hover:underline"
+                    }`}
+                  >
+                    <LinkIMG className="w-4 h-4" />
+                    {data.data.link}
+                  </a>
+                ) : (
+                  <span
+                    className={`border-2 py-2 w-full font-bold md:w-2/3 flex items-center truncate gap-x-2 rounded-lg px-2 ${
+                      isDark ? "border-dark-border" : "border-light-border"
+                    }`}
+                  >
+                    <LinkIMG className="w-4 h-4" />
+                    No link available
+                  </span>
+                )}
               </>
             ) : (
               <>
