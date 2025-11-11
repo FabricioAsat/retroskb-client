@@ -91,43 +91,46 @@ export const Create = () => {
         </span>
 
         <span className="flex flex-col items-center w-full col-span-2 xl:pr-0 gap-y-10 md:pr-5">
-          <span className="flex flex-col items-center w-full xl:flex-row gap-y-5 gap-x-5">
+          <span className="flex flex-col items-center w-full md:flex-row gap-y-5 gap-x-5">
             <CustomInput
               disabled={loading}
-              className="w-3/5"
               label="Name of the manga"
               type="text"
               value={form?.name}
               onChange={(e) => handleChange("name")(e.target.value)}
               validate={(value) => value.length > 2}
             />
-            <CustomDropdown
-              disabled={loading}
-              label={form.state}
-              dropdownItems={Object.entries(MangaState)}
-              handleChange={handleChange}
-            />
+            <span className="md:w-2/5 w-full h-full">
+              <CustomDropdown
+                disabled={loading}
+                label={form.state}
+                dropdownItems={Object.entries(MangaState)}
+                handleChange={handleChange}
+              />
+            </span>
           </span>
 
-          <span className="flex flex-col items-center w-full xl:flex-row gap-y-5 gap-x-5">
-            <CustomInput
-              disabled={loading}
-              className="w-1/2"
-              label="Last chapter readed"
-              type="text"
-              value={form?.chapter || ""}
-              onChange={(e) => handleChange("chapter")(e.target.value)}
-              validate={(value) => isValidChapter(value)}
-            />
-            <CustomInput
-              disabled={loading}
-              className="w-1/2"
-              label="Link of the webpage"
-              type="text"
-              value={form?.link}
-              onChange={(e) => handleChange("link")(e.target.value)}
-              validate={(value) => value.length > 0}
-            />
+          <span className="flex flex-col items-center w-full md:flex-row gap-y-5 gap-x-5">
+            <span className="h-full w-full md:w-1/3">
+              <CustomInput
+                disabled={loading}
+                label="Last chapter readed"
+                type="text"
+                value={form?.chapter || ""}
+                onChange={(e) => handleChange("chapter")(e.target.value)}
+                validate={(value) => isValidChapter(value)}
+              />
+            </span>
+            <span className="h-full w-full md:w-2/3">
+              <CustomInput
+                disabled={loading}
+                label="Link of the webpage"
+                type="text"
+                value={form?.link}
+                onChange={(e) => handleChange("link")(e.target.value)}
+                validate={(value) => value.length > 0}
+              />
+            </span>
           </span>
 
           <span className="flex items-center w-full gap-x-5">
