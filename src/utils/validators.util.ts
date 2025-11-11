@@ -35,6 +35,6 @@ export function isValidUsername(username: string): boolean {
 
 export function isValidChapter(chapter: string): boolean {
   if (!chapter) return false;
-  const re = /^[1-9]\d{0,3}$/;
+  const re = /^(0|[1-9]\d{0,3})$/;
   return re.test(chapter);
 }
