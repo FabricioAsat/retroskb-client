@@ -6,14 +6,12 @@ interface CustomTextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   validate?: (value: string) => boolean;
-  disable: boolean;
 }
 
 export const CustomTextArea = ({
   label,
   validate,
   value = "",
-  disabled,
   ...props
 }: CustomTextAreaProps) => {
   const [focused, setFocused] = useState(false);
@@ -34,26 +32,23 @@ export const CustomTextArea = ({
 
   return (
     <div className="relative w-full">
-      {!disabled && (
-        <motion.label
-          animate={{
-            y: isFloating ? -20 : 0,
-            scale: isFloating ? 0.85 : 1,
-            x: isFloating ? -2 : 0,
-            opacity: 1,
-          }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className={`absolute top-2.5 left-3 px-2 pointer-events-none select-none backdrop-blur-md ${
-            isDark ? "text-dark-text-muted" : "text-dark-text-muted"
-          }`}
-        >
-          {label}
-        </motion.label>
-      )}
+      <motion.label
+        animate={{
+          y: isFloating ? -20 : 0,
+          scale: isFloating ? 0.85 : 1,
+          x: isFloating ? -2 : 0,
+          opacity: 1,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className={`absolute top-2.5 left-3 px-2 pointer-events-none select-none backdrop-blur-md ${
+          isDark ? "text-dark-text-muted" : "text-dark-text-muted"
+        }`}
+      >
+        {label}
+      </motion.label>
 
       <textarea
         {...props}
-        disabled={disabled}
         value={value}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}

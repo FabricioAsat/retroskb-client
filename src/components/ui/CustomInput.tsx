@@ -13,7 +13,6 @@ export const CustomInput = ({
   label,
   validate,
   value = "",
-  disabled = false,
   ...props
 }: CustomInputProps) => {
   const [focused, setFocused] = useState(false);
@@ -34,26 +33,23 @@ export const CustomInput = ({
 
   return (
     <div className="relative w-full">
-      {!disabled && (
-        <motion.label
-          animate={{
-            y: isFloating ? -20 : 0,
-            scale: isFloating ? 0.85 : 1,
-            x: isFloating ? -2 : 0,
-            opacity: 1,
-          }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className={`absolute top-2.5 left-3 px-2 pointer-events-none select-none backdrop-blur-md ${
-            isDark ? "text-dark-text-muted" : "text-dark-text-muted"
-          }`}
-        >
-          {label}
-        </motion.label>
-      )}
+      <motion.label
+        animate={{
+          y: isFloating ? -20 : 0,
+          scale: isFloating ? 0.85 : 1,
+          x: isFloating ? -2 : 0,
+          opacity: 1,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className={`absolute top-2.5 left-3 px-2 pointer-events-none select-none backdrop-blur-md ${
+          isDark ? "text-dark-text-muted" : "text-dark-text-muted"
+        }`}
+      >
+        {label}
+      </motion.label>
 
       <input
         {...props}
-        disabled={disabled}
         value={value}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
