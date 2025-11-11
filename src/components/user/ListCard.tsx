@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
-import { LinkIMG } from "../../assets";
+import { LinkIMG, NotImageIMG } from "../../assets";
 import { useNavigate } from "react-router";
 import { ROUTES } from "../../constants/routes";
 import { normalizeLink } from "../../utils";
@@ -38,14 +38,14 @@ export const ListCard = ({
         ease: "easeOut",
         delay: index * 0.05,
       }}
-      className="w-full lg:max-w-md xl:max-w-sm 2xl:max-w-md"
+      className="w-full h-full lg:max-w-md xl:max-w-sm 2xl:max-w-md"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
       <CustomButton
         onClick={() => navigate(ROUTES.MANGA_DETAILS + manga._id)}
         color={color}
-        className="flex justify-between w-full truncate"
+        className="flex justify-between w-full h-full truncate"
       >
         <p className="w-full truncate text-start" title={manga.name}>
           {manga.name}
@@ -53,7 +53,7 @@ export const ListCard = ({
 
         <span className="flex items-center gap-5">
           <small className="italic font-semibold">{manga.chapter}</small>
-          {manga.link && (
+          {manga.link ? (
             <a
               href={normalizeLink(manga.link)}
               target="_blank"
@@ -66,6 +66,17 @@ export const ListCard = ({
             >
               <LinkIMG className="w-5 h-5" />
             </a>
+          ) : (
+            <span
+              title="No link uplaod"
+              className={`px-2 py-2 rounded-lg border border-transparent transition-colors duration-300 ${
+                isDark
+                  ? "bg-dark-bg/90 text-dark-error"
+                  : "bg-light-bg/90 text-light-error"
+              }`}
+            >
+              <NotImageIMG className="w-5 h-5" />
+            </span>
           )}
         </span>
       </CustomButton>
