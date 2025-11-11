@@ -34,3 +34,6 @@ export { MangasContainer } from "./user/MangasContainer";
 // Create folder
 export { ImageUpdate } from "./create/ImageUpdate";
 export { GenresSelector } from "./create/GenreSelector";
+
+// Manga folder
+export { MangaError } from "./manga/MangaError";

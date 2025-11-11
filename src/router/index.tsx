@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Default } from "../layout/Default";
-import { Create, Error404, Home, User } from "../pages";
+import { Create, Error404, Home, Manga, User } from "../pages";
 import { ProtectedRoute } from "../components";
 
 export const router = createBrowserRouter([
@@ -14,6 +14,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "/user", element: <User /> },
           { path: "/create", element: <Create /> },
+          { path: "/manga/:id", element: <Manga /> },
         ],
       },
       { path: "/*", element: <Error404 /> },

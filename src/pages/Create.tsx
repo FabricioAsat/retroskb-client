@@ -1,5 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CustomButton,
   CustomDropdown,
@@ -24,7 +23,7 @@ export const Create = () => {
   const [form, setForm] = useState<IMangaCreate>({
     name: "",
     state: "" as MangaState,
-    chapter: 1,
+    chapter: null,
     image: "",
     link: "",
     description: "",
@@ -54,7 +53,7 @@ export const Create = () => {
       return;
     }
 
-    if (!isValidChapter(form.chapter.toString())) {
+    if (!isValidChapter(form.chapter?.toString() || "")) {
       showToast("Please enter a valid chapter number", "error");
       return;
     }
@@ -116,7 +115,7 @@ export const Create = () => {
               className="w-1/2"
               label="Last chapter readed"
               type="text"
-              value={form?.chapter}
+              value={form?.chapter || ""}
               onChange={(e) => handleChange("chapter")(e.target.value)}
               validate={(value) => isValidChapter(value)}
             />

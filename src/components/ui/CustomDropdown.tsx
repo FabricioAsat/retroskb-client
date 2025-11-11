@@ -39,10 +39,7 @@ export const CustomDropdown = ({
   }, []);
 
   return (
-    <aside
-      className="relative inline-block w-full h-full xl:w-2/5"
-      ref={dropdownRef}
-    >
+    <aside className="relative inline-block w-full h-full" ref={dropdownRef}>
       <CustomButton
         disabled={disabled}
         className={`w-full h-full ${label ? "capitalize" : ""}  ${

@@ -4,12 +4,13 @@ import { CloseIMG } from "../../assets";
 import { useTheme } from "../../context";
 
 interface Props {
-  handleChange?: (file: string) => (imageUrl: string) => void;
+  handleChange: (file: string) => (imageUrl: string) => void;
+  image?: string;
 }
 
-export const ImageUpdate = ({ handleChange }: Props) => {
+export const ImageUpdate = ({ handleChange, image }: Props) => {
   const { isDark } = useTheme();
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(image || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {

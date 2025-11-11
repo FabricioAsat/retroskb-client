@@ -34,6 +34,16 @@ export const createManga = (
   };
 };
 
+export const getManga = (id: string): UseFetchCall<IResponse<IManga>> => {
+  const controller = loadAbort();
+  return {
+    call: axiosInstance.get<IResponse<IManga>>(ENDPOINTS.MANGAS.BY_ID(id), {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
 export const updateManga = ({
   body,
   id,
@@ -43,19 +53,13 @@ export const updateManga = ({
 }): UseFetchCall<IResponse<IManga>> => {
   const controller = loadAbort();
   return {
-    call: axios.put<IResponse<IManga>>(ENDPOINTS.MANGAS.BY_ID(id), body, {
-      signal: controller.signal,
-    }),
-    controller,
-  };
-};
-
-export const getManga = (id: string): UseFetchCall<IResponse<IManga>> => {
-  const controller = loadAbort();
-  return {
-    call: axios.get<IResponse<IManga>>(ENDPOINTS.MANGAS.BY_ID(id), {
-      signal: controller.signal,
-    }),
+    call: axiosInstance.put<IResponse<IManga>>(
+      ENDPOINTS.MANGAS.BY_ID(id),
+      body,
+      {
+        signal: controller.signal,
+      }
+    ),
     controller,
   };
 };

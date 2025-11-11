@@ -28,3 +28,4 @@ export { NotImageIMG } from "./NotImageIMG";
 
 export { BackIMG } from "./BackIMG";
 export { LinkIMG } from "./LinkIMG";
+export { EditIMG } from "./EditIMG";
