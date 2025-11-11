@@ -15,6 +15,7 @@ interface Props {
 export const ConfirmationDelete = ({ id, closeModal, navigate }: Props) => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
+  console.log("ConfirmationDelete.tsx: ", showToast);
 
   const { loading, error, data, fetch } = useFetch(deleteManga, {
     params: id,
@@ -37,7 +38,7 @@ export const ConfirmationDelete = ({ id, closeModal, navigate }: Props) => {
 
   return (
     <aside className="flex flex-col items-center justify-center w-full">
-      <div className="flex flex-col items-center justify-center w-full max-w-lg mt-10">
+      <div className="flex flex-col items-center justify-center w-full max-w-lg mt-5">
         <h2 className={`font-bold text-2xl ${isDark ? "" : ""}`}>
           Are you sure you want delete?
         </h2>
@@ -51,7 +52,7 @@ export const ConfirmationDelete = ({ id, closeModal, navigate }: Props) => {
         </p>
       </div>
 
-      <form className="flex flex-col items-center justify-center w-full my-12 md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5">
+      <form className="flex flex-col items-center justify-center w-full mt-12 mb-6 md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5">
         <CustomButton
           type="button"
           disabled={loading}

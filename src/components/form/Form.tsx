@@ -14,6 +14,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
   const [activeForm, setActiveForm] = useState<"login" | "signup">(initialForm);
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
+  console.log("Form.tsx: ", showToast);
 
   // Esto para hacer un fake con el inicio en gmail y twitter
   const [fakeLoading, setFakeLoading] = useState(false);

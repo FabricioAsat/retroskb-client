@@ -32,6 +32,7 @@ export const Manga = () => {
   const { isDark } = useTheme();
   const { openModal, closeModal } = useModal();
   const { showToast } = useToast() as ToastContextType; // para que no joda el linter
+  console.log("Manga.tsx: ", showToast);
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState<IMangaUpdate>({

@@ -31,6 +31,7 @@ export const Create = () => {
     genre: [],
   });
   const { showToast } = useToast() as ToastContextType;
+  console.log("Create.tsx: ", showToast);
   const navigate = useNavigate();
   const { loading, error, data, fetch } = useFetch(createManga, {
     params: form,

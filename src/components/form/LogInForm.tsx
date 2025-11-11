@@ -15,6 +15,7 @@ import { loginUser } from "../../service/user.service";
 export const LogInForm = () => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
+  console.log("LoginForm.tsx: ", showToast);
   const { closeModal } = useModal();
   const { setToken } = useAuth();
 

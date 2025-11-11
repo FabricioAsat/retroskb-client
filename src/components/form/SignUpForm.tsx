@@ -20,6 +20,7 @@ import type { IUserRegister } from "../../models";
 export const SignUpForm = () => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
+  console.log("SignUpForm.tsx: ", showToast);
   const { closeModal } = useModal();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const [form, setForm] = useState<IUserRegister>({
