@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { BackIMG, EditIMG, LinkIMG, NotImageIMG } from "../assets";
+import { BackIMG, DeletedIMG, EditIMG, LinkIMG, NotImageIMG } from "../assets";
 import {
+  ConfirmationDelete,
   CustomButton,
   CustomDropdown,
   CustomInput,
@@ -16,7 +17,12 @@ import { MangaState, type IMangaCreate, type IMangaUpdate } from "../models";
 import { isValidChapter } from "../utils/validators.util";
 import { useFetch } from "../hooks";
 import { useNavigate } from "react-router";
-import { useTheme, useToast, type ToastContextType } from "../context";
+import {
+  useModal,
+  useTheme,
+  useToast,
+  type ToastContextType,
+} from "../context";
 import { getGenres, normalizeLink } from "../utils";
 import { getManga, updateManga } from "../service";
 import { useParams } from "react-router";
@@ -24,6 +30,7 @@ import { useParams } from "react-router";
 export const Manga = () => {
   const { id } = useParams();
   const { isDark } = useTheme();
+  const { openModal, closeModal } = useModal();
   const { showToast } = useToast() as ToastContextType; // para que no joda el linter
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
@@ -52,10 +59,12 @@ export const Manga = () => {
     autoFetch: false,
   });
 
+  // Maneja los imputs
   const handleChange = (field: string) => (value: string) => {
     setForm((prev) => ({ ...prev, [field as keyof IMangaCreate]: value }));
   };
 
+  // Edita el manga
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Validaciones
@@ -78,6 +87,21 @@ export const Manga = () => {
       body: { ...form, chapter: Number(form.chapter) },
       id: id || "",
     });
+  }
+
+  function handleConfirmDelete() {
+    openModal(
+      <ConfirmationDelete
+        closeModal={closeModal}
+        id={id || ""}
+        navigate={navigate}
+      />
+    );
+  }
+
+  // Cuando salta el error de fetch, podes volver a fetchear
+  function reFetchManga() {
+    fetch(id || "");
   }
 
   // Maneja la respuesta de la actualizacion
@@ -109,10 +133,6 @@ export const Manga = () => {
     }
   }, [loading, error, data]);
 
-  function reFetchManga() {
-    fetch(id || "");
-  }
-
   if (loading) {
     return <MangaSkeleton />;
   }
@@ -126,21 +146,32 @@ export const Manga = () => {
       <nav className="flex justify-between mb-12 gap-x-5">
         <CustomButton
           onClick={() => navigate("/")}
-          className="flex items-center gap-x-2"
+          className="flex items-center py-3 gap-x-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
-          <BackIMG className="w-4 h-4" />
-          <p>Go home</p>
+          <BackIMG className="w-5 h-5" />
+          <p className="hidden md:block">Go home</p>
         </CustomButton>
 
-        <CustomButton
-          onClick={() => setIsEditing(!isEditing)}
-          color={isDark ? "dark-secondary" : "light-secondary"}
-          className="flex items-center gap-x-2"
-        >
-          <EditIMG className="w-4 h-4" />
-          <p>Edit info</p>
-        </CustomButton>
+        <span className="flex items-center gap-x-5">
+          <CustomButton
+            onClick={() => setIsEditing(!isEditing)}
+            color={isDark ? "dark-secondary" : "light-secondary"}
+            className="flex items-center py-3 gap-x-2"
+          >
+            <EditIMG className="w-5 h-5" />
+            <p className="hidden md:block">Edit info</p>
+          </CustomButton>
+
+          <CustomButton
+            onClick={handleConfirmDelete}
+            color={isDark ? "dark-error" : "light-error"}
+            className="flex items-center py-3 gap-x-2"
+          >
+            <DeletedIMG className="w-5 h-5" />
+            <p className="hidden md:block">Delete</p>
+          </CustomButton>
+        </span>
       </nav>
 
       <form className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3">

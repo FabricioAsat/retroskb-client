@@ -38,3 +38,4 @@ export { GenresSelector } from "./create/GenreSelector";
 // Manga folder
 export { MangaError } from "./manga/MangaError";
 export { MangaSkeleton } from "./manga/MangaSkeleton";
+export { ConfirmationDelete } from "./manga/ConfirmationDelete";

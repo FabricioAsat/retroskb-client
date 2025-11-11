@@ -1,1 +1,7 @@
-export { getMangas, getManga, createManga, updateManga } from "./manga.service";
+export {
+  getMangas,
+  getManga,
+  createManga,
+  updateManga,
+  deleteManga,
+} from "./manga.service";
