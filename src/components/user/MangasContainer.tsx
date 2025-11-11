@@ -96,7 +96,7 @@ export const MangasContainer = () => {
                   mangaState === state ? "md:block" : "hidden"
                 }`}
               >
-                {state}
+                {label}
               </p>
             </CustomButton>
           ))}
