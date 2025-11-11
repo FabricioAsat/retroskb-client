@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ENDPOINTS } from "../constants/endpoints";
 
 import type {
