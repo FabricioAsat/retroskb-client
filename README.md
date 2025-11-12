@@ -36,6 +36,7 @@ bun dev
 
 Esto levantará el servidor en:  
 👉 [http://localhost:5173](http://localhost:5173)
+```
 
 ---
 
@@ -45,6 +46,8 @@ Esto levantará el servidor en:
 bun run build
 
 El resultado se generará en la carpeta `dist/`, lista para ser servida por el backend de Go en modo producción.
+```
+
 [Aquí el backend](https://github.com/FabricioAsat/retroskb-server)
 
 ---
