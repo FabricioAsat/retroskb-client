@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# 🖥️ Retroskb — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El frontend de **Retroskb** está desarrollado con **React.js** y **Vite**, utilizando **TailwindCSS** para los estilos, **React Router** para la navegación y **Framer Motion** para animaciones suaves y modernas.  
+Su objetivo es ofrecer una interfaz rápida, intuitiva y atractiva para la gestión de mangas dentro del ecosistema Retroskb.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Tecnologías principales
 
-## React Compiler
+| Tecnología | Descripción |
+|-------------|-------------|
+| **React.js** | Librería principal para la construcción de interfaces de usuario. |
+| **Vite** | Entorno de desarrollo ultrarrápido y herramienta de build. |
+| **Bun** | Gestor de paquetes y runtime alternativo, veloz y moderno. |
+| **TailwindCSS** | Framework CSS utility-first para un diseño responsivo y consistente. |
+| **React Router** | Manejador de rutas SPA (Single Page Application). |
+| **Framer Motion** | Librería para animaciones fluidas y transiciones elegantes. |
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 🚀 Ejecución del proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔧 Requisitos previos
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Tener instalado **Bun** → [https://bun.sh](https://bun.sh)  
+  (También podés usar **npm** o **yarn**, pero el proyecto está optimizado para Bun)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ▶️ Modo desarrollo
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+cd web
+bun install
+bun dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Esto levantará el servidor en:  
+👉 [http://localhost:5173](http://localhost:5173)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+### 🏗️ Build de producción
+
+```bash
+bun run build
+
+El resultado se generará en la carpeta `dist/`, lista para ser servida por el backend de Go en modo producción.
+[Aquí el backend](https://github.com/FabricioAsat/retroskb-server)
+
+---
+
+## 🎨 Diseño y animaciones
+
+- El diseño utiliza **TailwindCSS** con un enfoque **responsive-first**.  
+- Las animaciones están implementadas con **Framer Motion**, lo que le da fluidez y dinamismo a la UI.  
+- El modo oscuro/claro puede controlarse mediante contexto global o el `ThemeContext` del proyecto.
+
+
+## 🧠 Principales características
+
+- Navegación SPA con **React Router**.  
+- Transiciones animadas entre páginas con **Motion**.  
+- Sistema de **tema dinámico (dark/light)**.  
+- Consumo de la **API backend de Retroskb**. 
+- Diseño **limpio, moderno y rápido** con **TailwindCSS**.  
+- Uso de **Bun** para mayor velocidad en desarrollo y build.  
+
+---
+
+## 🧰 Scripts disponibles
+
+| Comando | Descripción |
+|----------|-------------|
+| `bun run dev` | Inicia el servidor de desarrollo |
+| `bun run build` | Genera el build de producción |
+| `bun install` | Instala las dependencias |
+
+---
+
+## 👨‍💻 Autor
+
+**Fabricio Asat**  
+💻 Proyecto personal — desarrollado con React, Vite, Bun, TailwindCSS y Framer Motion.  
+📧 [fabricioasat00@gmail.com]  
+🔗 [LinkedIn](https://www.linkedin.com/in/fabricio-daniel-asat-780127237/)
+
+---
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**.
