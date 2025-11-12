@@ -20,7 +20,6 @@ import type { IUserRegister } from "../../models";
 export const SignUpForm = () => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
-  console.log("SignUpForm.tsx: ", showToast);
   const { closeModal } = useModal();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
   const [form, setForm] = useState<IUserRegister>({
@@ -35,7 +34,6 @@ export const SignUpForm = () => {
   });
 
   const handleChange = (field: keyof typeof form) => (value: string) => {
-    console.log("first");
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -69,7 +67,6 @@ export const SignUpForm = () => {
 
   // Controla los cambios de la response
   useEffect(() => {
-    console.log("Testeo por posible bucle infinito");
     if (error) {
       showToast(error.response?.data.error || error.message, "error");
     } else if (data) {

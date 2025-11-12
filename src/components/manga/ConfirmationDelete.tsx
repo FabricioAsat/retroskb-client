@@ -15,7 +15,6 @@ interface Props {
 export const ConfirmationDelete = ({ id, closeModal, navigate }: Props) => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
-  console.log("ConfirmationDelete.tsx: ", showToast);
 
   const { loading, error, data, fetch } = useFetch(deleteManga, {
     params: id,

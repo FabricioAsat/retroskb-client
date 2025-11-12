@@ -15,7 +15,6 @@ import { loginUser } from "../../service/user.service";
 export const LogInForm = () => {
   const { isDark } = useTheme();
   const { showToast } = useToast() as ToastContextType;
-  console.log("LoginForm.tsx: ", showToast);
   const { closeModal } = useModal();
   const { setToken } = useAuth();
 
@@ -28,7 +27,7 @@ export const LogInForm = () => {
     params: form,
     autoFetch: false,
   });
-
+  console.log(error);
   const handleChange = (field: keyof typeof form) => (value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };

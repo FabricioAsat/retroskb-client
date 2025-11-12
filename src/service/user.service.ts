@@ -13,7 +13,6 @@ export const registerUser = (
   body: IUserRegister
 ): UseFetchCall<IResponse<IUser>> => {
   const controller = loadAbort();
-  console.log(body);
   return {
     call: axios.post<IResponse<IUser>>(ENDPOINTS.AUTH.REGISTER, body, {
       signal: controller.signal,
@@ -30,6 +29,10 @@ export const loginUser = (
   body: IUserLogin
 ): UseFetchCall<IResponse<IDataResponse>> => {
   const controller = loadAbort();
+
+  console.log("data: ", body);
+  console.log("path", ENDPOINTS.AUTH.LOGIN);
+
   return {
     call: axios.post<IResponse<IDataResponse>>(ENDPOINTS.AUTH.LOGIN, body, {
       signal: controller.signal,
