@@ -4,7 +4,10 @@ import { useTheme } from "../../context";
 import { MangaState } from "../../models";
 import {
   CloseIMG,
+  ExportIMG,
   GridIMG,
+  HamburgerIMG,
+  ImportIMG,
   ListIMG,
   OnHoldIMG,
   ReadingIMG,
@@ -17,6 +20,7 @@ import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
 import { GridContainer } from "./GridContainer";
 import { ROUTES } from "../../constants/routes";
+import { MoreOptions } from "./MoreOptions";
 
 const states = [
   {
@@ -48,7 +52,6 @@ const states = [
 export const MangasContainer = () => {
   const [mangaState, setMangaState] = useState<MangaState>(MangaState.Reading);
   const [mangasOrder, setMangaOrder] = useState<"list" | "grid">("list");
-
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
@@ -75,6 +78,7 @@ export const MangasContainer = () => {
         <span className="flex items-center w-full h-full col-span-2 gap-x-2">
           {states.map(({ state, icon, label, color }) => (
             <CustomButton
+              title={label}
               key={state}
               onClick={() => setMangaState(state)}
               className={`${
@@ -102,8 +106,9 @@ export const MangasContainer = () => {
           ))}
         </span>
 
-        <span className="fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full">
+        <span className="fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full backdrop-blur-sm md:backdrop-blur-none rounded-lg px-2 md:px-0">
           <CustomButton
+            title="List order mangas"
             onClick={() => setMangaOrder("list")}
             color={
               mangasOrder === "list"
@@ -119,6 +124,7 @@ export const MangasContainer = () => {
             <ListIMG className="w-4 h-4" />
           </CustomButton>
           <CustomButton
+            title="Grid order mangas"
             onClick={() => setMangaOrder("grid")}
             color={
               mangasOrder === "grid"
@@ -134,12 +140,54 @@ export const MangasContainer = () => {
             <GridIMG className="w-4 h-4" />
           </CustomButton>
           <CustomButton
+            title="Create new manga"
             onClick={gotoCreate}
             color={isDark ? "dark-success" : "light-success"}
             className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>
+
+          <MoreOptions />
+
+          {/* More options */}
+          {/* <span className="relative h-full mb-2">
+            <CustomButton
+              title="More options"
+              onClick={() => setIsOpenMoreOptions(!isOpenMoreOptions)}
+              color={isDark ? "dark-secondary" : "light-secondary"}
+              className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
+            >
+              {isOpenMoreOptions ? (
+                <CloseIMG className="w-4 h-4" />
+              ) : (
+                <HamburgerIMG className="w-4 h-4" />
+              )}
+            </CustomButton>
+
+            {isOpenMoreOptions && (
+              <div
+                className={`flex flex-col gap-y-1 items-center z-50 justify-center absolute bottom-16 md:top-16 md:h-fit right-0 rounded-lg py-4 pl-4 backdrop-blur-xs ${
+                  isDark ? "bg-dark-bg/50" : "bg-light-bg/50"
+                }`}
+              >
+                <CustomButton
+                  color={isDark ? "dark-secondary" : "light-secondary"}
+                  className="h-full flex items-center md:h-full px-4 py-4 mb-1 gap-x-2 md:px-10 md:py-2.5"
+                >
+                  <p className="text-xs md:text-sm truncate">Import</p>
+                  <ImportIMG className="w-4 h-4" />
+                </CustomButton>
+                <CustomButton
+                  color={isDark ? "dark-secondary" : "light-secondary"}
+                  className="h-full flex items-center md:h-full px-4 py-4 mb-1 gap-x-2 md:px-10 md:py-2.5"
+                >
+                  <p className="text-xs md:text-sm truncate">Export</p>
+                  <ExportIMG className="w-4 h-4" />
+                </CustomButton>
+              </div>
+            )}
+          </span> */}
         </span>
       </section>
 

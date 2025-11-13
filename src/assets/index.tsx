@@ -29,3 +29,7 @@ export { NotImageIMG } from "./NotImageIMG";
 export { BackIMG } from "./BackIMG";
 export { LinkIMG } from "./LinkIMG";
 export { EditIMG } from "./EditIMG";
+
+export { ExportIMG } from "./ExportIMG";
+export { ImportIMG } from "./ImportIMG";
+export { HamburgerIMG } from "./HamburgerIMG";
