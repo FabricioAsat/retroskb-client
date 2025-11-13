@@ -11,5 +11,9 @@ export const ENDPOINTS = {
     BY_ID: (id: string) =>
       `${API_BASE_URL}${import.meta.env.VITE_ENDPOINT_MANGAS}/${id}`,
   },
+  BACKUP: {
+    IMPORT: `${API_BASE_URL}${import.meta.env.VITE_BACKUP_IMPORT}`,
+    EXPORT: `${API_BASE_URL}${import.meta.env.VITE_BACKUP_EXPORT}`,
+  },
   HEALTH: `${API_BASE_URL}/health`,
 };
