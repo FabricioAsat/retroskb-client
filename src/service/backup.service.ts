@@ -3,7 +3,7 @@ import type { IResponse, UseFetchCall } from "../models";
 import { loadAbort } from "../utils";
 import { axiosInstance } from "./axiosInstance";
 
-export const getBackup = (): UseFetchCall<Blob> => {
+export const exportBackup = (): UseFetchCall<Blob> => {
   const controller = loadAbort();
   return {
     call: axiosInstance.get<Blob>(ENDPOINTS.BACKUP.EXPORT, {

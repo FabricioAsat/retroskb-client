@@ -72,3 +72,13 @@ export const deleteManga = (id: string): UseFetchCall<IResponse<string>> => {
     controller,
   };
 };
+
+export const deleteMangas = (): UseFetchCall<IResponse<string>> => {
+  const controller = loadAbort();
+  return {
+    call: axiosInstance.delete<IResponse<string>>(ENDPOINTS.MANGAS.BASE, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};

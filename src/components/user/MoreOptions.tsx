@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { CustomButton } from "../ui/CustomButton";
-import { useTheme } from "../../context";
+import { useModal, useTheme } from "../../context";
 import {
   CloseIMG,
   ExportIMG,
@@ -10,8 +10,9 @@ import {
   WarningIMG,
 } from "../../assets";
 import { useFetch } from "../../hooks";
-import { getBackup, importBackup } from "../../service/backup.service";
+import { exportBackup, importBackup } from "../../service";
 import { Loader } from "../ui/Loader";
+import { ConfirmationDelete } from "../";
 
 const menuVariants: Variants = {
   hidden: { opacity: 0, y: -10, scale: 0.95 },
@@ -31,6 +32,7 @@ export const MoreOptions = ({
 }) => {
   const [isOpenMoreOptions, setIsOpenMoreOptions] = useState<boolean>(false);
   const { isDark } = useTheme();
+  const { openModal, closeModal, isOpen } = useModal();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -38,13 +40,28 @@ export const MoreOptions = ({
     error: errorE,
     data: dataE,
     fetch: fetchE,
-  } = useFetch(getBackup, { params: undefined, autoFetch: false });
+  } = useFetch(exportBackup, { params: undefined, autoFetch: false });
   const {
     loading: loadingI,
     data: dataI,
     error: errorI,
     fetch: fetchI,
   } = useFetch(importBackup);
+
+  function handleSuccess() {
+    reloadMangas(undefined);
+    setIsOpenMoreOptions(false);
+  }
+
+  function handleDeleteAll() {
+    openModal(
+      <ConfirmationDelete
+        closeModal={closeModal}
+        mode="all"
+        onSuccess={handleSuccess}
+      />
+    );
+  }
 
   function handleExport() {
     fetchE(undefined);
@@ -82,7 +99,7 @@ export const MoreOptions = ({
   }, [dataE]);
 
   return (
-    <span className="relative h-full mb-2">
+    <span className="relative h-full md:mb-2">
       <CustomButton
         title="More options"
         onClick={() => setIsOpenMoreOptions(!isOpenMoreOptions)}
@@ -104,8 +121,8 @@ export const MoreOptions = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`flex flex-col gap-y-1 items-center z-50 justify-center absolute bottom-16 md:top-16 h-fit right-0 rounded-lg md:py-4 pl-4 backdrop-blur-xs ${
-              isDark ? "bg-dark-bg/50" : "bg-light-bg/50"
+            className={`flex flex-col gap-y-1 items-center z-50 justify-center absolute bottom-16 md:top-16 h-fit -right-4 rounded-lg md:p-4 p-2 border-2 border-transparent ${
+              isDark ? "bg-dark-bg" : "bg-light-bg"
             }`}
           >
             <CustomButton
@@ -120,7 +137,7 @@ export const MoreOptions = ({
                   ? "light:error"
                   : "light-secondary"
               }
-              className="h-full flex items-center md:h-full px-4 py-4 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
             >
               {loadingI ? (
                 <Loader />
@@ -131,8 +148,8 @@ export const MoreOptions = ({
                 </>
               ) : (
                 <>
-                  <p className="text-xs md:text-sm truncate">Import</p>
                   <ImportIMG className="w-4 h-4" />
+                  <p className="text-xs md:text-sm truncate">Import</p>
                 </>
               )}
             </CustomButton>
@@ -149,7 +166,7 @@ export const MoreOptions = ({
                   ? "light:error"
                   : "light-secondary"
               }
-              className="h-full flex items-center md:h-full px-4 py-4 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
             >
               {loadingE ? (
                 <Loader />
@@ -160,8 +177,29 @@ export const MoreOptions = ({
                 </>
               ) : (
                 <>
-                  <p className="text-xs md:text-sm truncate">Export</p>
                   <ExportIMG className="w-4 h-4" />
+                  <p className="text-xs md:text-sm truncate">Export</p>
+                </>
+              )}
+            </CustomButton>
+
+            <CustomButton
+              disabled={loadingE}
+              onClick={handleDeleteAll}
+              color={isDark ? "dark-error" : "light-error"}
+              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+            >
+              {loadingE ? (
+                <Loader />
+              ) : errorE ? (
+                <>
+                  <WarningIMG className="w-4 h-4" />
+                  <p className="text-xs md:text-sm truncate">Try again</p>
+                </>
+              ) : (
+                <>
+                  <WarningIMG className="w-4 h-4" />
+                  <p className="text-xs md:text-sm truncate">Delete All</p>
                 </>
               )}
             </CustomButton>

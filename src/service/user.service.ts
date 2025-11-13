@@ -29,10 +29,6 @@ export const loginUser = (
   body: IUserLogin
 ): UseFetchCall<IResponse<IDataResponse>> => {
   const controller = loadAbort();
-
-  console.log("data: ", body);
-  console.log("path", ENDPOINTS.AUTH.LOGIN);
-
   return {
     call: axios.post<IResponse<IDataResponse>>(ENDPOINTS.AUTH.LOGIN, body, {
       signal: controller.signal,

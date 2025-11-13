@@ -10,7 +10,7 @@ import {
 import { isValidEmail, isValidPassword } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
 import { useFetch } from "../../hooks";
-import { loginUser } from "../../service/user.service";
+import { loginUser } from "../../service";
 
 export const LogInForm = () => {
   const { isDark } = useTheme();
@@ -27,7 +27,6 @@ export const LogInForm = () => {
     params: form,
     autoFetch: false,
   });
-  console.log(error);
   const handleChange = (field: keyof typeof form) => (value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };

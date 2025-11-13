@@ -20,6 +20,7 @@ export { Loader } from "./ui/Loader";
 export { Error } from "./ui/Error";
 export { CustomDropdown } from "./ui/CustomDropdown";
 export { CustomTextArea } from "./ui/CustomTextArea";
+export { ConfirmationDelete } from "./ui/ConfirmationDelete";
 
 // Home folder
 export { Hero } from "./home/Hero";
@@ -38,4 +39,3 @@ export { GenresSelector } from "./create/GenreSelector";
 // Manga folder
 export { MangaError } from "./manga/MangaError";
 export { MangaSkeleton } from "./manga/MangaSkeleton";
-export { ConfirmationDelete } from "./manga/ConfirmationDelete";

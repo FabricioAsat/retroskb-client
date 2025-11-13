@@ -91,8 +91,9 @@ export const Manga = () => {
   function handleConfirmDelete() {
     openModal(
       <ConfirmationDelete
+        mode="single"
         closeModal={closeModal}
-        id={id || ""}
+        id={id}
         navigate={navigate}
       />
     );

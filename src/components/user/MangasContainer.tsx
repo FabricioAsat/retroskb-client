@@ -103,7 +103,11 @@ export const MangasContainer = () => {
           ))}
         </span>
 
-        <span className="fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full backdrop-blur-sm md:backdrop-blur-none rounded-lg px-2 md:px-0">
+        <div
+          className={`fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full rounded-lg px-2 md:px-0 py-2 md:py-0 ${
+            isDark ? " bg-dark-bg" : "bg-light-bg"
+          }`}
+        >
           <CustomButton
             title="List order mangas"
             onClick={() => setMangaOrder("list")}
@@ -116,7 +120,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
+            className="h-full px-4 py-4 md:mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <ListIMG className="w-4 h-4" />
           </CustomButton>
@@ -132,7 +136,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
+            className="h-full px-4 py-4 md:mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <GridIMG className="w-4 h-4" />
           </CustomButton>
@@ -140,13 +144,13 @@ export const MangasContainer = () => {
             title="Create new manga"
             onClick={gotoCreate}
             color={isDark ? "dark-success" : "light-success"}
-            className="h-full px-4 py-4 mb-2 capitalize gap-x-2 md:px-4 md:py-2"
+            className="h-full px-4 py-4 md:mb-2 capitalize gap-x-2 md:px-4 md:py-2"
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>
           <MoreOptions reloadMangas={fetch} />{" "}
           {/* Dentro están los buttons import/export */}
-        </span>
+        </div>
       </section>
 
       {loading ? (

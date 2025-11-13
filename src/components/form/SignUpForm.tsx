@@ -14,7 +14,7 @@ import {
 } from "../../utils";
 import { HideIMG, ViewIMG } from "../../assets";
 import { useFetch } from "../../hooks";
-import { registerUser } from "../../service/user.service";
+import { registerUser } from "../../service";
 import type { IUserRegister } from "../../models";
 
 export const SignUpForm = () => {
