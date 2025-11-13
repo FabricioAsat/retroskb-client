@@ -32,7 +32,7 @@ export const MoreOptions = ({
 }) => {
   const [isOpenMoreOptions, setIsOpenMoreOptions] = useState<boolean>(false);
   const { isDark } = useTheme();
-  const { openModal, closeModal, isOpen } = useModal();
+  const { openModal, closeModal } = useModal();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {

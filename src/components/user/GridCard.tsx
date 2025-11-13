@@ -97,6 +97,7 @@ export const GridCard = ({
         </div>
         {manga.link && (
           <a
+            onClick={(e) => e.stopPropagation()}
             href={normalizeLink(manga.link)}
             target="_blank"
             rel="noopener noreferrer"

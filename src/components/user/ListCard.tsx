@@ -56,6 +56,7 @@ export const ListCard = ({
           <small className="italic font-semibold">{manga.chapter}</small>
           {manga.link ? (
             <a
+              onClick={(e) => e.stopPropagation()}
               href={normalizeLink(manga.link)}
               target="_blank"
               rel="noopener noreferrer"
