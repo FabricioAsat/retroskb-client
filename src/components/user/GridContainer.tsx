@@ -23,7 +23,6 @@ export const GridContainer = ({ mangas, state }: Props) => {
       {mangasByState[state].length === 0 ? (
         <NotMangasHere
           label={`There's no ${state} mangas.`}
-          buttom={state === MangaState.Reading}
         />
       ) : (
         mangasByState[state].map((manga: IManga, index: number) => (
