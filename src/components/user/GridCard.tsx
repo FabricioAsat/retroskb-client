@@ -77,9 +77,11 @@ export const GridCard = ({
         ) : !manga.image ? (
           <NotImage />
         ) : (
-          <motion.div
-            className="absolute inset-0 bg-center bg-cover rounded-lg"
-            style={{ backgroundImage: `url(${manga.image})` }}
+          <motion.img
+            src={manga.image}
+            alt={manga.name}
+            loading="lazy"
+            className="absolute inset-0 object-cover w-full h-full rounded-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}

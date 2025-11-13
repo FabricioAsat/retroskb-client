@@ -21,9 +21,7 @@ export const GridContainer = ({ mangas, state }: Props) => {
   return (
     <section className="flex flex-wrap items-center justify-start w-full gap-x-3 gap-y-3">
       {mangasByState[state].length === 0 ? (
-        <NotMangasHere
-          label={`There's no ${state} mangas.`}
-        />
+        <NotMangasHere label={`There's no ${state} mangas.`} />
       ) : (
         mangasByState[state].map((manga: IManga, index: number) => (
           <GridCard
