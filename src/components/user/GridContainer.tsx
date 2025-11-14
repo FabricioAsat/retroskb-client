@@ -1,5 +1,4 @@
 import { MangaState, type IManga } from "../../models";
-import { groupMangasByStates } from "../../utils";
 import { GridCard } from "./GridCard";
 import { NotMangasHere } from "./NotMangasHere";
 
