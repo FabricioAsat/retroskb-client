@@ -16,6 +16,9 @@ export const getMangas = (
   state?: MangaState
 ): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
+
+  console.log(`%c get mangas by: ${state}`, "color: #4da3ff");
+
   return {
     call: axiosInstance.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
       signal: controller.signal,

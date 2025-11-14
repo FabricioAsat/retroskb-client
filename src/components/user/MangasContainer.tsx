@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "../../context";
 import { MangaState } from "../../models";
 import {
@@ -52,18 +52,18 @@ export const MangasContainer = () => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
-  console.log(mangaState);
-
   const { loading, data, error, fetch } = useFetch(getMangas, {
-    params: MangaState.Reading,
+    params: mangaState,
     autoFetch: true,
   });
 
-  function reloadData(state?: MangaState) {
-    fetch(state || MangaState.Reading);
+  function reloadData(state: MangaState = mangaState) {
+    if (state !== mangaState) return;
+    fetch(state);
   }
 
   function changeState(state: MangaState) {
+    if (state === mangaState) return;
     reloadData(state);
     setMangaState(state);
   }
