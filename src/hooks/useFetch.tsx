@@ -51,7 +51,7 @@ export const useFetch = <T, P>(
     if (options?.autoFetch) {
       return fetch(options.params);
     }
-  }, [fetch, options?.autoFetch, options?.params]);
+  }, [fetch, options?.autoFetch]);
 
   return { loading, data, error, fetch };
 };

@@ -4,6 +4,7 @@ export { ScrollToTop } from "./globals/ScrollToTop";
 export { Modal } from "./globals/Modal";
 export { ProtectedRoute } from "./globals/ProtectedRoute";
 export { AuthRedirect } from "./globals/AuthRedirect";
+export { Searcher } from "./globals/Searcher";
 
 // Header folder
 export { HeaderDesktop } from "./header/HeaderDesktop";

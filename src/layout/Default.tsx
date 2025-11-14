@@ -7,12 +7,16 @@ import {
   HeaderDesktop,
   HeaderMobile,
   ScrollToTop,
+  Searcher,
 } from "../components";
-import { useTheme } from "../context";
+import { useAuth, useTheme } from "../context";
 import { getColorVar } from "../utils";
 
 export const Default = () => {
   const { isDark } = useTheme();
+  const { token } = useAuth();
+
+  console.log(`%c Token: ${token}`, "color:#ff8f32");
 
   return (
     <motion.div
@@ -65,6 +69,7 @@ export const Default = () => {
         }}
         className="overflow-y-auto h-full"
       >
+        {token && <Searcher />}
         <Outlet />
         <footer
           className={`flex flex-col justify-center items-center border-t-2 ${

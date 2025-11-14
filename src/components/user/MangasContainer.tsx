@@ -11,7 +11,7 @@ import {
   SuccessIMG,
   WarningIMG,
 } from "../../assets";
-import { CustomButton, CustomInput, Error, Loader } from "..";
+import { CustomButton, Error, Loader } from "..";
 import { useFetch } from "../../hooks";
 import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
@@ -53,37 +53,31 @@ export const MangasContainer = () => {
   const navigate = useNavigate();
 
   const { loading, data, error, fetch } = useFetch(getMangas, {
-    params: mangaState,
+    params: { state: MangaState.Reading },
     autoFetch: true,
   });
 
   function reloadData(state: MangaState = mangaState) {
     if (state !== mangaState) return;
-    fetch(state);
+    fetch({ state });
   }
 
   function changeState(state: MangaState) {
     if (state === mangaState) return;
-    reloadData(state);
     setMangaState(state);
+    reloadData(state);
   }
 
   function gotoCreate() {
     navigate(ROUTES.CREATE);
   }
 
+  useEffect(() => {
+    reloadData(mangaState);
+  }, [mangaState]);
+
   return (
     <section className="flex flex-col items-center justify-center">
-      <form className="w-full mb-10 max-w-3xl flex gap-x-5">
-        <CustomInput label="Browse your manga here" value={""} />
-        <CustomButton
-          color={isDark ? "dark-primary" : "light-primary"}
-          type="button"
-        >
-          Buscar
-        </CustomButton>
-      </form>
-
       <section
         className={`grid md:grid-cols-3 justify-items-center mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
           isDark ? "border-dark-border" : "border-light-border"
@@ -165,8 +159,8 @@ export const MangasContainer = () => {
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>
-          <MoreOptions reloadMangas={reloadData} />{" "}
           {/* Dentro están los buttons import/export */}
+          <MoreOptions reloadMangas={reloadData} />{" "}
         </div>
       </section>
 

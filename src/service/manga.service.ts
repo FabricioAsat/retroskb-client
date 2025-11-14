@@ -12,17 +12,27 @@ import type {
 import { loadAbort } from "../utils";
 import { axiosInstance } from "./axiosInstance";
 
-export const getMangas = (
-  state?: MangaState
-): UseFetchCall<IResponse<IManga[]>> => {
+interface GetMangasProps {
+  state?: MangaState;
+  search?: string;
+}
+
+export const getMangas = ({
+  state,
+  search,
+}: GetMangasProps): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
 
   console.log(`%c get mangas by: ${state}`, "color: #4da3ff");
 
+  const params: Record<string, string> = {};
+  if (state) params.state = state;
+  if (search) params.search = search;
+
   return {
     call: axiosInstance.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
       signal: controller.signal,
-      params: state ? { state } : undefined,
+      params: Object.keys(params).length ? params : undefined,
     }),
     controller,
   };

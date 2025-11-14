@@ -33,3 +33,4 @@ export { EditIMG } from "./EditIMG";
 export { ExportIMG } from "./ExportIMG";
 export { ImportIMG } from "./ImportIMG";
 export { HamburgerIMG } from "./HamburgerIMG";
+export { SearchIMG } from "./SearchIMG";

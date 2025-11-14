@@ -38,3 +38,7 @@ export function isValidChapter(chapter: string): boolean {
   const re = /^(0|[1-9]\d{0,3})$/;
   return re.test(chapter);
 }
+
+export function isValidMangaName(name: string): boolean {
+  return /^[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(name) && name.length > 2;
+}

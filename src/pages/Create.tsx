@@ -13,7 +13,7 @@ import {
 } from "../components";
 import { MangaState, type IMangaCreate } from "../models";
 import { useTheme, useToast, type ToastContextType } from "../context";
-import { isValidChapter } from "../utils/validators.util";
+import { isValidChapter, isValidMangaName } from "../utils/validators.util";
 import { getGenres } from "../utils";
 import { createManga } from "../service";
 import { useFetch } from "../hooks";
@@ -99,7 +99,7 @@ export const Create = () => {
               type="text"
               value={form?.name}
               onChange={(e) => handleChange("name")(e.target.value)}
-              validate={(value) => value.length > 2}
+              validate={(value) => isValidMangaName(value)}
             />
             <span className="w-full h-full md:w-2/5">
               <CustomDropdown

@@ -10,4 +10,5 @@ export {
   isValidDate,
   isValidPassword,
   isValidUsername,
+  isValidMangaName,
 } from "./validators.util";

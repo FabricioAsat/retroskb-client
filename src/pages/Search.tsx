@@ -1,0 +1,116 @@
+import { useSearchParams, useNavigate } from "react-router";
+import { CustomButton, Error, Loader, PageContainer } from "../components";
+import { useTheme } from "../context";
+import { useFetch } from "../hooks";
+import { getMangas } from "../service";
+import { useEffect, useState } from "react";
+import { ListContainer } from "../components/user/ListContainer";
+import { GridContainer } from "../components/user/GridContainer";
+import { BackIMG, GridIMG, ListIMG } from "../assets";
+
+export const Search = () => {
+  const [mangaOrder, setMangaOrder] = useState("grid");
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search");
+
+  const { isDark } = useTheme();
+  const { loading, data, error, fetch } = useFetch(getMangas, {
+    params: { search: search || "" },
+    autoFetch: true,
+  });
+
+  // Si hay un error necesitamos fetchear la data
+  function reloadData() {
+    fetch({ search: search || "" });
+  }
+
+  useEffect(() => {
+    fetch({ search: search || "" });
+  }, [search]);
+
+  return (
+    <PageContainer>
+      <section
+        className={`flex items-center justify-between mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
+          isDark ? "border-dark-border" : "border-light-border"
+        }`}
+      >
+        <span className="flex items-center h-full gap-x-2">
+          <CustomButton
+            onClick={() => navigate("/")}
+            className="h-full px-4 py-4 mb-2 truncate gap-x-2"
+            color={isDark ? "dark-primary" : "light-primary"}
+          >
+            <BackIMG className="w-4 h-4" />
+            <p className="hidden md:block text-sm">Home</p>
+          </CustomButton>
+        </span>
+        <div
+          className={`flex items-center justify-end gap-x-2 md:w-full rounded-lg px-2 ${
+            isDark ? " bg-dark-bg" : "bg-light-bg"
+          }`}
+        >
+          <CustomButton
+            title="List order mangas"
+            onClick={() => setMangaOrder("list")}
+            color={
+              mangaOrder === "list"
+                ? isDark
+                  ? "dark-primary"
+                  : "light-primary"
+                : isDark
+                ? "dark-disabled"
+                : "light-disabled"
+            }
+            className="h-full px-4 py-4 mb-2 gap-x-2"
+          >
+            <ListIMG className="w-4 h-4" />
+          </CustomButton>
+          <CustomButton
+            title="Grid order mangas"
+            onClick={() => setMangaOrder("grid")}
+            color={
+              mangaOrder === "grid"
+                ? isDark
+                  ? "dark-primary"
+                  : "light-primary"
+                : isDark
+                ? "dark-disabled"
+                : "light-disabled"
+            }
+            className="h-full px-4 py-4 mb-2 gap-x-2"
+          >
+            <GridIMG className="w-4 h-4" />
+          </CustomButton>
+        </div>
+      </section>
+      {loading ? (
+        <Loader label="Loading mangas..." />
+      ) : error ? (
+        <Error
+          label={error.message}
+          desc={
+            error.response?.data.error ||
+            "Failed to fetch mangas, please try again"
+          }
+          fetch={reloadData}
+        />
+      ) : mangaOrder === "list" ? (
+        <ListContainer
+          mangas={data?.data || []}
+          state={null}
+          notResultText={`The manga ${search} was not found.`}
+        />
+      ) : (
+        <GridContainer
+          mangas={data?.data || []}
+          state={null}
+          notResultText={`The manga ${search} was not found.`}
+        />
+      )}
+    </PageContainer>
+  );
+};
