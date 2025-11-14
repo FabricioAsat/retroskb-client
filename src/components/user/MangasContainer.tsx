@@ -11,7 +11,7 @@ import {
   SuccessIMG,
   WarningIMG,
 } from "../../assets";
-import { CustomButton, Error, Loader } from "..";
+import { CustomButton, CustomInput, Error, Loader } from "..";
 import { useFetch } from "../../hooks";
 import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
@@ -52,13 +52,20 @@ export const MangasContainer = () => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
+  console.log(mangaState);
+
   const { loading, data, error, fetch } = useFetch(getMangas, {
-    params: undefined,
+    params: MangaState.Reading,
     autoFetch: true,
   });
 
-  function reloadData() {
-    fetch(undefined);
+  function reloadData(state?: MangaState) {
+    fetch(state || MangaState.Reading);
+  }
+
+  function changeState(state: MangaState) {
+    reloadData(state);
+    setMangaState(state);
   }
 
   function gotoCreate() {
@@ -67,6 +74,16 @@ export const MangasContainer = () => {
 
   return (
     <section className="flex flex-col items-center justify-center">
+      <form className="w-full mb-10 max-w-3xl flex gap-x-5">
+        <CustomInput label="Browse your manga here" value={""} />
+        <CustomButton
+          color={isDark ? "dark-primary" : "light-primary"}
+          type="button"
+        >
+          Buscar
+        </CustomButton>
+      </form>
+
       <section
         className={`grid md:grid-cols-3 justify-items-center mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
           isDark ? "border-dark-border" : "border-light-border"
@@ -77,7 +94,7 @@ export const MangasContainer = () => {
             <CustomButton
               title={label}
               key={state}
-              onClick={() => setMangaState(state)}
+              onClick={() => changeState(state)}
               className={`${
                 mangaState === state ? "" : ""
               } mb-2 px-4 py-4 md:px-4 md:py-2 capitalize gap-x-2 md:h-full fles`}
@@ -148,7 +165,7 @@ export const MangasContainer = () => {
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>
-          <MoreOptions reloadMangas={fetch} />{" "}
+          <MoreOptions reloadMangas={reloadData} />{" "}
           {/* Dentro están los buttons import/export */}
         </div>
       </section>

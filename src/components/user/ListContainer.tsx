@@ -16,16 +16,12 @@ const typeColors: Record<MangaState, string> = {
 };
 
 export const ListContainer = ({ mangas, state }: Props) => {
-  const mangasByState = groupMangasByStates(mangas);
-
   return (
     <section className="flex flex-col items-center justify-start w-full px-2 gap-y-3 lg:gap-x-5 lg:flex-wrap lg:flex-row">
-      {mangasByState[state].length === 0 ? (
-        <NotMangasHere
-          label={`There's no ${state} mangas.`}
-        />
+      {mangas.length === 0 ? (
+        <NotMangasHere label={`There's no ${state} mangas.`} />
       ) : (
-        mangasByState[state].map((manga: IManga, index: number) => (
+        mangas.map((manga: IManga, index: number) => (
           <ListCard
             key={manga._id}
             index={index}

@@ -5,17 +5,21 @@ import type {
   IMangaCreate,
   IMangaUpdate,
   IResponse,
+  MangaState,
   UseFetchCall,
 } from "../models";
 
 import { loadAbort } from "../utils";
 import { axiosInstance } from "./axiosInstance";
 
-export const getMangas = (): UseFetchCall<IResponse<IManga[]>> => {
+export const getMangas = (
+  state?: MangaState
+): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
   return {
     call: axiosInstance.get<IResponse<IManga[]>>(ENDPOINTS.MANGAS.BASE, {
       signal: controller.signal,
+      params: state ? { state } : undefined,
     }),
     controller,
   };
