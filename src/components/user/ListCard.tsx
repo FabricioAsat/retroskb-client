@@ -39,7 +39,7 @@ export const ListCard = ({
         ease: "easeOut",
         delay: index * 0.05,
       }}
-      className="w-full h-full lg:max-w-md xl:max-w-sm 2xl:max-w-md"
+      className="w-full h-full"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

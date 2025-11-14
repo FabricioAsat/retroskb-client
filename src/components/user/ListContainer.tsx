@@ -17,7 +17,7 @@ const typeColors: Record<MangaState, string> = {
 
 export const ListContainer = ({ mangas, state, notResultText }: Props) => {
   return (
-    <section className="flex flex-col items-center justify-start w-full px-2 gap-y-3 lg:gap-x-5 lg:flex-wrap lg:flex-row">
+    <section className="grid grid-cols-1 w-full px-2 gap-y-3 md:grid-cols-2 gap-x-5 xl:grid-cols-3">
       {mangas.length === 0 ? (
         <NotMangasHere
           title={

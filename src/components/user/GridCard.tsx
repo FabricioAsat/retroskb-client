@@ -41,7 +41,7 @@ export const GridCard = ({
         ease: "easeOut",
         delay: index * 0.05,
       }}
-      className="w-full rounded-lg h-60 max-w-40"
+      className="w-full rounded-lg h-60 w-full mx-auto"
     >
       {manga.image && (
         <img
