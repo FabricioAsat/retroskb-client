@@ -27,33 +27,34 @@ export const HeaderDesktop = ({ isDark }: HeaderDesktopProps) => {
 
         {token ? (
           <CustomButton
-            className="flex"
+            className="h-full py-4 px-4 md:px-3 md:py-3 truncate gap-x-2"
             onClick={logout}
             color={isDark ? "dark-error" : "light-error"}
           >
-            <LogoutIMG className="w-5 h-5" />
-            <p>Log out</p>
+            <LogoutIMG className="w-4 h-4" />
+            <p className="hidden md:block text-sm">Log out</p>
           </CustomButton>
         ) : (
           <>
             <CustomButton
               onClick={() => handleSelectForm("login")}
-              className={`px-4 py-1.5 
+              className={`ph-full py-4 px-4 md:px-3 md:py-3 truncate gap-x-2  
             ${
               isDark
                 ? "bg-transparent border-dark-border hover:bg-dark-border/50"
                 : "bg-transparent border-light-border hover:bg-light-border/25"
             }`}
             >
-              <LoginIMG className="w-5 h-5" />
-              <p>Log in</p>
+              <LoginIMG className="w-4 h-4" />
+              <p className="hidden md:block text-sm">Log in</p>
             </CustomButton>
             <CustomButton
+              className="h-full py-4 px-4 md:px-3 md:py-3 truncate gap-x-2"
               onClick={() => handleSelectForm("signup")}
               color={isDark ? "dark-success" : "light-success"}
             >
-              <UserIMG className="w-5 h-5" />
-              <p>Sign up</p>
+              <UserIMG className="w-4 h-4" />
+              <p className="hidden md:block text-sm">Sign up</p>
             </CustomButton>
           </>
         )}

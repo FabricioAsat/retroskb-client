@@ -99,12 +99,12 @@ export const MoreOptions = ({
   }, [dataE]);
 
   return (
-    <span className="relative h-full md:mb-2">
+    <span className="relative h-full">
       <CustomButton
         title="More options"
         onClick={() => setIsOpenMoreOptions(!isOpenMoreOptions)}
         color={isDark ? "dark-secondary" : "light-secondary"}
-        className="h-full px-4 py-4 capitalize gap-x-2 md:px-4 md:py-2"
+        className="px-4 py-4 md:px-4 md:py-3 capitalize gap-x-2 md:h-full"
       >
         {isOpenMoreOptions ? (
           <CloseIMG className="w-4 h-4" />

@@ -44,7 +44,7 @@ export const Searcher = () => {
           type="submit"
         >
           <SearchIMG className="w-4 h-4" />
-          <p className="hidden md:block">Search</p>
+          <p className="hidden md:block text-sm">Search</p>
         </CustomButton>
       </form>
     </section>

@@ -72,16 +72,20 @@ export const Create = () => {
 
   return (
     <PageContainer>
-      <nav className="mb-12">
+      <section
+        className={`flex items-center justify-between mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
+          isDark ? "border-dark-border" : "border-light-border"
+        }`}
+      >
         <CustomButton
           onClick={() => navigate("/")}
-          className="flex items-center gap-x-2"
+          className="h-full py-4 px-4 md:px-3 md:py-3 mb-2 truncate gap-x-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
-          <BackIMG className="w-4 h-4" />
-          <p>Go home</p>
+          <BackIMG className="w-4 h-4 md:w-4 md:h-4" />
+          <p className="hidden md:block text-sm">Home</p>
         </CustomButton>
-      </nav>
+      </section>
 
       <form
         className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3"

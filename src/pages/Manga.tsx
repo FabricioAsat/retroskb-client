@@ -14,7 +14,7 @@ import {
   PageContainer,
 } from "../components";
 import { MangaState, type IMangaCreate, type IMangaUpdate } from "../models";
-import { isValidChapter } from "../utils/validators.util";
+import { isValidChapter, isValidMangaName } from "../utils/validators.util";
 import { useFetch } from "../hooks";
 import { useNavigate } from "react-router";
 import {
@@ -67,7 +67,7 @@ export const Manga = () => {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Validaciones
-    if (form.name.length < 2) {
+    if (!isValidMangaName(form.name)) {
       showToast("Manga name must be at least 2 characters long", "error");
       return;
     }
@@ -143,36 +143,41 @@ export const Manga = () => {
 
   return (
     <PageContainer>
-      <nav className="flex justify-between mb-12 gap-x-5">
+      <section
+        className={`flex items-center justify-between mb-6 w-full h-full border-b-2 px-2 2xl:px-0 ${
+          isDark ? "border-dark-border" : "border-light-border"
+        }`}
+      >
         <CustomButton
           onClick={() => navigate("/")}
-          className="flex items-center py-3 gap-x-2"
+          className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
-          <BackIMG className="w-5 h-5" />
-          <p className="hidden md:block">Go home</p>
+          <BackIMG className="w-5 h-5 md:w-4 md:h-4" />
+          <p className="hidden md:block text-sm">Home</p>
         </CustomButton>
 
         <span className="flex items-center gap-x-5">
           <CustomButton
             onClick={() => setIsEditing(!isEditing)}
+            className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
             color={isDark ? "dark-secondary" : "light-secondary"}
-            className="flex items-center py-3 gap-x-2"
           >
-            <EditIMG className="w-5 h-5" />
-            <p className="hidden md:block">Edit info</p>
+            <EditIMG className="w-5 h-5 md:w-4 md:h-4" />
+            <p className="hidden md:block text-sm">Edit</p>
           </CustomButton>
 
           <CustomButton
             onClick={handleConfirmDelete}
             color={isDark ? "dark-error" : "light-error"}
-            className="flex items-center py-3 gap-x-2"
+            className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
           >
-            <DeletedIMG className="w-5 h-5" />
-            <p className="hidden md:block">Delete</p>
+            <DeletedIMG className="w-5 h-5 md:w-4 md:h-4" />
+            <p className="hidden md:block text-sm">Delete</p>
           </CustomButton>
         </span>
-      </nav>
+      </section>
+      <nav className="flex justify-between mb-12 gap-x-5"></nav>
 
       <form className="grid w-full grid-cols-1 gap-5 lg:grid-cols-3">
         <span className="flex items-center justify-center col-span-1 mx-auto w-60 h-90">
@@ -220,7 +225,7 @@ export const Manga = () => {
                   type="text"
                   value={form.name}
                   onChange={(e) => handleChange("name")(e.target.value)}
-                  validate={(value) => value.length > 2}
+                  validate={(value) => isValidMangaName(value)}
                 />
                 <span className="w-full h-full md:w-2/5">
                   <CustomDropdown
@@ -256,7 +261,7 @@ export const Manga = () => {
                     }`}
                   >
                     <LinkIMG className="w-4 h-4" />
-                    {data.data.link}
+                    <p className="truncate">{data.data.link}</p>
                   </a>
                 ) : (
                   <span

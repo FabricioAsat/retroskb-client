@@ -17,7 +17,13 @@ const typeColors = {
 
 export const GridContainer = ({ mangas, state, notResultText }: Props) => {
   return (
-    <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-y-3 md:gap-y-5 gap-x-5">
+    <section
+      className={`${
+        mangas.length === 0
+          ? "grid grid-cols-1 justify-items-center"
+          : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 w-full gap-y-3 md:gap-y-5 gap-x-5"
+      }`}
+    >
       {mangas.length === 0 ? (
         <NotMangasHere
           title={notResultText ? notResultText : `There's no ${state} mangas`}
