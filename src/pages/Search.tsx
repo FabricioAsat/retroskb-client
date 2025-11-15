@@ -9,7 +9,9 @@ import { GridContainer } from "../components/user/GridContainer";
 import { BackIMG, GridIMG, ListIMG } from "../assets";
 
 export const Search = () => {
-  const [mangaOrder, setMangaOrder] = useState("grid");
+  const [isGridOrder, setIsGridOrder] = useState<boolean>(
+    localStorage.getItem("order") === "true" || false
+  );
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -25,6 +27,11 @@ export const Search = () => {
   // Si hay un error necesitamos fetchear la data
   function reloadData() {
     fetch({ search: search || "" });
+  }
+
+  function changeOrder(order: "list" | "grid") {
+    localStorage.setItem("order", order === "grid" ? "true" : "false");
+    setIsGridOrder(order === "grid");
   }
 
   useEffect(() => {
@@ -55,9 +62,9 @@ export const Search = () => {
         >
           <CustomButton
             title="List order mangas"
-            onClick={() => setMangaOrder("list")}
+            onClick={() => changeOrder("list")}
             color={
-              mangaOrder === "list"
+              !isGridOrder
                 ? isDark
                   ? "dark-primary"
                   : "light-primary"
@@ -71,9 +78,9 @@ export const Search = () => {
           </CustomButton>
           <CustomButton
             title="Grid order mangas"
-            onClick={() => setMangaOrder("grid")}
+            onClick={() => changeOrder("grid")}
             color={
-              mangaOrder === "grid"
+              isGridOrder
                 ? isDark
                   ? "dark-primary"
                   : "light-primary"
@@ -98,14 +105,14 @@ export const Search = () => {
           }
           fetch={reloadData}
         />
-      ) : mangaOrder === "list" ? (
-        <ListContainer
+      ) : isGridOrder ? (
+        <GridContainer
           mangas={data?.data || []}
           state={null}
           notResultText={`The manga ${search} was not found.`}
         />
       ) : (
-        <GridContainer
+        <ListContainer
           mangas={data?.data || []}
           state={null}
           notResultText={`The manga ${search} was not found.`}

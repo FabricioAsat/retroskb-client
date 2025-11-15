@@ -48,7 +48,9 @@ const states = [
 
 export const MangasContainer = () => {
   const [mangaState, setMangaState] = useState<MangaState>(MangaState.Reading);
-  const [mangasOrder, setMangaOrder] = useState<"list" | "grid">("list");
+  const [isGridOrder, setIsGridOrder] = useState<boolean>(
+    localStorage.getItem("order") === "true" || false
+  );
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
@@ -66,6 +68,11 @@ export const MangasContainer = () => {
     if (state === mangaState) return;
     setMangaState(state);
     reloadData(state);
+  }
+
+  function changeOrder(order: "list" | "grid") {
+    localStorage.setItem("order", order === "grid" ? "true" : "false");
+    setIsGridOrder(order === "grid");
   }
 
   function gotoCreate() {
@@ -121,9 +128,9 @@ export const MangasContainer = () => {
         >
           <CustomButton
             title="List order mangas"
-            onClick={() => setMangaOrder("list")}
+            onClick={() => changeOrder("list")}
             color={
-              mangasOrder === "list"
+              !isGridOrder
                 ? isDark
                   ? "dark-primary"
                   : "light-primary"
@@ -137,9 +144,9 @@ export const MangasContainer = () => {
           </CustomButton>
           <CustomButton
             title="Grid order mangas"
-            onClick={() => setMangaOrder("grid")}
+            onClick={() => changeOrder("grid")}
             color={
-              mangasOrder === "grid"
+              isGridOrder
                 ? isDark
                   ? "dark-primary"
                   : "light-primary"
@@ -175,10 +182,10 @@ export const MangasContainer = () => {
           }
           fetch={reloadData}
         />
-      ) : mangasOrder === "list" ? (
-        <ListContainer mangas={data?.data || []} state={mangaState} />
-      ) : (
+      ) : isGridOrder ? (
         <GridContainer mangas={data?.data || []} state={mangaState} />
+      ) : (
+        <ListContainer mangas={data?.data || []} state={mangaState} />
       )}
     </section>
   );
