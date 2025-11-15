@@ -58,7 +58,7 @@ export const MangasContainer = () => {
   });
 
   function reloadData(state: MangaState = mangaState) {
-    if (state !== mangaState) return;
+    if (state !== mangaState && !error) return;
     fetch({ state });
   }
 

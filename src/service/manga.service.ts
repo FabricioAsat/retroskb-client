@@ -24,6 +24,7 @@ export const getMangas = ({
   const controller = loadAbort();
 
   console.log(`%c get mangas by: ${state}`, "color: #4da3ff");
+  console.log(state);
 
   const params: Record<string, string> = {};
   if (state) params.state = state;

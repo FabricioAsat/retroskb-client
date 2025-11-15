@@ -26,7 +26,7 @@ export const Error = ({ label, desc, fetch }: ErrorProps) => {
         {desc}
       </p>
       <CustomButton
-        onClick={fetch}
+        onClick={() => fetch()}
         color={isDark ? "dark-error" : "light-error"}
       >
         Try again
