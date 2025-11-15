@@ -8,13 +8,6 @@ interface Props {
   notResultText?: string;
 }
 
-const typeColors: Record<MangaState, string> = {
-  [MangaState.Reading]: "primary",
-  [MangaState.Completed]: "success",
-  [MangaState.OnHold]: "warning",
-  [MangaState.Dropped]: "error",
-};
-
 export const ListContainer = ({ mangas, state, notResultText }: Props) => {
   return (
     <section
@@ -37,12 +30,7 @@ export const ListContainer = ({ mangas, state, notResultText }: Props) => {
         />
       ) : (
         mangas.map((manga: IManga, index: number) => (
-          <ListCard
-            key={manga._id}
-            index={index}
-            manga={manga}
-            colorSelected={state ? typeColors[state] : "secondary"}
-          />
+          <ListCard key={manga._id} index={index} manga={manga} />
         ))
       )}
     </section>

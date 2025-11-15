@@ -12,23 +12,15 @@ import { normalizeLink } from "../../utils";
 export const ListCard = ({
   manga,
   index,
-  colorSelected,
 }: {
   manga: IManga;
   index: number;
-  colorSelected: string;
 }) => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
 
-  const color = isDark
-    ? hover
-      ? "dark-" + colorSelected
-      : "dark-disabled"
-    : hover
-    ? "light-" + colorSelected
-    : "light-disabled";
+  const color = getMangaColor(manga.updated_at, isDark, hover);
 
   return (
     <motion.div
@@ -85,3 +77,24 @@ export const ListCard = ({
     </motion.div>
   );
 };
+
+// Solo para este componente
+function getMangaColor(updatedAt: string, isDark: boolean, hover: boolean) {
+  const updated = new Date(updatedAt);
+  const now = new Date();
+
+  const diffMs = now.getTime() - updated.getTime();
+  const diffMonths = diffMs / (1000 * 60 * 60 * 24 * 30); // Aproximado pero suficiente
+
+  let tone = isDark ? "dark" : "light";
+
+  if (!hover) return `${tone}-disabled`;
+
+  if (diffMonths < 1) {
+    return `${tone}-success`;
+  }
+  if (diffMonths < 6) {
+    return `${tone}-warning`;
+  }
+  return `${tone}-error`;
+}

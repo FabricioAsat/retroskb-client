@@ -8,13 +8,6 @@ interface Props {
   notResultText?: string;
 }
 
-const typeColors = {
-  [MangaState.Reading]: "primary",
-  [MangaState.Completed]: "success",
-  [MangaState.OnHold]: "warning",
-  [MangaState.Dropped]: "error",
-};
-
 export const GridContainer = ({ mangas, state, notResultText }: Props) => {
   return (
     <section
@@ -35,12 +28,7 @@ export const GridContainer = ({ mangas, state, notResultText }: Props) => {
         />
       ) : (
         mangas.map((manga: IManga, index: number) => (
-          <GridCard
-            key={manga._id}
-            manga={manga}
-            index={index}
-            colorSelected={state ? typeColors[state] : "secondary"}
-          />
+          <GridCard key={manga._id} manga={manga} index={index} />
         ))
       )}
     </section>
