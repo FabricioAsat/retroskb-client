@@ -73,14 +73,14 @@ export const ConfirmationDelete = ({
           type="button"
           disabled={loading}
           onClick={closeModal}
-          className="w-full max-w-sm"
+          className="w-full max-w-sm px-4 py-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
           Go back
         </CustomButton>
         <CustomButton
           disabled={loading}
-          className="w-full max-w-sm"
+          className="w-full max-w-sm px-4 py-2"
           type="submit"
           onClick={confirmDelete}
           color={isDark ? "dark-error" : "light-error"}

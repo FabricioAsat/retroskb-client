@@ -22,10 +22,6 @@ export const getMangas = ({
   search,
 }: GetMangasProps): UseFetchCall<IResponse<IManga[]>> => {
   const controller = loadAbort();
-
-  console.log(`%c get mangas by: ${state}`, "color: #4da3ff");
-  console.log(state);
-
   const params: Record<string, string> = {};
   if (state) params.state = state;
   if (search) params.search = search;

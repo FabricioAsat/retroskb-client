@@ -54,10 +54,7 @@ export const MangasContainer = () => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
-  const { loading, data, error, fetch } = useFetch(getMangas, {
-    params: { state: MangaState.Reading },
-    autoFetch: true,
-  });
+  const { loading, data, error, fetch } = useFetch(getMangas);
 
   function reloadData(state: MangaState = mangaState) {
     if (state !== mangaState && !error) return;

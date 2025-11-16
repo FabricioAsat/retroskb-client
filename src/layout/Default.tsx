@@ -16,8 +16,6 @@ export const Default = () => {
   const { isDark } = useTheme();
   const { token } = useAuth();
 
-  console.log(`%c Token: ${token}`, "color:#ff8f32");
-
   return (
     <motion.div
       key={isDark ? "dark" : "light"}
@@ -45,7 +43,7 @@ export const Default = () => {
             : getColorVar("--color-light-text"),
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="flex flex-col justify-center items-center border-b-2"
+        className="flex flex-col items-center justify-center border-b-2"
       >
         <HeaderDesktop isDark={isDark} />
         <HeaderMobile />
@@ -67,7 +65,7 @@ export const Default = () => {
           duration: 0.4,
           ease: "easeInOut",
         }}
-        className="overflow-y-auto h-full"
+        className="h-full overflow-y-auto"
       >
         {token && <Searcher />}
         <Outlet />
