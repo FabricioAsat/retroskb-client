@@ -30,7 +30,7 @@ export const Searcher = () => {
     <section className="flex flex-col items-center">
       <form
         onSubmit={handleSubmit}
-        className="w-full mt-10 max-w-3xl flex gap-x-5 px-5 xl:px-0"
+        className="flex w-full max-w-3xl px-5 mt-10 gap-x-5 xl:px-0"
       >
         <CustomInput
           onChange={handleChange}
@@ -39,12 +39,12 @@ export const Searcher = () => {
           validate={(value) => isValidMangaName(value)}
         />
         <CustomButton
-          className="flex items-center gap-x-2"
+          className="flex items-center gap-x-2 px-4 py-1.5"
           color={isDark ? "dark-primary" : "light-primary"}
           type="submit"
         >
           <SearchIMG className="w-4 h-4" />
-          <p className="hidden md:block text-sm">Search</p>
+          <p className="hidden text-sm md:block">Search</p>
         </CustomButton>
       </form>
     </section>

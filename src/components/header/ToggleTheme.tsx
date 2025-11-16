@@ -8,8 +8,8 @@ export const ToggleTheme = () => {
   return (
     <CustomButton
       onClick={toggleTheme}
-      className="h-full py-2 px-2 md:px-1 md:py-1"
-      color={isDark ? "dark" : "light"}
+      className="py-2 px-2 md:px-2 md:py-2"
+      color={isDark ? "dark-disabled" : "light-disabled"}
     >
       {isDark ? (
         <SunIMG className="w-6 h-6" />

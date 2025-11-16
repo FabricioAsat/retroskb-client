@@ -122,7 +122,7 @@ export const MangasContainer = () => {
         </span>
 
         <div
-          className={`fixed z-40 flex items-center justify-end bottom-2 right-4 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full rounded-lg px-2 md:px-0 py-2 md:py-0 md:h-full ${
+          className={`fixed z-40 flex items-center justify-end bottom-0 right-0 gap-x-2 md:relative md:bottom-0 md:right-0 md:w-full rounded-lg px-4 md:px-0 py-4 md:py-0 md:h-full ${
             isDark ? " bg-dark-bg" : "bg-light-bg"
           }`}
         >
@@ -138,7 +138,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="px-4 py-4 md:px-4 md:py-3 gap-x-2 md:h-full"
+            className="px-3 py-3 md:px-4 md:py-3 gap-x-2 md:h-full"
           >
             <ListIMG className="w-4 h-4" />
           </CustomButton>
@@ -154,7 +154,7 @@ export const MangasContainer = () => {
                 ? "dark-disabled"
                 : "light-disabled"
             }
-            className="px-4 py-4 md:px-4 md:py-3 gap-x-2 md:h-full"
+            className="px-3 py-3 md:px-4 md:py-3 gap-x-2 md:h-full"
           >
             <GridIMG className="w-4 h-4" />
           </CustomButton>
@@ -162,7 +162,7 @@ export const MangasContainer = () => {
             title="Create new manga"
             onClick={gotoCreate}
             color={isDark ? "dark-success" : "light-success"}
-            className="px-4 py-4 md:px-4 md:py-3 gap-x-2 md:h-full"
+            className="px-3 py-3 md:px-4 md:py-3 gap-x-2 md:h-full"
           >
             <CloseIMG className="w-4 h-4 rotate-45" />
           </CustomButton>

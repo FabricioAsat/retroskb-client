@@ -34,7 +34,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
       >
         <CustomButton
           onClick={() => setActiveForm("login")}
-          className="mb-1"
+          className="mb-1 px-4 py-1.5"
           color={
             activeForm === "login"
               ? isDark
@@ -50,7 +50,7 @@ export const Form = ({ initialForm = "login" }: FormProps) => {
 
         <CustomButton
           onClick={() => setActiveForm("signup")}
-          className="mb-1"
+          className="mb-1 px-4 py-1.5"
           color={
             activeForm === "signup"
               ? isDark

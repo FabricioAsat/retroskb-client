@@ -104,7 +104,7 @@ export const MoreOptions = ({
         title="More options"
         onClick={() => setIsOpenMoreOptions(!isOpenMoreOptions)}
         color={isDark ? "dark-secondary" : "light-secondary"}
-        className="px-4 py-4 md:px-4 md:py-3 capitalize gap-x-2 md:h-full"
+        className="px-3 py-3 capitalize md:px-4 md:py-3 gap-x-2 md:h-full"
       >
         {isOpenMoreOptions ? (
           <CloseIMG className="w-4 h-4" />
@@ -121,7 +121,7 @@ export const MoreOptions = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`flex flex-col gap-y-1 items-center z-50 justify-center absolute bottom-16 md:top-16 h-fit -right-4 rounded-lg md:p-4 p-2 border-2 border-transparent ${
+            className={`flex flex-col gap-y-1 items-center z-50 justify-center absolute bottom-14 md:top-16 h-fit -right-4 rounded-lg md:p-4 pt-4 pb-2 px-4 border-2 border-transparent ${
               isDark ? "bg-dark-bg" : "bg-light-bg"
             }`}
           >
@@ -137,19 +137,19 @@ export const MoreOptions = ({
                   ? "light:error"
                   : "light-secondary"
               }
-              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+              className="h-full flex items-center justify-start w-full md:h-full px-4 py-2.5 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
             >
               {loadingI ? (
                 <Loader />
               ) : errorI ? (
                 <>
                   <WarningIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Try again</p>
+                  <p className="text-xs truncate md:text-sm">Try again</p>
                 </>
               ) : (
                 <>
                   <ImportIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Import</p>
+                  <p className="text-xs truncate md:text-sm">Import</p>
                 </>
               )}
             </CustomButton>
@@ -166,19 +166,19 @@ export const MoreOptions = ({
                   ? "light:error"
                   : "light-secondary"
               }
-              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+              className="h-full flex items-center justify-start w-full md:h-full px-4 py-2.5 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
             >
               {loadingE ? (
                 <Loader />
               ) : errorE ? (
                 <>
                   <WarningIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Try again</p>
+                  <p className="text-xs truncate md:text-sm">Try again</p>
                 </>
               ) : (
                 <>
                   <ExportIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Export</p>
+                  <p className="text-xs truncate md:text-sm">Export</p>
                 </>
               )}
             </CustomButton>
@@ -187,19 +187,19 @@ export const MoreOptions = ({
               disabled={loadingE}
               onClick={handleDeleteAll}
               color={isDark ? "dark-error" : "light-error"}
-              className="h-full flex items-center justify-start w-full md:h-full px-6 py-3 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
+              className="h-full flex items-center justify-start w-full md:h-full px-4 py-2.5 mb-2 md:mb-1 gap-x-2 md:px-10 md:py-2.5"
             >
               {loadingE ? (
                 <Loader />
               ) : errorE ? (
                 <>
                   <WarningIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Try again</p>
+                  <p className="text-xs truncate md:text-sm">Try again</p>
                 </>
               ) : (
                 <>
                   <WarningIMG className="w-4 h-4" />
-                  <p className="text-xs md:text-sm truncate">Delete All</p>
+                  <p className="text-xs truncate md:text-sm">Delete All</p>
                 </>
               )}
             </CustomButton>

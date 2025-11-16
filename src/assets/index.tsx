@@ -34,3 +34,5 @@ export { ExportIMG } from "./ExportIMG";
 export { ImportIMG } from "./ImportIMG";
 export { HamburgerIMG } from "./HamburgerIMG";
 export { SearchIMG } from "./SearchIMG";
+
+export { ProfileIMG } from "./ProfileIMG";

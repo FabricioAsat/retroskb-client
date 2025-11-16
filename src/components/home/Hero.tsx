@@ -76,7 +76,7 @@ export const Hero = () => {
           <CustomButton
             onClick={handleOpenModal}
             color={isDark ? "light" : "dark"}
-            className="mt-4"
+            className="mt-4 px-4 py-2"
           >
             Try it now!
           </CustomButton>

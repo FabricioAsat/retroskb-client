@@ -10,7 +10,7 @@ interface ErrorProps {
 export const Error = ({ label, desc, fetch }: ErrorProps) => {
   const { isDark } = useTheme();
   return (
-    <div className="flex flex-col items-center justify-center gap-y-2 mt-10 text-center">
+    <div className="flex flex-col items-center justify-center mt-10 text-center gap-y-2">
       <p
         className={`text-2xl md:text-3xl xl:text-4xl font-bold ${
           isDark ? "text-dark-error" : "text-light-error"
@@ -26,6 +26,7 @@ export const Error = ({ label, desc, fetch }: ErrorProps) => {
         {desc}
       </p>
       <CustomButton
+        className="px-4 py-1.5"
         onClick={() => fetch()}
         color={isDark ? "dark-error" : "light-error"}
       >

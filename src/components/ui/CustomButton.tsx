@@ -57,7 +57,7 @@ export const CustomButton = ({
       whileHover={{ scale: disabled ? 1 : 1.05, opacity: disabled ? 1 : 0.95 }}
       whileTap={{ scale: disabled ? 1 : 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`flex px-4 py-1.5 gap-1 justify-center items-center font-bold rounded-lg border-2 transition-colors duration-200 cursor-pointer ${
+      className={`flex gap-1 justify-center items-center font-bold rounded-lg border-2 transition-colors duration-200 cursor-pointer ${
         disabled ? "" : baseStyle
       } ${className} disabled:cursor-not-allowed ${
         isDark

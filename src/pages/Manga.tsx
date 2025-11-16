@@ -150,30 +150,30 @@ export const Manga = () => {
       >
         <CustomButton
           onClick={() => navigate("/")}
-          className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
+          className="h-full px-4 py-4 mb-2 truncate md:px-3 md:py-3 gap-x-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
           <BackIMG className="w-5 h-5 md:w-4 md:h-4" />
-          <p className="hidden md:block text-sm">Home</p>
+          <p className="hidden text-sm md:block">Home</p>
         </CustomButton>
 
         <span className="flex items-center gap-x-5">
           <CustomButton
             onClick={() => setIsEditing(!isEditing)}
-            className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
+            className="h-full px-4 py-4 mb-2 truncate md:px-3 md:py-3 gap-x-2"
             color={isDark ? "dark-secondary" : "light-secondary"}
           >
             <EditIMG className="w-5 h-5 md:w-4 md:h-4" />
-            <p className="hidden md:block text-sm">Edit</p>
+            <p className="hidden text-sm md:block">Edit</p>
           </CustomButton>
 
           <CustomButton
             onClick={handleConfirmDelete}
             color={isDark ? "dark-error" : "light-error"}
-            className="h-full py-4 px-4 md:px-3 md:py-3  mb-2 truncate gap-x-2"
+            className="h-full px-4 py-4 mb-2 truncate md:px-3 md:py-3 gap-x-2"
           >
             <DeletedIMG className="w-5 h-5 md:w-4 md:h-4" />
-            <p className="hidden md:block text-sm">Delete</p>
+            <p className="hidden text-sm md:block">Delete</p>
           </CustomButton>
         </span>
       </section>
@@ -356,7 +356,7 @@ export const Manga = () => {
           {isEditing && (
             <CustomButton
               disabled={loadingEdit}
-              className="w-full md:w-2/3 xl:w-1/3"
+              className="w-full px-4 py-2 md:w-2/3 xl:w-1/3 "
               type="submit"
               onClick={handleSubmit}
               color={

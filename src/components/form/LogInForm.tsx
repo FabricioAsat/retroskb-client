@@ -99,7 +99,7 @@ export const LogInForm = () => {
         type="submit"
         disabled={loading}
         color={isDark ? "dark-success" : "light-success"}
-        className="w-full"
+        className="w-full px-4 py-1.5"
       >
         {loading ? <Loader /> : "Log In"}
       </CustomButton>

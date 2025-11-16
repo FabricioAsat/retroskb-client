@@ -8,6 +8,7 @@ import type {
   UseFetchCall,
 } from "../models";
 import { loadAbort } from "../utils";
+import { axiosInstance } from "./axiosInstance";
 
 export const registerUser = (
   body: IUserRegister
@@ -35,6 +36,16 @@ export const loginUser = (
       headers: {
         "Content-Type": "application/json",
       },
+    }),
+    controller,
+  };
+};
+
+export const getMe = (): UseFetchCall<IResponse<IUser>> => {
+  const controller = loadAbort();
+  return {
+    call: axiosInstance.get<IResponse<IUser>>(ENDPOINTS.AUTH.ME, {
+      signal: controller.signal,
     }),
     controller,
   };

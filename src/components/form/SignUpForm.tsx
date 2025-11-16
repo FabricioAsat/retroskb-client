@@ -137,7 +137,7 @@ export const SignUpForm = () => {
         type="submit"
         disabled={loading}
         color={isDark ? "dark-success" : "light-success"}
-        className="w-full"
+        className="w-full px-4 py-1.5"
       >
         {loading ? <Loader /> : "Sign Up"}
       </CustomButton>

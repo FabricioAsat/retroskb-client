@@ -57,12 +57,14 @@ export const MangaError = ({ fetch, status = 500 }: ErrorProps) => {
           transition={{ delay: 0.6 }}
         >
           <CustomButton
+            className="px-4 py-1.5"
             color={isDark ? "dark-primary" : "light-primary"}
             onClick={() => navigate("/")}
           >
             Go home
           </CustomButton>
           <CustomButton
+            className="px-4 py-1.5"
             color={isDark ? "dark-error" : "light-error"}
             onClick={fetch}
           >

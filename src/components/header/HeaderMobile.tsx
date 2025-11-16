@@ -1,15 +1,19 @@
 import { Logo } from "./Logo";
-import { UserIMG } from "../../assets";
+import { ProfileIMG, UserIMG } from "../../assets";
 import { CustomButton, Form } from "..";
 
 import { ToggleTheme } from "./ToggleTheme";
 import { useAuth, useModal, useTheme } from "../../context";
 import { LogoutIMG } from "../../assets/LogoutIMG";
 
+import { useState } from "react";
+import { ShowProfile } from "./ShowProfile";
+
 export const HeaderMobile = () => {
   const { openModal } = useModal();
   const { isDark } = useTheme();
   const { token, logout } = useAuth();
+  const [showProfile, setShowProfile] = useState(true);
 
   function handleOpenModal() {
     openModal(<Form initialForm="login" />);
@@ -19,33 +23,49 @@ export const HeaderMobile = () => {
     logout();
   }
 
+  function handleProfile() {
+    setShowProfile(!showProfile);
+  }
+
   return (
     <div
-      className={`flex justify-between items-center p-2 mx-auto w-full max-w-[1440px] md:hidden`}
+      className={`flex relative justify-between items-center p-2 mx-auto w-full max-w-[1440px] md:hidden`}
     >
       <Logo WhitText={true} />
 
-      <div className="flex gap-x-5 items-center">
+      <div className="flex items-center gap-x-5">
         <ToggleTheme />
 
         <CustomButton
           onClick={token ? handleLogout : handleOpenModal}
-          className="border-transparent"
+          className="px-2 py-2 md:px-2 md:py-2"
+          color={
+            isDark
+              ? token
+                ? "dark-error"
+                : "dark-success"
+              : token
+              ? "light-error"
+              : "light-success"
+          }
         >
           {token ? (
-            <LogoutIMG
-              className={`w-8 h-8 ${
-                isDark ? "text-dark-error" : "text-light-error"
-              }`}
-            />
+            <LogoutIMG className={`w-6 h-6`} />
           ) : (
-            <UserIMG
-              className={`w-8 h-8 ${
-                isDark ? "text-dark-success" : "text-light-success"
-              }`}
-            />
+            <UserIMG className={`w-6 h-6`} />
           )}
         </CustomButton>
+
+        {token && (
+          <CustomButton
+            onClick={handleProfile}
+            className="px-2 py-2 md:px-2 md:py-2"
+            color={isDark ? "dark-disabled" : "light-disabled"}
+          >
+            <ProfileIMG className={`w-6 h-6`} />
+          </CustomButton>
+        )}
+        {showProfile && <ShowProfile />}
       </div>
     </div>
   );

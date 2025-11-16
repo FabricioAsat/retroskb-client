@@ -79,11 +79,11 @@ export const Create = () => {
       >
         <CustomButton
           onClick={() => navigate("/")}
-          className="h-full py-4 px-4 md:px-3 md:py-3 mb-2 truncate gap-x-2"
+          className="h-full px-4 py-4 mb-2 truncate md:px-3 md:py-3 gap-x-2"
           color={isDark ? "dark-primary" : "light-primary"}
         >
           <BackIMG className="w-4 h-4 md:w-4 md:h-4" />
-          <p className="hidden md:block text-sm">Home</p>
+          <p className="hidden text-sm md:block">Home</p>
         </CustomButton>
       </section>
 
@@ -160,7 +160,7 @@ export const Create = () => {
 
           <CustomButton
             disabled={loading}
-            className="w-full md:w-2/3 xl:w-1/3"
+            className="w-full px-4 py-2 md:w-2/3 xl:w-1/3"
             type="submit"
             color={
               isDark
