@@ -13,7 +13,7 @@ export const HeaderMobile = () => {
   const { openModal } = useModal();
   const { isDark } = useTheme();
   const { token, logout } = useAuth();
-  const [showProfile, setShowProfile] = useState(true);
+  const [showProfile, setShowProfile] = useState(false);
 
   function handleOpenModal() {
     openModal(<Form initialForm="login" />);

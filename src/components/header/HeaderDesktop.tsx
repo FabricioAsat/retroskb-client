@@ -13,7 +13,7 @@ interface HeaderDesktopProps {
 export const HeaderDesktop = ({ isDark }: HeaderDesktopProps) => {
   const { openModal } = useModal();
   const { token, logout } = useAuth();
-  const [showProfile, setShowProfile] = useState(true);
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleSelectForm = (form: "login" | "signup") => {
     openModal(<Form initialForm={form} />);
