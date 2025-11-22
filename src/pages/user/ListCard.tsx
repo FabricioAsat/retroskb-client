@@ -2,12 +2,12 @@ import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { useState } from "react";
 
-import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
 import { LinkIMG, NotImageIMG } from "../../assets";
 import { ROUTES } from "../../constants/routes";
 import { normalizeLink } from "../../utils";
+import { CustomButton } from "../../components";
 
 export const ListCard = ({
   manga,
@@ -38,7 +38,7 @@ export const ListCard = ({
       <CustomButton
         onClick={() => navigate(ROUTES.MANGA_DETAILS + manga._id)}
         color={color}
-        className="flex justify-between w-full h-full truncate"
+        className="flex justify-between w-full h-full truncate px-3 py-1.5"
       >
         <p className="w-full truncate text-start" title={manga.name}>
           {manga.name}

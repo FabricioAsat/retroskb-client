@@ -11,13 +11,13 @@ import {
   SuccessIMG,
   WarningIMG,
 } from "../../assets";
-import { CustomButton, Error, Loader } from "..";
 import { useFetch } from "../../hooks";
 import { getMangas } from "../../service";
 import { ListContainer } from "./ListContainer";
 import { GridContainer } from "./GridContainer";
 import { ROUTES } from "../../constants/routes";
 import { MoreOptions } from "./MoreOptions";
+import { CustomButton, Error, Loader } from "../../components";
 
 const states = [
   {

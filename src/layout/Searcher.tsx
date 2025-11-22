@@ -1,10 +1,11 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
-import { useTheme, useToast, type ToastContextType } from "../../context";
-import { CustomButton } from "../ui/CustomButton";
-import { CustomInput } from "../ui/CustomInput";
-import { SearchIMG } from "../../assets";
 import { useNavigate } from "react-router";
-import { isValidMangaName } from "../../utils";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+
+import { useTheme, useToast, type ToastContextType } from "../context";
+import { CustomButton } from "../components/ui/CustomButton";
+import { CustomInput } from "../components/ui/CustomInput";
+import { SearchIMG } from "../assets";
+import { isValidMangaName } from "../utils";
 
 export const Searcher = () => {
   const [value, setValue] = useState<string>("");

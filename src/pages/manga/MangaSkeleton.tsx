@@ -1,5 +1,5 @@
 import { useTheme } from "../../context";
-import { PageContainer } from "../globals/PageContainer";
+import { PageContainer } from "../../components/globals/PageContainer";
 
 export const MangaSkeleton = () => {
   const { isDark } = useTheme();

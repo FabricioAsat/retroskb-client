@@ -1,10 +1,16 @@
-import { motion } from "motion/react";
 import { useNavigate } from "react-router";
-import { useTheme } from "../context";
-import { CustomButton, PageContainer } from "../components";
-import { ROUTES } from "../constants/routes";
+import { motion } from "motion/react";
 
-export const Error404 = () => {
+import { useTheme } from "../../context";
+import { PageContainer } from "../../components/globals/PageContainer";
+import { CustomButton } from "../../components/ui/CustomButton";
+
+interface ErrorProps {
+  fetch: () => void;
+  status: number;
+}
+
+export const MangaError = ({ fetch, status = 500 }: ErrorProps) => {
   const { isDark } = useTheme();
   const navigate = useNavigate();
 
@@ -21,7 +27,7 @@ export const Error404 = () => {
             isDark ? "text-dark-error" : "text-light-error"
           }`}
         >
-          404
+          {status || 500}
         </motion.h1>
 
         <motion.h2
@@ -30,7 +36,7 @@ export const Error404 = () => {
           transition={{ delay: 0.2 }}
           className="mb-6 text-2xl font-semibold"
         >
-          Page not found
+          Error fetching manga
         </motion.h2>
 
         <motion.p
@@ -41,25 +47,28 @@ export const Error404 = () => {
             isDark ? "text-dark-text-muted" : "text-light-text-muted"
           }`}
         >
-          It seems you got lost in some non-existent manga 😅 The page is not
-          available.
+          There was an error while trying to fetch the manga. Please try again
         </motion.p>
 
         <motion.span
+          className="flex items-center gap-x-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
           <CustomButton
+            className="px-4 py-1.5"
             color={isDark ? "dark-primary" : "light-primary"}
-            onClick={() => navigate(ROUTES.HOME)}
-            className={`px-5 py-2 rounded-lg ${
-              isDark ? "bg-dark-primary" : "bg-light-primary"
-            } hover:${
-              isDark ? "bg-dark-primary-hover" : "bg-light-primary-hover"
-            } transition-colors shadow-md font-medium`}
+            onClick={() => navigate("/")}
           >
             Go home
+          </CustomButton>
+          <CustomButton
+            className="px-4 py-1.5"
+            color={isDark ? "dark-error" : "light-error"}
+            onClick={fetch}
+          >
+            Try again
           </CustomButton>
         </motion.span>
       </div>

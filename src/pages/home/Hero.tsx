@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useModal, useTheme } from "../../context";
 import { LogoIMG } from "../../assets";
-import { CustomButton, Form } from "..";
+import { CustomButton, Form } from "../../components";
 
 export const Hero = () => {
   const { isDark } = useTheme();

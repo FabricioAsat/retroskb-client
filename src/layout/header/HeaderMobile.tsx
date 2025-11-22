@@ -1,12 +1,11 @@
-import { Logo } from "./Logo";
-import { ProfileIMG, UserIMG } from "../../assets";
-import { CustomButton, Form } from "..";
+import { useState } from "react";
 
+import { ProfileIMG, UserIMG } from "../../assets";
+import { Logo } from "./Logo";
 import { ToggleTheme } from "./ToggleTheme";
 import { useAuth, useModal, useTheme } from "../../context";
 import { LogoutIMG } from "../../assets/LogoutIMG";
-
-import { useState } from "react";
+import { CustomButton, Form } from "../../components";
 import { ShowProfile } from "./ShowProfile";
 
 export const HeaderMobile = () => {

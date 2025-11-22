@@ -1,6 +1,6 @@
-export { Home } from "./Home";
-export { User } from "./User";
-export { Create } from "./Create";
-export { Manga } from "./Manga";
-export { Search } from "./Search";
-export { Error404 } from "./Error404";
+export { Home } from "./home/Home";
+export { User } from "./user/User";
+export { Create } from "./create/Create";
+export { Manga } from "./manga/Manga";
+export { Search } from "./search/Search";
+export { Error404 } from "./404/Error404";

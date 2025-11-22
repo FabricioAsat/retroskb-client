@@ -1,6 +1,6 @@
 import { useTheme } from "../../context";
 import { SunIMG, MoonIMG } from "../../assets";
-import { CustomButton } from "..";
+import { CustomButton } from "../../components";
 
 export const ToggleTheme = () => {
   const { isDark, toggleTheme } = useTheme();

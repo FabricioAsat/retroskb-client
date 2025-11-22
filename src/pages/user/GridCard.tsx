@@ -2,13 +2,13 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
 
-import { CustomButton } from "..";
 import { useTheme } from "../../context";
 import type { IManga } from "../../models";
-import { NotImage } from "./NotImage";
 import { LinkIMG } from "../../assets";
 import { ROUTES } from "../../constants/routes";
 import { normalizeLink } from "../../utils";
+import { CustomButton } from "../../components";
+import { NotImage } from "./NotImage";
 
 export const GridCard = ({
   manga,

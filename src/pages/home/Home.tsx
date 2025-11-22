@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { Hero, PageContainer, Qualities } from "../components";
-import { useAuth } from "../context";
-import { ROUTES } from "../constants/routes";
+import { useAuth } from "../../context";
+import { ROUTES } from "../../constants/routes";
+import { PageContainer } from "../../components";
+import { Hero } from "./Hero";
+import { Qualities } from "./Qualities";
 
 export const Home = () => {
   const { token, logout } = useAuth();

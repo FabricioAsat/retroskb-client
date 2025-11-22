@@ -2,8 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "../../context";
 import { useFetch } from "../../hooks";
 import { getMe } from "../../service";
-import { Loader } from "../ui/Loader";
-import { CustomButton } from "../ui/CustomButton";
+import { CustomButton, Loader } from "../../components";
 
 const variants = {
   hidden: { opacity: 0, y: -10 },

@@ -1,23 +1,22 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-
+import { useTheme, useToast, type ToastContextType } from "../../context";
+import { MangaState, type IMangaCreate } from "../../models";
+import { useFetch } from "../../hooks";
+import { createManga } from "../../service";
+import { isValidChapter, isValidMangaName } from "../../utils/validators.util";
 import {
   CustomButton,
   CustomDropdown,
   CustomInput,
   CustomTextArea,
-  GenresSelector,
-  ImageUpdate,
   Loader,
   PageContainer,
-} from "../components";
-import { MangaState, type IMangaCreate } from "../models";
-import { useTheme, useToast, type ToastContextType } from "../context";
-import { isValidChapter, isValidMangaName } from "../utils/validators.util";
-import { getGenres } from "../utils";
-import { createManga } from "../service";
-import { useFetch } from "../hooks";
-import { BackIMG } from "../assets";
+} from "../../components";
+import { BackIMG } from "../../assets";
+import { ImageUpdate } from "./ImageUpdate";
+import { getGenres } from "../../utils";
+import { GenresSelector } from "./GenreSelector";
 
 export const Create = () => {
   const { isDark } = useTheme();

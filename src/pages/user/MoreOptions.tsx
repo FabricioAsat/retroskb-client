@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
-import { CustomButton } from "../ui/CustomButton";
+
 import { useModal, useTheme } from "../../context";
 import {
   CloseIMG,
@@ -11,8 +11,7 @@ import {
 } from "../../assets";
 import { useFetch } from "../../hooks";
 import { exportBackup, importBackup } from "../../service";
-import { Loader } from "../ui/Loader";
-import { ConfirmationDelete } from "../";
+import { ConfirmationDelete, CustomButton, Loader } from "../../components";
 
 const menuVariants: Variants = {
   hidden: { opacity: 0, y: -10, scale: 0.95 },

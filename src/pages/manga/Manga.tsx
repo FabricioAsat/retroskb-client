@@ -1,31 +1,38 @@
+import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { BackIMG, DeletedIMG, EditIMG, LinkIMG, NotImageIMG } from "../assets";
+import { useNavigate } from "react-router";
+
+import {
+  useModal,
+  useTheme,
+  useToast,
+  type ToastContextType,
+} from "../../context";
+import { MangaState, type IMangaCreate, type IMangaUpdate } from "../../models";
+import { useFetch } from "../../hooks";
+import { getManga, updateManga } from "../../service";
+import { getGenres, isValidMangaName, normalizeLink } from "../../utils";
+import { isValidChapter } from "../../utils/validators.util";
 import {
   ConfirmationDelete,
   CustomButton,
   CustomDropdown,
   CustomInput,
   CustomTextArea,
-  GenresSelector,
-  ImageUpdate,
   Loader,
-  MangaError,
-  MangaSkeleton,
   PageContainer,
-} from "../components";
-import { MangaState, type IMangaCreate, type IMangaUpdate } from "../models";
-import { isValidChapter, isValidMangaName } from "../utils/validators.util";
-import { useFetch } from "../hooks";
-import { useNavigate } from "react-router";
+} from "../../components";
+import { MangaSkeleton } from "./MangaSkeleton";
+import { MangaError } from "./MangaError";
 import {
-  useModal,
-  useTheme,
-  useToast,
-  type ToastContextType,
-} from "../context";
-import { getGenres, normalizeLink } from "../utils";
-import { getManga, updateManga } from "../service";
-import { useParams } from "react-router";
+  BackIMG,
+  DeletedIMG,
+  EditIMG,
+  LinkIMG,
+  NotImageIMG,
+} from "../../assets";
+import { ImageUpdate } from "../create/ImageUpdate";
+import { GenresSelector } from "../create/GenreSelector";
 
 export const Manga = () => {
   const { id } = useParams();

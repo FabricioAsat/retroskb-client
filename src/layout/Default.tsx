@@ -1,16 +1,13 @@
 import { motion } from "motion/react";
 import { Outlet } from "react-router";
 
-import {
-  AuthRedirect,
-  Footer,
-  HeaderDesktop,
-  HeaderMobile,
-  ScrollToTop,
-  Searcher,
-} from "../components";
+import { AuthRedirect, ScrollToTop } from "../components";
 import { useAuth, useTheme } from "../context";
 import { getColorVar } from "../utils";
+import { HeaderDesktop } from "./header/HeaderDesktop";
+import { HeaderMobile } from "./header/HeaderMobile";
+import { Footer } from "./footer/Footer";
+import { Searcher } from "./Searcher";
 
 export const Default = () => {
   const { isDark } = useTheme();

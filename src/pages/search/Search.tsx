@@ -1,12 +1,13 @@
 import { useSearchParams, useNavigate } from "react-router";
-import { CustomButton, Error, Loader, PageContainer } from "../components";
-import { useTheme } from "../context";
-import { useFetch } from "../hooks";
-import { getMangas } from "../service";
 import { useEffect, useState } from "react";
-import { ListContainer } from "../components/user/ListContainer";
-import { GridContainer } from "../components/user/GridContainer";
-import { BackIMG, GridIMG, ListIMG } from "../assets";
+
+import { useTheme } from "../../context";
+import { useFetch } from "../../hooks";
+import { getMangas } from "../../service";
+import { CustomButton, Error, Loader, PageContainer } from "../../components";
+import { BackIMG, GridIMG, ListIMG } from "../../assets";
+import { GridContainer } from "../user/GridContainer";
+import { ListContainer } from "../user/ListContainer";
 
 export const Search = () => {
   const [isGridOrder, setIsGridOrder] = useState<boolean>(

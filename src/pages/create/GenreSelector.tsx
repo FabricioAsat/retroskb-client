@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useTheme } from "../../context";
-import { CustomButton } from "../ui/CustomButton";
+import { CustomButton } from "../../components/ui/CustomButton";
 
 interface GenresSelectorProps {
   genres: string[];

@@ -1,10 +1,11 @@
-import { Logo } from "./Logo";
-import { CustomButton, Form } from "..";
-import { ToggleTheme } from "./ToggleTheme";
+import { useState } from "react";
+
 import { useAuth, useModal } from "../../context";
 import { LogoutIMG, LoginIMG, UserIMG, ProfileIMG } from "../../assets";
+import { CustomButton, Form } from "../../components";
+import { ToggleTheme } from "./ToggleTheme";
+import { Logo } from "./Logo";
 import { ShowProfile } from "./ShowProfile";
-import { useState } from "react";
 
 interface HeaderDesktopProps {
   isDark: boolean;

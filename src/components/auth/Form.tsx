@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+
 import { LogInForm } from "./LogInForm";
 import { SignUpForm } from "./SignUpForm";
 import { useTheme, useToast, type ToastContextType } from "../../context";
